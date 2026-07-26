@@ -24,6 +24,8 @@ El costo era concreto y repetido:
 
 Empecé liderando el frente de UI del equipo de Diseño: gobernaba el UI Kit y me reunía con UIs y Product Designers para estandarizar componentes y features entre productos y equipos. Conforme el proyecto tomó forma y escala, mi rol evolucionó a Design System Manager + UI Lead, coordinando un equipo mixto Yanbal–Propelland de 9 personas a través de las disciplinas de diseño, tokens y desarrollo.
 
+![Comparación de dos productos digitales de Yanbal y como a pesar de tener la misma fuente visual, fueron construidos con diferencias marcadas](../../assets/header-comparison.png)
+
 ## El proceso
 
 Estructuramos el proyecto en 4 fases a lo largo de ~25 semanas:

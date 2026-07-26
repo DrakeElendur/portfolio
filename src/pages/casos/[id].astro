@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from "../../layouts/Layout.astro"
 import type { GetStaticPaths } from "astro";
 import { getCollection, render } from 'astro:content';
@@ -16,14 +17,42 @@ export const getStaticPaths = (async () => {
         }
     });
 }) satisfies GetStaticPaths;
-
 const { caso } = Astro.props;
 const { Content } = await render(caso);
 
 ---
 <Layout>
-    <div class="w-full prose prose-invert">
-        <h1 class="font-sans text-3xl text-white font-semibold text-left">{caso.data.title}</h1>
+    <main class="w-7xl max-w-dvw mx-auto prose prose-invert">
+        <a class="font-bold p-4" href="/">🡐 Volver al inicio</a>
+        <h1 class="font-sans text-6xl text-white font-semibold text-left">{caso.data.title}</h1>
+        <p>{caso.data.summary}</p>
+        <Image src={caso.data.image} alt={caso.data.title}/>
+        <article class="flex flex-row">
+            <div class="flex flex-col w-2/3 m-6">
+                <h2>TL;DR:</h2>
+                {caso.data.tldr}</div>
+            <div class="flex flex-col w-1/3 m-6">
+                <div>
+                <h3>COMPAÑIA</h3>
+                {caso.data.company}
+                </div>
+
+                <div>
+                <h3>ROL</h3>
+                {caso.data.role}
+                </div>
+
+                <div>
+                <h3>SERVICIO</h3>
+                {caso.data.tags}
+                </div>
+
+                <div>
+                <h3>DURACIÓN</h3>
+                {caso.data.date}
+                </div>
+            </div>
+        </article>
         <Content />
-    </div>
+    </main>
 </Layout>
