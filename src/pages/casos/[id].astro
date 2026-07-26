@@ -1,0 +1,29 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import type { GetStaticPaths } from "astro";
+import { getCollection, render } from 'astro:content';
+
+export const getStaticPaths = (async () => {
+    const allCasos = await getCollection('casos')
+    return allCasos.map(caso => {
+        return {
+            params: {
+                id: caso.id
+            },
+            props: {
+                caso
+            }
+        }
+    });
+}) satisfies GetStaticPaths;
+
+const { caso } = Astro.props;
+const { Content } = await render(caso);
+
+---
+<Layout>
+    <div class="w-full prose prose-invert">
+        <h1 class="font-sans text-3xl text-white font-semibold text-left">{caso.data.title}</h1>
+        <Content />
+    </div>
+</Layout>
