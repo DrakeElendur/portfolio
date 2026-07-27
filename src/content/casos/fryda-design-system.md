@@ -5,7 +5,7 @@ summary: FrYDA (Framework de Yanbal para Diseño Atómico) es el sistema de dise
 date: 2025 - Present
 tags:
     - Design Systems
-    - UI
+    - UX / UI
     - Front-end
     - Tokenization
 company: Yanbal
