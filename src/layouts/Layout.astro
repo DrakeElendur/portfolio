@@ -1,5 +1,6 @@
 ---
  import "../styles/global.css"
+ import Nav from '../components/Nav.astro';
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -11,7 +12,8 @@
         <meta name="generator" content={Astro.generator} />
         <title>Portfolio</title>
     </head>
-    <body class="flex flex-col items-center justify-start bg-gray-900 min-h-screen">
+    <body class="flex flex-col items-center bg-gray-900  text-gray-400 min-h-screen font-figtree">
+        <Nav />
         <slot />
     </body>
 </html>

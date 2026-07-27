@@ -1,11 +1,32 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import { getCollection } from 'astro:content';
+import Button from '../components/Button.astro';
+
+const casos = await getCollection('casos');
 ---
 <Layout>
-	<div class="max-auto xl:w-7xl mx-auto ">
-	<h1 class="font-sans text-3xl text-white font-semibold text-left ml-4">Diseño y Gobierno <br><span class="text-lime-300">Sistemas de Diseño</span><br>que escalan</h1>
-	<svg width="28" height="28">
-		<use xlink:href="../sprite.svg#twitch" />
-	</svg>
-	</div>
+	<main class="flex flex-col w-dvw max-w-dvw lg:max-w-7xl px-8 lg:px-4 h-full">
+		<div class="flex flex-row justify-center items-center h-dvh w-full max-w-dvw lg:max-w-7xl">
+			<div class="flex flex-col w-full gap-6 max-w-full">
+				<h1 class="text-7xl  text-white font-normal text-left">Diseño y Gobierno <br><span class="text-lime-300">Sistemas de Diseño</span><br> que escalan</h1>
+				<p class="text-xl">Cierro la brecha entre diseño e ingeniería: arquitectura de tokens, pipelines, design-to-code y la gobernanza que mantiene todo consistente.</p>
+				<h2 class="text-2xl"><span class="text-lime-300">Design System Manager</span> en Yanbal Internacional</h2>
+				<div class="flex flex-row justify-start gap-4">
+					<Button variant="primary" href="https://www.linkedin.com/in/colomacarlos/" >Full Resumé</Button>
+					<Button variant="secondary" href="./contacto">Contáctame</Button>
+				</div>
+				<img src="">
+
+				<!--
+				Iconos de RRSS
+
+				<svg width="28" height="28">
+					<use xlink:href="../sprite.svg#twitch" />
+				</svg>
+				-->
+			</div>
+
+		</div>
+	</main>
 </Layout>

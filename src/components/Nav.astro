@@ -1,0 +1,39 @@
+---
+import Button from '../components/Button.astro';
+---
+<header class="flex flex-row justify-center items-center w-full max-w-dvw z-50 sticky bg-gray-950">
+<div class="relative flex flex-row justify-between items-center w-full max-w-dvw lg:max-w-7xl px-8 lg:px-4 py-4">
+    <div class="font-montserrat cursor-pointer text-white text-2xl font-light"><a href="/">Carlos Coloma</a></div>
+    <nav class="hidden lg:flex flex-row justify-end items-center gap-8">
+        <ul class="flex gap-8">
+            <li class="cursor-pointer text-white hover:text-lime-300"><a href="/">Home</a></li>
+            <li class="cursor-pointer text-white hover:text-lime-300"><a href="/sobre-mi">Sobre mi</a></li>
+            <li class="cursor-pointer text-white hover:text-lime-300"><a href="https://www.linkedin.com/in/colomacarlos/">Linkedin</a></li>
+        </ul>
+        <Button variant="primary" href="/contacto">Contáctame</Button>
+    </nav>
+    <span id="burger">
+        <svg fill="none" width="48" height="48" class="flex lg:hidden">
+            <use xlink:href="../sprite.svg#hamburger" />
+        </svg>
+    </span>  
+</div>
+<div id="menu" class="hidden absolute top-full lg:hidden bg-gray-900 w-full h-dvh z-50 px-8 py-8 -m-1">
+        <ul class="flex flex-col justify-center items-center gap-8">
+            <li class="text-xl cursor-pointer text-white hover:text-lime-300"><a class="py-4 inline-block" href="/">Home</a></li>
+            <li class="text-xl cursor-pointer text-white hover:text-lime-300"><a class="py-4 inline-block" href="/sobre-mi">Sobre mi</a></li>
+            <li class="text-xl cursor-pointer text-white hover:text-lime-300"><a class="py-4 inline-block" href="https://www.linkedin.com/in/colomacarlos/">Linkedin</a></li>
+            <li><Button variant="primary" href="/contacto">Contáctame</Button></li>
+        </ul>
+</div>
+</header>
+<script>
+    const burger = document.getElementById("burger");
+    const menu = document.getElementById("menu");
+    console.log(menu);
+    console.log(burger);
+    burger?.addEventListener("click", () => {
+        menu?.classList.toggle("hidden");
+    })
+    
+</script>

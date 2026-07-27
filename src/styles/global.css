@@ -1,2 +1,24 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+@font-face {
+    font-family: "Figtree";
+    src: url("../assets/fonts/Figtree-VariableFont_wght.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 300 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("../assets/fonts/Montserrat-VariableFont_wght.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+@theme {
+    /* Fuentes */
+    --font-figtree: "Figtree", sans-serif;
+    --font-montserrat: "Montserrat", sans-serif;
+}
