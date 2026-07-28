@@ -1,6 +1,6 @@
 ---
 title: Proyecto Everest — Nueva MAYA
-image: "../../assets/Cover-NuevaMAYA.png"
+image: "../../assets/images/Cover-NuevaMAYA.png"
 summary: De un registro de pedidos a un copiloto de inteligencia de negocio para las vendedoras de Yanbal en Latinoamérica
 date: 2022 - 2025
 tags:

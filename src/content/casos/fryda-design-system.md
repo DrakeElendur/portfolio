@@ -1,6 +1,6 @@
 ---
 title: FrYDA Design System
-image: "../../assets/fryda-01.png"
+image: "../../assets/images/fryda-01.png"
 summary: FrYDA (Framework de Yanbal para Diseño Atómico) es el sistema de diseño corporativo que unifica el diseño y el desarrollo de los productos digitales de Yanbal. Lo llevé de una librería visual a un pipeline tokenizado y gobernado 37 componentes en su segundo paquete NPM, con una reducción estimada de 30-40% en los tiempos de entrega y desarrollo.
 date: 2025 - Present
 tags:
@@ -24,7 +24,7 @@ El costo era concreto y repetido:
 
 Empecé liderando el frente de UI del equipo de Diseño: gobernaba el UI Kit y me reunía con UIs y Product Designers para estandarizar componentes y features entre productos y equipos. Conforme el proyecto tomó forma y escala, mi rol evolucionó a Design System Manager + UI Lead, coordinando un equipo mixto Yanbal–Propelland de 9 personas a través de las disciplinas de diseño, tokens y desarrollo.
 
-![Comparación de dos productos digitales de Yanbal y como a pesar de tener la misma fuente visual, fueron construidos con diferencias marcadas](../../assets/header-comparison.png)
+![Comparación de dos productos digitales de Yanbal y como a pesar de tener la misma fuente visual, fueron construidos con diferencias marcadas](../../assets/images/header-comparison.png)
 
 ## El proceso
 
@@ -47,7 +47,7 @@ Estructuramos el proyecto en 4 fases a lo largo de ~25 semanas:
 1. **Reformular la semántica heredada.** El UI Kit arrastraba errores de semántica y sintaxis: nombres de variantes y propiedades confusos que inducían a error. Adoptamos el principio de que toda variante debía nombrar su intención de uso y diseñamos los componentes para que el diseñador no pudiera equivocarse al aplicarlos. Esto obligó a reformular varias veces la semántica de color y a crear tokens nuevos de forma iterativa. El inventario y análisis de uso de componentes entre productos fue, además, un trabajo arduo.
 2. **Angular en un mundo React.** El estándar de mercado es React, pero Yanbal exige Angular en todos sus productos. Buscamos la mejor solución técnica y elegimos Stencil.JS para generar web components agnósticos al framework. Angular sigue siendo un reto: ciertos protocolos del framework nos han llevado a ajustar configuraciones y formas de desarrollar componentes sobre la marcha.
 
-![Botón primario para descargar](../../assets/Button.png)
+![Botón primario para descargar](../../assets/images/Button.png)
 ```
 <fry-button hierarchy="primary" mode="default" text="Descargar" icon-left="download-outline" type="button"></fry-button>  
 ```

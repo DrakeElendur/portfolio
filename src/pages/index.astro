@@ -2,31 +2,59 @@
 import Layout from "../layouts/Layout.astro"
 import { getCollection } from 'astro:content';
 import Button from '../components/Button.astro';
+import { Image } from 'astro:assets';
+import HeroPhoto from '../assets/images/hero-photo.webp';
 
 const casos = await getCollection('casos');
 ---
 <Layout>
-	<main class="flex flex-col w-dvw max-w-dvw lg:max-w-7xl px-8 lg:px-4 h-full">
-		<div class="flex flex-row justify-center items-center h-dvh w-full max-w-dvw lg:max-w-7xl">
+	<main class="flex flex-col w-dvw max-w-dvw max-h-dvh mx-auto h-full">
+		<section class="flex flex-col-reverse justify-center items-center w-full max-w-dvw mx-auto gap-16 py-30 lg:max-w-7xl lg:flex-row">
 			<div class="flex flex-col w-full gap-6 max-w-full">
-				<h1 class="text-7xl  text-white font-normal text-left">Diseño y Gobierno <br><span class="text-lime-300">Sistemas de Diseño</span><br> que escalan</h1>
-				<p class="text-xl">Cierro la brecha entre diseño e ingeniería: arquitectura de tokens, pipelines, design-to-code y la gobernanza que mantiene todo consistente.</p>
-				<h2 class="text-2xl"><span class="text-lime-300">Design System Manager</span> en Yanbal Internacional</h2>
-				<div class="flex flex-row justify-start gap-4">
-					<Button variant="primary" href="https://www.linkedin.com/in/colomacarlos/" >Full Resumé</Button>
-					<Button variant="secondary" href="./contacto">Contáctame</Button>
+				<h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-6xl  text-white font-normal lg:text-left text-center">Diseño y Gobierno <span class="text-lime-300">Sistemas de Diseño</span> que escalan</h1>
+				<p class="text-l md:text-xl">Cierro la brecha entre diseño e ingeniería: arquitectura de tokens, pipelines, design-to-code y la gobernanza que mantiene todo consistente.</p>
+				<h2 class="text-xl md:text-2xl"><span class="text-lime-300">Design System Manager</span> en Yanbal Internacional</h2>
+				<div class="flex flex-col sm:flex-row justify-center items-center md:justify-start gap-4">
+					<Button variant="primary" href="https://www.linkedin.com/in/colomacarlos/" target="_blank" rel="noreferrer" >Full Resumé</Button>
+					<Button variant="secondary" href="/contacto">Contáctame</Button>
 				</div>
-				<img src="">
-
-				<!--
-				Iconos de RRSS
-
-				<svg width="28" height="28">
-					<use xlink:href="../sprite.svg#twitch" />
-				</svg>
-				-->
 			</div>
-
-		</div>
+			<Image class="size-75 sm:size-100 lg:size-140 rounded-full" src={HeroPhoto} alt="Foto de Carlos Coloma"/>
+		</section>
+		<section class="bg-gray-800 ">
+			<div class="flex flex-col w-full justify-center items-center max-w-dvw mx-auto gap-8 pt-30 lg:max-w-7xl">
+				<h2 class="text-3xl md:text-4xl text-white">Proyectos destacados</h2>
+				<p class="w-2/4 text-center">Una selección curada de los proyectos donde mi trabajo movió métricas de negocio y de producto. Cada caso parte de un problema real, explica la decisión de diseño y cierra con su impacto.</p>
+				<div class="flex flex-col justify-center items-center">
+					{casos.map((caso => {
+						return <a href={`/casos/${caso.id}`} class="grid grid-cols-2 grid-rows-1 gap-24 py-12 border-b">
+							<div class="flex flex-col gap-4 justify-between items-left w-full">
+								<div class="flex flex-col gap-4">
+									<div class="text-2xl text-white font-semibold">{caso.data.title}</div>
+									<div class="text-xl">{caso.data.summary}</div>
+								</div>
+								<div class="flex flex-row gap-8 w-full justify-between">
+									<div>
+										<p>Duración</p>
+										<span class="text-white">{caso.data.date}</span>
+									</div>
+									<div>
+										<p>Rol</p>
+										<span class="text-white">{caso.data.role}</span>
+									</div>
+									<div>
+										<p>Compañia</p>
+										<span class="text-white">{caso.data.company}</span>
+									</div>
+								</div>
+							</div>
+							<div class="aspect-3/2 relative w-full h-full">
+								<Image class="w-full h-full object-cover rounded-xl" alt={caso.data.title} src={caso.data.image} />
+							</div>
+						</a>
+					}))}
+				</div>
+			</div>
+		</section>
 	</main>
 </Layout>
