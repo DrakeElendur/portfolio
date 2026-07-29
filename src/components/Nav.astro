@@ -3,7 +3,7 @@ import Button from '../components/Button.astro';
 ---
 <header class="flex flex-row justify-center items-center w-full z-50 fixed bg-gray-950">
 <div class="relative flex flex-row justify-between items-center w-full lg:max-w-7xl px-8 lg:px-4 py-4">
-    <div class="font-montserrat cursor-pointer text-white text-2xl font-light"><a href="/">Carlos Coloma</a></div>
+    <div class="font-montserrat cursor-pointer text-white text-2xl font-bold"><a href="/">Carlos Coloma</a></div>
     <span id="burger">
         <svg fill="none" width="48" height="48" class="flex lg:hidden">
             <use xlink:href="../sprite.svg#hamburger" />
@@ -11,9 +11,8 @@ import Button from '../components/Button.astro';
     </span>  
     <nav class="hidden lg:flex flex-row justify-end items-center gap-8">
         <ul class="flex gap-8">
-            <li class="cursor-pointer text-white hover:text-lime-300"><a href="/">Home</a></li>
-            <li class="cursor-pointer text-white hover:text-lime-300"><a href="/sobre-mi">Sobre mi</a></li>
-            <li class="cursor-pointer text-white hover:text-lime-300"><a href="https://www.linkedin.com/in/colomacarlos/">Linkedin</a></li>
+            <li class="text-lg cursor-pointer text-white hover:text-lime-300"><a href="/">Home</a></li>
+            <li class="text-lg cursor-pointer text-white hover:text-lime-300"><a href="/sobre-mi">Sobre mi</a></li>
         </ul>
         <Button variant="primary" href="/contacto">Contáctame</Button>
     </nav>
