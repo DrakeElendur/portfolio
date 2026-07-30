@@ -36,7 +36,7 @@ Estructuramos el proyecto en 4 fases a lo largo de ~25 semanas:
 
 ## Decisiones clave de arquitectura
 
-**Tres niveles de tokens (7 librerías): Primitive → Semantic → Functional**. Separar los tokens por nivel semántico y función permitió que el sistema escalara sin colisiones y que un cambio de marca se propagara por cascada. Se diseñó una nomenclatura propia ``--fry-p``, ``--fry-s``, ``--fry-f—`` con alias en cascada entre niveles.
+**Tres niveles de tokens (7 librerías): Primitive → Semantic → Functional**. Separar los tokens por nivel semántico y función permitió que el sistema escalara sin colisiones y que un cambio de marca se propagara por cascada. Se diseñó una nomenclatura propia `--fry-p-*`, `--fry-s-*`, `--fry-f—*` con alias en cascada entre niveles.
 
 **Tokens Studio + Style Dictionary + Azure DevOps**. Elegimos Tokens Studio porque permite hacer gatekeeping de los cambios antes de que entren al repo de Azure DevOps; Style Dictionary traduce esos tokens en tres archivos Foundation.css , Semantic.css y Component.css listos para consumo en código.
 
@@ -48,9 +48,11 @@ Estructuramos el proyecto en 4 fases a lo largo de ~25 semanas:
 2. **Angular en un mundo React.** El estándar de mercado es React, pero Yanbal exige Angular en todos sus productos. Buscamos la mejor solución técnica y elegimos Stencil.JS para generar web components agnósticos al framework. Angular sigue siendo un reto: ciertos protocolos del framework nos han llevado a ajustar configuraciones y formas de desarrollar componentes sobre la marcha.
 
 ![Botón primario para descargar](../../assets/images/Button.png)
+
+```html
+<fry-button hierarchy="primary" mode="default" text="Descargar" icon-left="download-outline" type="button">Descargar</fry-button>
 ```
-<fry-button hierarchy="primary" mode="default" text="Descargar" icon-left="download-outline" type="button"></fry-button>  
-```
+
 
 ## Resultados e impacto
 
