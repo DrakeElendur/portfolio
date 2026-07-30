@@ -4,6 +4,7 @@
     "empresa": "Yanbal Internacional",
     "fechaInicio": "Agosto 2025",
     "fechaFin": "Presente",
+    "image": "../assets/images/yanbal-logo.webp",
     "descripcion": "Dirijo la evolución del Design System corporativo, estableciendo la fuente única de verdad para producto, diseño e ingeniería en una operación multipaís. Arquitecté la estrategia de tokenización, publicando el segundo paquete NPM con 37 componentes tokenizados listos para consumo en desarrollo. Resolví la inconsistencia de componentes en producción instaurando una librería común gobernada y versionada semánticamente."
 },
 {
@@ -12,6 +13,7 @@
     "empresa": "Yanbal Internacional",
     "fechaInicio": "Enero 2020",
     "fechaFin": "Julio 2025",
+    "image": "../assets/images/yanbal-logo.webp",
     "descripcion": "Participé de extremo a extremo —descubrimiento, ideación, diseño, handoff y evolución—. Elevé la adopción a 95% en Directoras y 39% en Consultoras, superando a la versión anterior (80% y 25–32% respectivamente) a nivel corporativo. Traduje hallazgos de investigación en especificaciones detalladas para desarrollo, asegurando alineación con los objetivos estratégicos del negocio."
 },
 {
@@ -20,6 +22,7 @@
     "empresa": "Humantech",
     "fechaInicio": "Mayo 2019",
     "fechaFin": "Diciembre 2019",
+    "image": "../assets/images/humantech-logo.webp",
     "descripcion": "Lideré la investigación de usuarios y el diseño de wireframes, lleve a cabo el diseño desde la conceptualización hasta la creación de prototipos de baja y alta fidelidad. Realicé pruebas de usabilidad, colaborando estrechamente con los diseñadores UI y los desarrolladores para asegurar que las soluciones de diseño fueran funcionales y estuvieran alineadas con las necesidades de los usuarios y los objetivos del proyecto."
 },
 {
@@ -28,6 +31,7 @@
     "empresa": "Funciton",
     "fechaInicio": "Febrero 2019",
     "fechaFin": "Abril 2019",
+    "image": "../assets/images/funciton-logo.webp",
     "descripcion": "Diseñé interfaces web y mobiles, diseño de piezas gráficas y adaptación de plantillas para Profuturo, Brapex y Funciton. Creación de prototipos de alta fidelidad en Adobe XD y Principle. Diseño de presentaciones y elementos gráficos."
 },
 {
@@ -36,6 +40,7 @@
     "empresa": "JCDecaux Perú",
     "fechaInicio": "Enero 2016",
     "fechaFin": "Enero 2019",
+    "image": "../assets/images/jcd-logo.webp",
     "descripcion": "Diseñé piezas gráficas para las ventas de publicidad indoor, me aseguré que cada elemento cumpliera con los requisitos de calidad y atractivo que capte la atención del público objetivo. También me encargué de la revisión y elaboración de videos y animaciones para las publicidades digitales, optimizando los contenidos visuales para las distintas localizaciones."
 },
 {
@@ -44,5 +49,6 @@
     "empresa": "Qnary Perú",
     "fechaInicio": "Febrero 2015",
     "fechaFin": "Agosto 2015",
+    "image": "../assets/images/qnary-logo.webp",
     "descripcion": "Diseño de contenido para Páginas Web, Redes Sociales y todo lo relacionado con la Marca de los Clientes de la Agencia. Añadir el proceso Creativo a la elaboración de las piezas."
 }]

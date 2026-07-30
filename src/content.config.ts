@@ -19,13 +19,14 @@ const casos = defineCollection({
 
 const experiencia = defineCollection({
   loader: file("src/data/experiencia.json"),
-  schema: z.object({
+  schema: ({image}) => z.object({
     puesto: z.string(),
     empresa: z.string(),
     fechaInicio: z.string(),
     fechaFin: z.string(),
     descripcion: z.string(),
     id: z.number(),
+    image: image(),
   }),
 });
 

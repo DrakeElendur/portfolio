@@ -1,6 +1,6 @@
 [{
     "id": 1,
-    "titulo": "B.A. Diseño Gráfico Publicitario",
+    "titulo": "B.A. Diseño Gráfico",
     "instituto": "Universidad UCAL",
     "fechaGraduacion": "Julio 2016",
     "type": "college"
@@ -14,7 +14,7 @@
 },
 {
     "id": 3,
-    "titulo": "Bootcamp sobre Design System",
+    "titulo": "Design System Bootcamp",
     "instituto": "Design System Camp",
     "fechaGraduacion": "Agosto 2024",
     "type": "diploma"

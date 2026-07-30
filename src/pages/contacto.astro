@@ -3,31 +3,31 @@ import Layout from "../layouts/Layout.astro"
 import Button from '../components/Button.astro'
 ---
 <Layout>
-	<section class="flex flex-col justify-center items-center max-w-7xl w-full pt-30 px-8">
-		<div class="flex flex-col justify-center items-center gap-2">
-			<h1 class="text-white text-3xl font-bold">Contáctame</h1>
-			<p>Hablame sobre tu proyecto o la necesidad que tienes y exploremos juntos.</p>
-			<p id="mensajeExito"></p>
-			<p id="mensajeError"></p>
+	<section class="flex flex-col justify-center items-center max-w-3xl w-full pt-30 px-8">
+		<div class="flex flex-col justify-center items-center gap-2 pb-4">
+			<h1 class="text-lime-300 text-3xl font-bold">Contáctame</h1>
+			<p class="text-xl text-center text-balance">Me especializo en ayudar a startups y equipos a avanzar con mayor rapidez, inteligencia y confianza. Contáctame para ver cómo podemos colaborar.</p>
+			<p id="mensajeExito" class="text-lg text-emerald-400"></p>
+			<p id="mensajeError" class="text-lg text-red-500"></p>
 		</div>
-		<div class="flex flex-col justify-center items-center gap-12 p-8 bg-gray-950 rounded-4xl">
-			<form novalidate>
-				<div class="flex">
-					<div class="flex flex-col">
-						<label for="name">Tu nombre</label>
-						<input class="bg-white" type="text" id="name" name="name" placeholder="Escribe tu nombre" required>
-						<p id="nameError"></p>
+		<div class="w-full flex flex-col justify-center items-center gap-12 p-8 bg-gray-950 rounded-4xl">
+			<form novalidate class="flex flex-col w-full gap-2">
+				<div class="flex flex-col w-full justify-center items-center gap-4 sm:flex-row sm:justify-between">
+					<div class="w-full flex flex-col gap-2">
+						<label for="name" class="text-white text-lg">Tu nombre</label>
+						<input class="w-full bg-white p-4 rounded-lg text-base" type="text" id="name" name="name" placeholder="Escribe tu nombre" required>
+						<p id="nameError" class=" text-red-500 text-sm"></p>
 					</div>
-					<div class="flex flex-col">
-						<label for="email">Tu email</label>
-						<input class="bg-white" type="email" id="email" name="email" placeholder="Escribe tu correo" required>
-						<p id="emailError"></p>
+					<div class="w-full flex flex-col gap-2">
+						<label for="email" class="text-white text-lg">Tu email</label>
+						<input class="w-full bg-white p-4 rounded-lg text-base" type="email" id="email" name="email" placeholder="Escribe tu correo" required>
+						<p id="emailError" class=" text-red-500 text-sm"></p>
 					</div>
 				</div>
-				<div class="flex flex-col">
-					<label for="message">¿Cómo puedo ayudarte?</label>
-					<textarea class="bg-white" id="message" name="message" placeholder="Escribe aqui tu mensaje" required></textarea>
-					<p id="messageError"></p>
+				<div class="w-full flex flex-col gap-2">
+					<label for="message" class="text-white text-lg">¿Cómo puedo ayudarte?</label>
+					<textarea class="w-full bg-white p-4 rounded-lg text-base min-h-48" id="message" name="message" placeholder="Escribe aqui tu mensaje" required></textarea>
+					<p id="messageError" class=" text-red-500 text-sm"></p>
 				</div>
 				<Button type="submit" variant="primary">Enviar mensaje</Button>
 			</form>
@@ -58,19 +58,19 @@ import Button from '../components/Button.astro'
 			const valido = form.checkValidity();
 
 			if (name.checkValidity() === false) {
-				nameError.textContent = "Completa este campo";
+				nameError.textContent = "❌ Completa este campo";
 			} else {
 				nameError.textContent = "";
 			};
 			if (email.validity.valueMissing === true) {
-				emailError.textContent = "Completa este campo";
+				emailError.textContent = "❌ Completa este campo";
 			} else if(email.validity.typeMismatch === true) {
-				emailError.textContent = "Escribe un email válido";
+				emailError.textContent = "❌ Escribe un email válido";
 			} else {
 				emailError.textContent = "";
 			};
 			if (message.checkValidity() === false) {
-				messageError.textContent = "Escribe tu mensaje para poder enviarlo";
+				messageError.textContent = "❌ Escribe tu mensaje para poder enviarlo";
 			} else {
 				messageError.textContent = "";
 			};
@@ -82,9 +82,9 @@ import Button from '../components/Button.astro'
 					message: message.value,
 				});
 				if (error) {
-					console.log("Error al enviar el mensaje")
+					console.log("❌ Error al enviar el mensaje")
 				} else {
-					mensajeExito.textContent = "Mensaje enviado correctamente";
+					mensajeExito.textContent = "✅ Mensaje enviado correctamente";
 					form.reset();
 					nameError.textContent = "";
 					emailError.textContent = "";
