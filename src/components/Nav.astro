@@ -30,8 +30,6 @@ import Button from '../components/Button.astro';
 <script>
     const burger = document.getElementById("burger");
     const menu = document.getElementById("menu");
-    console.log(menu);
-    console.log(burger);
     burger?.addEventListener("click", () => {
         menu?.classList.toggle("hidden");
     })
