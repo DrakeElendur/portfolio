@@ -1,0 +1,98 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Button from '../components/Button.astro'
+---
+<Layout>
+	<section class="flex flex-col justify-center items-center max-w-7xl w-full pt-30 px-8">
+		<div class="flex flex-col justify-center items-center gap-2">
+			<h1 class="text-white text-3xl font-bold">Contáctame</h1>
+			<p>Hablame sobre tu proyecto o la necesidad que tienes y exploremos juntos.</p>
+			<p id="mensajeExito"></p>
+			<p id="mensajeError"></p>
+		</div>
+		<div class="flex flex-col justify-center items-center gap-12 p-8 bg-gray-950 rounded-4xl">
+			<form novalidate>
+				<div class="flex">
+					<div class="flex flex-col">
+						<label for="name">Tu nombre</label>
+						<input class="bg-white" type="text" id="name" name="name" placeholder="Escribe tu nombre" required>
+						<p id="nameError"></p>
+					</div>
+					<div class="flex flex-col">
+						<label for="email">Tu email</label>
+						<input class="bg-white" type="email" id="email" name="email" placeholder="Escribe tu correo" required>
+						<p id="emailError"></p>
+					</div>
+				</div>
+				<div class="flex flex-col">
+					<label for="message">¿Cómo puedo ayudarte?</label>
+					<textarea class="bg-white" id="message" name="message" placeholder="Escribe aqui tu mensaje" required></textarea>
+					<p id="messageError"></p>
+				</div>
+				<Button type="submit" variant="primary">Enviar mensaje</Button>
+			</form>
+		</div>
+	</section>
+</Layout>
+<script>
+	import { createClient } from "@supabase/supabase-js";
+	const supabaseUrl = import.meta.env.PUBLIC_URL_SUPABASE;
+	const supabaseKey = import.meta.env.PUBLIC_ANON_KEY_SUPABASE;
+	const supabase = createClient(supabaseUrl, supabaseKey);
+
+	const form = document.querySelector("form");
+	const name = document.querySelector<HTMLInputElement>("#name");
+	const email = document.querySelector<HTMLInputElement>("#email");
+	const message = document.querySelector<HTMLTextAreaElement>("#message");
+	const nameError = document.querySelector("#nameError");
+	const emailError = document.querySelector("#emailError");
+	const messageError = document.querySelector("#messageError");
+	const mensajeExito = document.querySelector("#mensajeExito");
+	const mensajeError = document.querySelector("#mensajeError");
+
+
+
+	if (form && name && email && message && nameError && emailError && messageError && mensajeExito && mensajeError) {
+		form.addEventListener("submit", async (event) => {
+			event.preventDefault();
+			const valido = form.checkValidity();
+
+			if (name.checkValidity() === false) {
+				nameError.textContent = "Completa este campo";
+			} else {
+				nameError.textContent = "";
+			};
+			if (email.validity.valueMissing === true) {
+				emailError.textContent = "Completa este campo";
+			} else if(email.validity.typeMismatch === true) {
+				emailError.textContent = "Escribe un email válido";
+			} else {
+				emailError.textContent = "";
+			};
+			if (message.checkValidity() === false) {
+				messageError.textContent = "Escribe tu mensaje para poder enviarlo";
+			} else {
+				messageError.textContent = "";
+			};
+
+			if (valido === true) {
+				const { data, error } = await supabase.from("Contactos").insert({
+					name: name.value,
+					email: email.value,
+					message: message.value,
+				});
+				if (error) {
+					console.log("Error al enviar el mensaje")
+				} else {
+					mensajeExito.textContent = "Mensaje enviado correctamente";
+					form.reset();
+					nameError.textContent = "";
+					emailError.textContent = "";
+					messageError.textContent = "";
+				}
+			} else {
+				console.log("Formulario inválido")
+			};
+		});
+	}
+</script>

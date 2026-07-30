@@ -24,7 +24,7 @@ const { Content } = await render(caso);
 <Layout>
     <main class="w-full max-w-dvw mx-auto prose prose-invert">
         <a class="font-bold p-4" href="/">🡐 Volver al inicio</a>
-        <h1 class="font-sans text-6xl text-white font-semibold text-left">{caso.data.title}</h1>
+        <h1 class="text-6xl text-white font-semibold text-left">{caso.data.title}</h1>
         <p>{caso.data.summary}</p>
         <Image src={caso.data.image} alt={caso.data.title}/>
         <article class="flex flex-col m-12">

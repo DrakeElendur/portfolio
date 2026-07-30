@@ -1,0 +1,21 @@
+[{
+    "id": 1,
+    "titulo": "B.A. Diseño Gráfico Publicitario",
+    "instituto": "Universidad UCAL",
+    "fechaGraduacion": "Julio 2016",
+    "type": "college"
+},
+{
+    "id": 2,
+    "titulo": "User Experience Design",
+    "instituto": "Repensar Educativo",
+    "fechaGraduacion": "Abril 2019",
+    "type": "diploma"
+},
+{
+    "id": 3,
+    "titulo": "Bootcamp sobre Design System",
+    "instituto": "Design System Camp",
+    "fechaGraduacion": "Agosto 2024",
+    "type": "diploma"
+}]
