@@ -3,6 +3,8 @@ import "../styles/global.css"
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import HeroPhoto from '../assets/images/hero-photo.webp'
+import Analytics from '@vercel/analytics/astro'
+import SpeedInsights from "@vercel/speed-insights/astro"
 interface Props {
     title: string;
     description:string;
@@ -20,14 +22,20 @@ const { title, description, image = defaultImageURL } = Astro.props;
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        <!-- Tags de SEO -->
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
         <meta name="description" content={description} />
+        <!-- Tags de Open Graph-->
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="website">
         <meta property="og:url" content={Astro.url.href} />
         <meta property="og:image" content={image} />
+        <!-- Analíticas de Vercel -->
+        <Analytics />
+        <SpeedInsights/>
+        <!-- Titulo de la Página -->
         <title>{title}</title>
     </head>
     <body class="flex flex-col items-center w-dvw bg-gray-900 min-w-0 text-gray-400 font-figtree">
