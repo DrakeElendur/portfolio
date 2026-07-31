@@ -4,10 +4,10 @@ import { getCollection } from 'astro:content';
 import Button from '../components/Button.astro';
 import { Image } from 'astro:assets';
 import HeroPhoto from '../assets/images/hero-photo.webp';
-
+import FotoContacto from '../assets/images/foto-2.webp';
 const casos = await getCollection('casos');
 ---
-<Layout>
+<Layout title="Carlos Coloma Martínez - Design System Expert">
 	<section class="flex flex-col-reverse justify-center items-center w-full max-w-dvw mx-auto gap-16 py-30 px-8 lg:max-w-7xl lg:flex-row">
 		<div class="flex flex-col w-full gap-6 max-w-full">
 			<h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-6xl  text-white font-normal lg:text-left text-center">Diseño y Gobierno <span class="text-lime-300">Sistemas de Diseño</span><br class="hidden lg:flex"> que escalan</h1>
@@ -26,10 +26,10 @@ const casos = await getCollection('casos');
 			<p class="w-full lg:w-2/4 text-center text-lg">Una selección curada de los proyectos donde mi trabajo movió métricas de negocio y de producto. Cada caso parte de un problema real, explica la decisión de diseño y cierra con su impacto.</p>
 			<div class="flex flex-col justify-center items-center">
 				{casos.map((caso => {
-					return <a href={`/casos/${caso.id}`} class="flex flex-col-reverse lg:flex-row w-full gap-24 py-6 md:py-12 border-b">
+					return <a href={`/casos/${caso.id}`} class="flex flex-col-reverse group lg:flex-row w-full gap-24 py-6 md:py-12 border-b">
 						<div class="flex flex-col gap-4 justify-between items-start w-full h-full">
 							<div class="flex flex-col gap-4">
-								<div class="text-2xl text-white font-semibold">{caso.data.title}</div>
+								<div class="text-2xl text-white font-semibold group-hover:text-lime-300 group-hover:underline">{caso.data.title}</div>
 								<div class="text-l sm:text-xl">{caso.data.summary}</div>
 							</div>
 							<div class="flex flex-row gap-8 w-full justify-between">
@@ -61,7 +61,7 @@ const casos = await getCollection('casos');
 		</p>
 		<div class="h-full w-full lg:max-w-7xl items-center justify-evenly flex flex-col lg:flex-row py-24 gap-12 lg:gap-8">
 			<a class="text-white text-xl sm:text-2xl underline hover:text-lime-300" rel="noreferrer" target="_blank" href="mailto:coloma.productdesign@gmail.com">coloma.productdesign@gmail.com</a>
-			<Image class="size-75 rounded-3xl" src={HeroPhoto} alt="Foto de Carlos y su novia Ghilary"/>
+			<Image class="size-75 rounded-3xl object-cover" src={FotoContacto} alt="Foto de Carlos y su novia Ghilary"/>
 			<a href="https://www.linkedin.com/in/colomacarlos/" target="_blank" rel="noreferrer" class="flex flex-row gap-4 items-center group">
 				<svg class="fill-white group-hover:fill-blue-500" width="32" height="32">
 					<use xlink:href="../sprite.svg#linkedin" />

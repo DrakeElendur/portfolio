@@ -1,16 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import { Image } from 'astro:assets';
-import HeroPhoto from '../assets/images/hero-photo.webp';
+import FotoSobreMi from '../assets/images/foto-2.webp';
 import { getCollection } from 'astro:content';
 import Button from '../components/Button.astro'
 const experiencia = await getCollection('experiencia');
 const educacion = await getCollection('educacion');
 ---
-<Layout>
+<Layout title="Sobre mí - Carlos Coloma">
 	<section class="flex flex-col justify-center items-start max-w-7xl w-full pt-30 px-8">
 		<div class="flex flex-col lg:flex-row justify-center items-center gap-12 p-12 bg-gray-950 rounded-4xl">
-			<Image class="w-full object-cover rounded-3xl" src={HeroPhoto} alt="Foto de Carlos Coloma"/>
+			<Image class="w-120 h-150 object-cover rounded-3xl" src={FotoSobreMi} alt="Carlos Coloma debjo del agua con una tortuga marina"/>
 			<div class="prose prose-invert">
 				<h1 class="text-lime-300">Sobre mi</h1>
 				<p>Hola, soy Carlos. Gracias por pasar por aquí y echarle un ojo a mi trabajo.</p>
