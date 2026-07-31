@@ -21,7 +21,7 @@ const { caso } = Astro.props;
 const { Content } = await render(caso);
 
 ---
-<Layout title={`${caso.data.title} - Carlos Coloma Martínez`}>
+<Layout title={`${caso.data.title} | Carlos Coloma`} description={caso.data.summary}>
     <section class="flex flex-col w-full min-w-0 lg:max-w-7xl prose prose-invert py-30 px-8 xl:px-0">
         <div class="flex flex-col w-full">
             <a class="font-bold p-4" href="/">🡐 Volver al inicio</a>
