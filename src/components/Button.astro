@@ -14,13 +14,13 @@ const { variant, href, target, rel, type } = Astro.props;
         rel={rel}
         class:list={[
             "inline-block px-8 py-3 rounded-full", 
-            (variant ==="primary") ? "bg-blue-600 hover:bg-blue-800 text-white" : "text-white border-2 hover:text-gray-300",]}>
+            (variant ==="primary") ? "bg-blue-600 hover:bg-blue-800 text-white" : "text-white border-2 hover:text-lime-300",]}>
         <slot />
     </a>
      : <button 
         type={type}
         class:list={[
             "inline-block px-8 py-3 rounded-full", 
-            (variant ==="primary") ? "bg-blue-600 hover:bg-blue-800 text-white" : "text-white border-2 hover:text-gray-300",]}>
+            (variant ==="primary") ? "bg-blue-600 hover:bg-blue-800 text-white" : "text-white border-2 hover:text-lime-300",]}>
         <slot />
     </button>}
