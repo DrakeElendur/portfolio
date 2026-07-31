@@ -14,5 +14,6 @@ export default defineConfig({
     routing: {
         prefixDefaultLocale: false
     }
-  }
+  },
+  site: "https://portfolio.coloma.design",
 });
