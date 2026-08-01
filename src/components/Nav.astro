@@ -28,20 +28,20 @@ if (rutaActual in tabla) {
     </button>  
     <nav class="hidden lg:flex flex-row justify-end items-center gap-8">
         <ul class="flex gap-8">
-            <li class="text-lg cursor-pointer text-white hover:text-lime-300"><a href={isEnglish ? "/en" : "/"}>{isEnglish ? "Home" : "Inicio"}</a></li>
-            <li class="text-lg cursor-pointer text-white hover:text-lime-300"><a href={isEnglish ? "/en/about" : "/sobre-mi"}>{isEnglish ? "About" : "Sobre mi"}</a></li>
+            <li ><a class="p-4 text-lg cursor-pointer text-white hover:text-lime-300" href={isEnglish ? "/en" : "/"}>{isEnglish ? "Home" : "Inicio"}</a></li>
+            <li ><a class="p-4 text-lg cursor-pointer text-white hover:text-lime-300" href={isEnglish ? "/en/about" : "/sobre-mi"}>{isEnglish ? "About" : "Sobre mi"}</a></li>
         </ul>
         <Button variant="primary" href={isEnglish ? "/en/contact" : "/contacto"}>{isEnglish ? "Contact Me" : "Contáctame"}</Button>
-        <a class="text-xl cursor-pointer text-white hover:text-lime-300" href={rutaActual}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="ES" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="EN" />}</a>
+        <a class="flex justify-center items-center size-12 cursor-pointer" href={rutaActual}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="ES" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="EN" />}</a>
     </nav>
-    
+
 </div>
 <div id="menu" class="hidden absolute top-full lg:hidden bg-gray-900 w-full h-dvh z-50 px-8 py-8 -m-1">
         <ul class="flex flex-col justify-center items-center gap-8">
             <li class="text-xl cursor-pointer text-white hover:text-lime-300"><a class="py-4 inline-block" href={isEnglish ? "/en" : "/"}>{isEnglish ? "Home" : "Inicio"}</a></li>
             <li class="text-xl cursor-pointer text-white hover:text-lime-300"><a class="py-4 inline-block" href={isEnglish ? "/en/about" : "/sobre-mi"}>{isEnglish ? "About Me" : "Sobre mi"}</a></li>
             <li><Button variant="primary" href={isEnglish ? "/en/contact" : "/contacto"}>{isEnglish ? "Contact Me" : "Contáctame"}</Button></li>
-            <li class="text-xl cursor-pointer text-white hover:text-lime-300"><a href={rutaActual}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="ES" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="EN" />}</a></li>
+            <li><a class="flex justify-center items-center size-12 cursor-pointer" href={rutaActual}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="ES" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="EN" />}</a></li>
         </ul>
 </div>
 </header>
