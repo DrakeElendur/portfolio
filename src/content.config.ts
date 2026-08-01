@@ -41,5 +41,29 @@ const educacion = defineCollection({
   }),
 });
 
+const experience = defineCollection({
+  loader: file("src/data/experiencia-en.json"),
+  schema: ({image}) => z.object({
+    puesto: z.string(),
+    empresa: z.string(),
+    fechaInicio: z.string(),
+    fechaFin: z.string(),
+    descripcion: z.string(),
+    id: z.number(),
+    image: image(),
+  }),
+});
+
+const education = defineCollection({
+  loader: file("src/data/educacion-en.json"),
+  schema: z.object({
+    titulo: z.string(),
+    instituto: z.string(),
+    fechaGraduacion: z.string(),
+    type: z.string(),
+    id: z.number(),
+  }),
+});
+
 // 5. Export a single `collections` object to register your collection(s)
-export const collections = { casos, experiencia, educacion };
+export const collections = { casos, experiencia, educacion, experience, education };

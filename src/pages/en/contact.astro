@@ -1,12 +1,12 @@
 ---
-import Layout from "../layouts/Layout.astro"
-import Button from '../components/Button.astro'
+import Layout from "../../layouts/Layout.astro"
+import Button from '../../components/Button.astro'
 ---
-<Layout title="Contacto | Carlos Coloma" description="¿Buscas un Design System Manager o UX/UI Product Designer para tu equipo? Escríbeme y conversemos.">
+<Layout title="Contact | Carlos Coloma" description="Looking for a Design System Manager or UX/UI Product Designer for your team? Get in touch and let's talk.">
 	<section class="flex flex-col justify-center items-center max-w-3xl w-full pt-30 px-8">
 		<div class="flex flex-col justify-center items-center gap-2 pb-4">
-			<h1 class="text-lime-300 text-3xl font-bold">Contáctame</h1>
-			<p class="text-xl text-center text-balance">Me especializo en ayudar a startups y equipos a avanzar con mayor rapidez, inteligencia y confianza. Contáctame para ver cómo podemos colaborar.</p>
+			<h1 class="text-lime-300 text-3xl font-bold">Contact me</h1>
+			<p class="text-xl text-center text-balance">I specialize in helping startups and teams move faster, smarter, and with more confidence. Reach out to see how we can work together.</p>
 			<p id="mensajeExito" class="text-lg text-emerald-400"></p>
 			<p id="mensajeError" class="text-lg text-red-500"></p>
 		</div>
@@ -14,22 +14,22 @@ import Button from '../components/Button.astro'
 			<form novalidate class="flex flex-col w-full gap-2">
 				<div class="flex flex-col w-full justify-center items-center gap-4 sm:flex-row sm:justify-between">
 					<div class="w-full flex flex-col gap-2">
-						<label for="name" class="text-white text-lg">Tu nombre</label>
-						<input class="w-full bg-white p-4 rounded-lg text-base" type="text" id="name" name="name" placeholder="Escribe tu nombre" required>
+						<label for="name" class="text-white text-lg">Your name</label>
+						<input class="w-full bg-white p-4 rounded-lg text-base" type="text" id="name" name="name" placeholder="Enter your name" required>
 						<p id="nameError" class=" text-red-500 text-sm"></p>
 					</div>
 					<div class="w-full flex flex-col gap-2">
-						<label for="email" class="text-white text-lg">Tu email</label>
-						<input class="w-full bg-white p-4 rounded-lg text-base" type="email" id="email" name="email" placeholder="Escribe tu correo" required>
+						<label for="email" class="text-white text-lg">Your email</label>
+						<input class="w-full bg-white p-4 rounded-lg text-base" type="email" id="email" name="email" placeholder="Enter your email" required>
 						<p id="emailError" class=" text-red-500 text-sm"></p>
 					</div>
 				</div>
 				<div class="w-full flex flex-col gap-2">
-					<label for="message" class="text-white text-lg">¿Cómo puedo ayudarte?</label>
-					<textarea class="w-full bg-white p-4 rounded-lg text-base min-h-48" id="message" name="message" placeholder="Escribe aqui tu mensaje" required></textarea>
+					<label for="message" class="text-white text-lg">How can I help you?</label>
+					<textarea class="w-full bg-white p-4 rounded-lg text-base min-h-48" id="message" name="message" placeholder="Write your message here" required></textarea>
 					<p id="messageError" class=" text-red-500 text-sm"></p>
 				</div>
-				<Button type="submit" variant="primary">Enviar mensaje</Button>
+				<Button type="submit" variant="primary">Send message</Button>
 			</form>
 		</div>
 	</section>
@@ -58,19 +58,19 @@ import Button from '../components/Button.astro'
 			const valido = form.checkValidity();
 
 			if (name.checkValidity() === false) {
-				nameError.textContent = "❌ Completa este campo";
+				nameError.textContent = "❌ Please fill in this field";
 			} else {
 				nameError.textContent = "";
 			};
 			if (email.validity.valueMissing === true) {
-				emailError.textContent = "❌ Completa este campo";
+				emailError.textContent = "❌ Please fill in this field";
 			} else if(email.validity.typeMismatch === true) {
-				emailError.textContent = "❌ Escribe un email válido";
+				emailError.textContent = "❌ Please enter a valid email";
 			} else {
 				emailError.textContent = "";
 			};
 			if (message.checkValidity() === false) {
-				messageError.textContent = "❌ Escribe tu mensaje para poder enviarlo";
+				messageError.textContent = "❌ Please write a message before sending";
 			} else {
 				messageError.textContent = "";
 			};
@@ -82,18 +82,18 @@ import Button from '../components/Button.astro'
 					message: message.value,
 				});
 				if (error) {
-					mensajeError.textContent = "❌ Error al enviar el mensaje"
-					mensajeExito.textContent = "";
+					mensajeError.textContent = "❌ Error sending message"
+                    mensajeExito.textContent = "";
 				} else {
-					mensajeExito.textContent = "✅ Mensaje enviado correctamente";
+					mensajeExito.textContent = "✅ Message sent successfully";
 					form.reset();
 					nameError.textContent = "";
 					emailError.textContent = "";
 					messageError.textContent = "";
-					mensajeError.textContent = "";
+                    mensajeError.textContent = "";
 				}
 			} else {
-				console.log("Formulario inválido")
+				console.log("❌ Invalid form");
 			};
 		});
 	}

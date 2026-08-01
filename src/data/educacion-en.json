@@ -1,0 +1,21 @@
+[{
+    "id": 1,
+    "titulo": "B.A. in Graphic Design",
+    "instituto": "Universidad UCAL",
+    "fechaGraduacion": "July 2016",
+    "type": "college"
+},
+{
+    "id": 2,
+    "titulo": "User Experience Design",
+    "instituto": "Repensar Educativo",
+    "fechaGraduacion": "April 2019",
+    "type": "diploma"
+},
+{
+    "id": 3,
+    "titulo": "Design System Bootcamp",
+    "instituto": "Design System Camp",
+    "fechaGraduacion": "August 2024",
+    "type": "diploma"
+}]
