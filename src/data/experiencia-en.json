@@ -1,0 +1,54 @@
+[{
+    "id": 1,
+    "puesto": "Design System Manager & UI Lead",
+    "empresa": "Yanbal International",
+    "fechaInicio": "August 2025",
+    "fechaFin": "Present",
+    "image": "../assets/images/yanbal-logo.webp",
+    "descripcion": "I lead the evolution of the corporate Design System, establishing the single source of truth for product, design, and engineering across a multi-country operation. I architected the tokenization strategy, publishing the second NPM package with 37 tokenized components ready for development use. I resolved component inconsistency in production by establishing a common, governed, and semantically versioned library."
+},
+{
+    "id": 2,
+    "puesto": "UX/UI Designer",
+    "empresa": "Yanbal International",
+    "fechaInicio": "January 2020",
+    "fechaFin": "July 2025",
+    "image": "../assets/images/yanbal-logo.webp",
+    "descripcion": "I was involved end-to-end \u2014 discovery, ideation, design, handoff, and evolution. I raised adoption to 95% among Directors and 39% among Consultants, surpassing the previous version (80% and 25\u201332% respectively) at the corporate level. I translated research findings into detailed specifications for development, ensuring alignment with the business's strategic goals."
+},
+{
+    "id": 3,
+    "puesto": "UX/UI Designer",
+    "empresa": "Humantech",
+    "fechaInicio": "May 2019",
+    "fechaFin": "December 2019",
+    "image": "../assets/images/humantech-logo.webp",
+    "descripcion": "I led user research and wireframe design, carrying the design process from conceptualization through low- and high-fidelity prototyping. I conducted usability testing, working closely with UI designers and developers to ensure design solutions were functional and aligned with user needs and project goals."
+},
+{
+    "id": 4,
+    "puesto": "Art Director",
+    "empresa": "Funciton",
+    "fechaInicio": "February 2019",
+    "fechaFin": "April 2019",
+    "image": "../assets/images/funciton-logo.webp",
+    "descripcion": "I designed web and mobile interfaces, graphic pieces, and template adaptations for Profuturo, Brapex, and Funciton. Created high-fidelity prototypes in Adobe XD and Principle. Designed presentations and graphic elements."
+},
+{
+    "id": 5,
+    "puesto": "Graphic Designer Jr. / Sr.",
+    "empresa": "JCDecaux Peru",
+    "fechaInicio": "January 2016",
+    "fechaFin": "January 2019",
+    "image": "../assets/images/jcd-logo.webp",
+    "descripcion": "I designed graphic pieces for indoor advertising sales, ensuring each element met the quality and appeal standards needed to capture the target audience's attention. I also handled the review and production of videos and animations for digital ads, optimizing visual content for different locations."
+},
+{
+    "id": 7,
+    "puesto": "Graphic Design Intern",
+    "empresa": "Qnary Peru",
+    "fechaInicio": "February 2015",
+    "fechaFin": "August 2015",
+    "image": "../assets/images/qnary-logo.webp",
+    "descripcion": "Designed content for websites, social media, and everything related to the agency's client brands. Brought the creative process into the production of each piece."
+}]
