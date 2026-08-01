@@ -1,22 +1,38 @@
 ---
 import Button from '../components/Button.astro';
 const isEnglish = Astro.currentLocale === 'en';
+let rutaActual = Astro.url.pathname.endsWith("/") && Astro.url.pathname.length > 1 ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
+const tabla : Record<string, string> = {
+    "/sobre-mi": "/en/about",
+    "/en/about": "/sobre-mi",
+    "/contacto": "/en/contact",
+    "/en/contact": "/contacto",
+    "/": "/en",
+    "/en": "/",
+}
+if (rutaActual in tabla) {
+    rutaActual = tabla[rutaActual];
+} else if (rutaActual.includes("/casos")) {
+    rutaActual = isEnglish ? rutaActual.replace("/en/casos", "/casos") : rutaActual.replace("/casos", "/en/casos");
+} else {
+    rutaActual = isEnglish ? "/" : "/en";
+}
 ---
 <header class="flex flex-row justify-center items-center z-50 fixed inset-x-0 bg-gray-950">
 <div class="relative flex flex-row justify-between items-center w-full lg:max-w-7xl px-8 lg:px-4 py-4">
-    <div class="font-montserrat cursor-pointer text-white text-2xl font-bold"><a href={isEnglish ? "/en" : "/"}>Carlos Coloma</a></div>
+    <div class="font-montserrat cursor-pointer text-white text-2xl font-bold"><a href={isEnglish ? "/en" : "/"}><span class="text-lime-300">Carlos</span> Coloma</a></div>
     <span id="burger">
         <svg fill="none" width="48" height="48" class="flex lg:hidden">
-            <use xlink:href="../sprite.svg#hamburger" />
+            <use xlink:href="/sprite.svg#hamburger" />
         </svg>
     </span>  
     <nav class="hidden lg:flex flex-row justify-end items-center gap-8">
         <ul class="flex gap-8">
             <li class="text-lg cursor-pointer text-white hover:text-lime-300"><a href={isEnglish ? "/en" : "/"}>{isEnglish ? "Home" : "Inicio"}</a></li>
-            <li class="text-lg cursor-pointer text-white hover:text-lime-300"><a href={isEnglish ? "/en/about" : "/sobre-mi"}>{isEnglish ? "About Me" : "Sobre mi"}</a></li>
+            <li class="text-lg cursor-pointer text-white hover:text-lime-300"><a href={isEnglish ? "/en/about" : "/sobre-mi"}>{isEnglish ? "About" : "Sobre mi"}</a></li>
         </ul>
         <Button variant="primary" href={isEnglish ? "/en/contact" : "/contacto"}>{isEnglish ? "Contact Me" : "Contáctame"}</Button>
-        <a class="text-xl cursor-pointer text-white hover:text-lime-300" href={isEnglish ? "/" : "/en"}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="ES" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="EN" />}</a>
+        <a class="text-xl cursor-pointer text-white hover:text-lime-300" href={rutaActual}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="ES" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="EN" />}</a>
     </nav>
     
 </div>
@@ -25,7 +41,7 @@ const isEnglish = Astro.currentLocale === 'en';
             <li class="text-xl cursor-pointer text-white hover:text-lime-300"><a class="py-4 inline-block" href={isEnglish ? "/en" : "/"}>{isEnglish ? "Home" : "Inicio"}</a></li>
             <li class="text-xl cursor-pointer text-white hover:text-lime-300"><a class="py-4 inline-block" href={isEnglish ? "/en/about" : "/sobre-mi"}>{isEnglish ? "About Me" : "Sobre mi"}</a></li>
             <li><Button variant="primary" href={isEnglish ? "/en/contact" : "/contacto"}>{isEnglish ? "Contact Me" : "Contáctame"}</Button></li>
-            <li class="text-xl cursor-pointer text-white hover:text-lime-300"><a href={isEnglish ? "/" : "/en"}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="ES" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="EN" />}</a></li>
+            <li class="text-xl cursor-pointer text-white hover:text-lime-300"><a href={rutaActual}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="ES" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="EN" />}</a></li>
         </ul>
 </div>
 </header>

@@ -12,9 +12,10 @@ interface Props {
 };
 const defaultImageURL = new URL(HeroPhoto.src, Astro.url.href);
 const { title, description, image = defaultImageURL } = Astro.props;
+const isEnglish = Astro.currentLocale === 'en';
 ---
 <!DOCTYPE html>
-<html lang="es">
+<html lang={isEnglish ? "en" : "es"}>
     <head>
         <meta charset="utf-8" />
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
