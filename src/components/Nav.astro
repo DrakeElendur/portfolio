@@ -21,11 +21,11 @@ if (rutaActual in tabla) {
 <header class="flex flex-row justify-center items-center z-50 fixed inset-x-0 bg-gray-950">
 <div class="relative flex flex-row justify-between items-center w-full lg:max-w-7xl px-8 lg:px-4 py-4">
     <div class="font-montserrat cursor-pointer text-white text-2xl font-bold"><a href={isEnglish ? "/en" : "/"}><span class="text-lime-300">Carlos</span> Coloma</a></div>
-    <span id="burger">
-        <svg fill="none" width="48" height="48" class="flex lg:hidden">
+    <button type="button" id="burger" aria-label={isEnglish ? "Menu" : "Menú"} class="flex lg:hidden" aria-expanded="false" aria-controls="menu">
+        <svg fill="none" width="48" height="48" aria-hidden="true" focusable="false">
             <use xlink:href="/sprite.svg#hamburger" />
         </svg>
-    </span>  
+    </button>  
     <nav class="hidden lg:flex flex-row justify-end items-center gap-8">
         <ul class="flex gap-8">
             <li class="text-lg cursor-pointer text-white hover:text-lime-300"><a href={isEnglish ? "/en" : "/"}>{isEnglish ? "Home" : "Inicio"}</a></li>
@@ -50,6 +50,7 @@ if (rutaActual in tabla) {
     const menu = document.getElementById("menu");
     burger?.addEventListener("click", () => {
         menu?.classList.toggle("hidden");
+        burger?.setAttribute("aria-expanded", menu?.classList.contains("hidden") ? "false" : "true");
     })
     
 </script>
