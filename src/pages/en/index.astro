@@ -9,10 +9,10 @@ const allCasos = await getCollection('casos');
 const casos = allCasos.filter(caso => caso.id.startsWith("en/"));
 ---
 <Layout title="Carlos Coloma | Design System Manager & UX/UI Product Designer" description="UX/UI Designer and Design System Manager at Yanbal International. Token architecture, design-to-code pipelines, and design system governance that scales.">
-	<section class="flex flex-col-reverse justify-center items-center w-full max-w-dvw mx-auto gap-16 py-30 px-8 lg:max-w-7xl lg:flex-row">
+	<section class="flex flex-col-reverse justify-center items-center w-full mx-auto gap-16 py-30 px-8 lg:max-w-7xl lg:flex-row">
 		<div class="flex flex-col w-full gap-6 max-w-full">
 			<h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-6xl  text-white font-normal lg:text-left text-center">Design and Governance for <span class="text-lime-300">Design Systems</span><br class="hidden lg:flex"> that scale</h1>
-			<p class="text-l md:text-xl">I close the gap between design and engineering: token architecture, pipelines, design-to-code, and the governance that keeps everything consistent.</p>
+			<p class="text-lg md:text-xl">I close the gap between design and engineering: token architecture, pipelines, design-to-code, and the governance that keeps everything consistent.</p>
 			<h2 class="text-xl md:text-2xl"><span class="text-lime-300">Design System Manager</span> at Yanbal International</h2>
 			<div class="flex flex-col sm:flex-row justify-center items-center md:justify-start gap-4">
 				<Button variant="primary" href="/resume2026-en.pdf" target="_blank" rel="noopener noreferrer" >Full Resumé</Button>
@@ -22,7 +22,7 @@ const casos = allCasos.filter(caso => caso.id.startsWith("en/"));
 		<Image class="size-75 sm:size-100 lg:size-140 rounded-full" src={HeroPhoto} alt="Carlos Coloma's photo"/>
 	</section>
 	<section class="bg-gray-800 w-full">
-		<div class="flex flex-col w-full justify-center items-center max-w-dvw gap-8 pt-30 px-8 lg:pt-20 lg:mx-auto lg:max-w-7xl">
+		<div class="flex flex-col w-full justify-center items-center gap-8 pt-30 px-8 lg:pt-20 lg:mx-auto lg:max-w-7xl">
 			<h2 class="text-3xl md:text-4xl text-white">Featured projects</h2>
 			<p class="w-full lg:w-2/4 text-center text-lg">A curated selection of projects where my work moved business and product metrics. Each case starts from a real problem, explains the design decision, and closes with its impact.</p>
 			<div class="flex flex-col justify-center items-center">
@@ -31,7 +31,7 @@ const casos = allCasos.filter(caso => caso.id.startsWith("en/"));
 						<div class="flex flex-col gap-4 justify-between items-start w-full h-full">
 							<div class="flex flex-col gap-4">
 								<div class="text-2xl text-white font-semibold group-hover:text-lime-300 group-hover:underline">{caso.data.title}</div>
-								<div class="text-l sm:text-xl">{caso.data.summary}</div>
+								<div class="text-lg sm:text-xl">{caso.data.summary}</div>
 							</div>
 							<div class="flex flex-row gap-8 w-full justify-between">
 								<div>

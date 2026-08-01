@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from "../../layouts/Layout.astro"
+import Button from "../../components/Button.astro"
 import type { GetStaticPaths } from "astro";
 import { getCollection, render } from 'astro:content';
 
@@ -25,7 +26,7 @@ const { Content } = await render(caso);
 <Layout title={`${caso.data.title} | Carlos Coloma`} description={caso.data.summary} image={`${ImageURL}`}>
     <section class="flex flex-col w-full min-w-0 lg:max-w-7xl prose prose-invert py-30 px-8 xl:px-0">
         <div class="flex flex-col w-full">
-            <a class="font-bold p-4" href="/">🡐 Volver al inicio</a>
+            <a class="font-bold p-4" href="/">← Volver al inicio</a>
             <h1 class="w-full text-6xl text-white font-semibold text-left">{caso.data.title}</h1>
             <p class="w-full text-balance text-left text-lg">{caso.data.summary}</p>
             <Image src={caso.data.image} alt={caso.data.title}/>
@@ -36,24 +37,24 @@ const { Content } = await render(caso);
                 {caso.data.tldr}</div>
             <div class="flex flex-col sm:grid sm:grid-cols-2 sm:grid-rows-2 p-6 gap-6 w-full bg-gray-800 rounded-4xl">
                 <div>
-                <h6 class="text-gray-500">COMPAÑIA</h6>
+                <h6 class="text-gray-400">COMPAÑIA</h6>
                 {caso.data.company}
                 </div>
 
                 <div>
-                <h6 class="text-gray-500">ROL</h6>
+                <h6 class="text-gray-400">ROL</h6>
                 {caso.data.role}
                 </div>
 
                 <div>
-                <h6 class="text-gray-500">SERVICIO</h6>
+                <h6 class="text-gray-400">SERVICIO</h6>
                 <div class="flex flex-wrap gap-2">
                     {caso.data.tags.map(tag => <span class="text-sm border-2 font-bold py-0.5 px-2 rounded-full">{tag}</span>)}
                 </div>
                 </div>
 
                 <div>
-                <h6 class="text-gray-500">DURACIÓN</h6>
+                <h6 class="text-gray-400">DURACIÓN</h6>
                 {caso.data.date}
                 </div>
             </div>
@@ -61,5 +62,6 @@ const { Content } = await render(caso);
         <div class="min-w-0 text-lg overflow-x-auto">
             <Content />
         </div>
+        <a class="font-bold p-4" href="/">← Volver al inicio</a>
     </section>
 </Layout>
