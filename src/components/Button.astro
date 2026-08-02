@@ -5,22 +5,21 @@ interface Props{
     href?: string;
     target?: string;
     rel?: string;
+    disabled?: boolean;
 }
-const { variant, href, target, rel, type } = Astro.props;
+const { variant, href, target, rel, type, disabled } = Astro.props;
+
+// Una sola fuente de verdad para las clases. Antes estaban escritas
+// literalmente dos veces (una por rama del ternario), así que cambiar
+// el radio del botón obligaba a editar dos sitios y acordarse de los dos.
+const clases = [
+    "inline-block px-8 py-3 rounded-full active:scale-[0.97]",
+    variant === "primary"
+        ? "bg-action hover:bg-action-hover text-content"
+        : "text-content border-2 hover:text-brand",
+    "disabled:opacity-50 disabled:pointer-events-none",
+];
 ---
-{(href !== null && href !== "" && href !== undefined) ? <a 
-        href={href} 
-        target={target} 
-        rel={rel}
-        class:list={[
-            "inline-block px-8 py-3 rounded-full", 
-            (variant ==="primary") ? "bg-blue-600 hover:bg-blue-800 text-white" : "text-white border-2 hover:text-lime-300",]}>
-        <slot />
-    </a>
-     : <button 
-        type={type}
-        class:list={[
-            "inline-block px-8 py-3 rounded-full", 
-            (variant ==="primary") ? "bg-blue-600 hover:bg-blue-800 text-white" : "text-white border-2 hover:text-lime-300",]}>
-        <slot />
-    </button>}
+{href
+    ? <a href={href} target={target} rel={rel} class:list={clases}><slot /></a>
+    : <button type={type} disabled={disabled} class:list={clases}><slot /></button>}

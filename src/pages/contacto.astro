@@ -1,35 +1,55 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import Button from '../components/Button.astro'
+
+// Una sola definición del campo: antes estaba repetida tres veces.
+// El fondo hundido + borde sustituye al `bg-white`, que era el único
+// elemento claro de toda la interfaz oscura.
+// El borde de error lo pinta el CSS reaccionando a `aria-invalid`, así
+// que el script solo gobierna un atributo y no toca clases.
+const campo = "w-full bg-surface-deep border border-border p-4 rounded-lg text-body text-content placeholder:text-content-muted aria-[invalid=true]:border-danger";
+const errorCampo = "text-danger text-caption empty:hidden";
+const aviso = "hidden data-[show=true]:flex items-center gap-2 text-body";
 ---
 <Layout title="Contacto | Carlos Coloma" description="¿Buscas un Design System Manager o UX/UI Product Designer para tu equipo? Escríbeme y conversemos.">
-	<section class="flex flex-col justify-center items-center max-w-3xl w-full pt-30 px-8">
-		<div class="flex flex-col justify-center items-center gap-2 pb-4">
-			<h1 class="text-lime-300 text-3xl font-bold">Contáctame</h1>
-			<p class="text-xl text-center text-balance">Me especializo en ayudar a startups y equipos a avanzar con mayor rapidez, inteligencia y confianza. Contáctame para ver cómo podemos colaborar.</p>
-			<p id="mensajeExito" class="text-lg text-emerald-400"></p>
-			<p id="mensajeError" class="text-lg text-red-500"></p>
+	<section class="flex flex-col justify-center items-center max-w-3xl w-full py-section px-8">
+		<div class="flex flex-col justify-center items-center gap-2 pb-8">
+			<h1 class="text-brand text-headline font-bold">Contáctame</h1>
+			<p class="text-lead text-center text-balance">Me especializo en ayudar a startups y equipos a avanzar con mayor rapidez, inteligencia y confianza. Contáctame para ver cómo podemos colaborar.</p>
 		</div>
-		<div class="w-full flex flex-col justify-center items-center gap-12 p-8 bg-gray-950 rounded-4xl">
-			<form novalidate class="flex flex-col w-full gap-2">
-				<div class="flex flex-col w-full justify-center items-center gap-4 sm:flex-row sm:justify-between">
+		<div class="w-full flex flex-col justify-center items-center gap-12 p-8 bg-surface-raised rounded-4xl">
+			<form novalidate class="flex flex-col w-full gap-4">
+				<div class="flex flex-col w-full justify-center items-start gap-4 sm:flex-row sm:justify-between">
 					<div class="w-full flex flex-col gap-2">
-						<label for="name" class="text-white text-lg">Tu nombre</label>
-						<input class="w-full bg-white p-4 rounded-lg text-base" type="text" id="name" name="name" placeholder="Escribe tu nombre" required>
-						<p id="nameError" class=" text-red-500 text-sm"></p>
+						<label for="name" class="text-content text-body">Tu nombre</label>
+						<input class={campo} type="text" id="name" name="name" placeholder="Escribe tu nombre" required aria-describedby="nameError">
+						<p id="nameError" class={errorCampo}></p>
 					</div>
 					<div class="w-full flex flex-col gap-2">
-						<label for="email" class="text-white text-lg">Tu email</label>
-						<input class="w-full bg-white p-4 rounded-lg text-base" type="email" id="email" name="email" placeholder="Escribe tu correo" required>
-						<p id="emailError" class=" text-red-500 text-sm"></p>
+						<label for="email" class="text-content text-body">Tu email</label>
+						<input class={campo} type="email" id="email" name="email" placeholder="Escribe tu correo" required aria-describedby="emailError">
+						<p id="emailError" class={errorCampo}></p>
 					</div>
 				</div>
 				<div class="w-full flex flex-col gap-2">
-					<label for="message" class="text-white text-lg">¿Cómo puedo ayudarte?</label>
-					<textarea class="w-full bg-white p-4 rounded-lg text-base min-h-48" id="message" name="message" placeholder="Escribe aqui tu mensaje" required></textarea>
-					<p id="messageError" class=" text-red-500 text-sm"></p>
+					<label for="message" class="text-content text-body">¿Cómo puedo ayudarte?</label>
+					<textarea class={`${campo} min-h-48`} id="message" name="message" placeholder="Escribe aqui tu mensaje" required aria-describedby="messageError"></textarea>
+					<p id="messageError" class={errorCampo}></p>
 				</div>
-				<Button type="submit" variant="primary">Enviar mensaje</Button>
+				<!-- La confirmación vive junto al botón, que es donde el usuario
+				     está mirando cuando la dispara. Antes estaba en la cabecera
+				     de la página y en móvil quedaba fuera de pantalla. -->
+				<div class="flex flex-col gap-3">
+					<Button type="submit" variant="primary">Enviar mensaje</Button>
+					<p id="mensajeExito" data-show="false" role="status" class={`${aviso} text-success`}>
+						<svg class="size-5 shrink-0 fill-current" aria-hidden="true" focusable="false"><use xlink:href="/sprite.svg#verified" /></svg>
+						<span>Mensaje enviado correctamente</span>
+					</p>
+					<p id="mensajeError" data-show="false" role="alert" class={`${aviso} text-danger`}>
+						<svg class="size-5 shrink-0" aria-hidden="true" focusable="false"><use xlink:href="/sprite.svg#close" /></svg>
+						<span>No se pudo enviar el mensaje. Inténtalo de nuevo.</span>
+					</p>
+				</div>
 			</form>
 		</div>
 	</section>
@@ -47,53 +67,62 @@ import Button from '../components/Button.astro'
 	const nameError = document.querySelector("#nameError");
 	const emailError = document.querySelector("#emailError");
 	const messageError = document.querySelector("#messageError");
-	const mensajeExito = document.querySelector("#mensajeExito");
-	const mensajeError = document.querySelector("#mensajeError");
+	const mensajeExito = document.querySelector<HTMLElement>("#mensajeExito");
+	const mensajeError = document.querySelector<HTMLElement>("#mensajeError");
+	const enviar = document.querySelector<HTMLButtonElement>("button[type=submit]");
 
+	// Marca un campo como inválido y escribe su mensaje. `aria-invalid`
+	// hace dos trabajos a la vez: se lo comunica al lector de pantalla y
+	// dispara el borde rojo vía CSS. Un solo atributo, dos efectos.
+	const marcar = (campo: HTMLInputElement | HTMLTextAreaElement, salida: Element, mensaje: string) => {
+		salida.textContent = mensaje;
+		campo.setAttribute("aria-invalid", mensaje ? "true" : "false");
+		return mensaje === "";
+	};
 
+	const avisar = (elemento: HTMLElement | null, visible: boolean) => {
+		elemento?.setAttribute("data-show", String(visible));
+	};
 
-	if (form && name && email && message && nameError && emailError && messageError && mensajeExito && mensajeError) {
+	if (form && name && email && message && nameError && emailError && messageError) {
 		form.addEventListener("submit", async (event) => {
 			event.preventDefault();
-			const valido = form.checkValidity();
 
-			if (name.checkValidity() === false) {
-				nameError.textContent = "❌ Completa este campo";
-			} else {
-				nameError.textContent = "";
-			};
-			if (email.validity.valueMissing === true) {
-				emailError.textContent = "❌ Completa este campo";
-			} else if(email.validity.typeMismatch === true) {
-				emailError.textContent = "❌ Escribe un email válido";
-			} else {
-				emailError.textContent = "";
-			};
-			if (message.checkValidity() === false) {
-				messageError.textContent = "❌ Escribe tu mensaje para poder enviarlo";
-			} else {
-				messageError.textContent = "";
-			};
+			const okNombre = marcar(name, nameError, name.checkValidity() ? "" : "Completa este campo");
+			const okEmail = marcar(email, emailError,
+				email.validity.valueMissing ? "Completa este campo"
+					: email.validity.typeMismatch ? "Escribe un email válido"
+						: "");
+			const okMensaje = marcar(message, messageError, message.checkValidity() ? "" : "Escribe tu mensaje para poder enviarlo");
 
-			if (valido === true) {
-				const { data, error } = await supabase.from("Contactos").insert({
-					name: name.value,
-					email: email.value,
-					message: message.value,
-				});
-				if (error) {
-					mensajeError.textContent = "❌ Error al enviar el mensaje"
-					mensajeExito.textContent = "";
-				} else {
-					mensajeExito.textContent = "✅ Mensaje enviado correctamente";
-					form.reset();
-					nameError.textContent = "";
-					emailError.textContent = "";
-					messageError.textContent = "";
-					mensajeError.textContent = "";
-				}
+			if (!(okNombre && okEmail && okMensaje)) {
+				// Llevar el foco al primer campo con problema evita que el
+				// usuario tenga que buscarlo, sobre todo en móvil.
+				form.querySelector<HTMLElement>("[aria-invalid=true]")?.focus();
+				return;
+			}
+
+			avisar(mensajeExito, false);
+			avisar(mensajeError, false);
+			if (enviar) enviar.disabled = true;
+
+			const { error } = await supabase.from("Contactos").insert({
+				name: name.value,
+				email: email.value,
+				message: message.value,
+			});
+
+			if (enviar) enviar.disabled = false;
+
+			if (error) {
+				avisar(mensajeError, true);
 			} else {
-			};
+				avisar(mensajeExito, true);
+				form.reset();
+				marcar(name, nameError, "");
+				marcar(email, emailError, "");
+				marcar(message, messageError, "");
+			}
 		});
 	}
 </script>

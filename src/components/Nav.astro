@@ -18,28 +18,31 @@ if (rutaActual in tabla) {
     rutaActual = isEnglish ? "/" : "/en";
 }
 ---
-<header class="flex flex-row justify-center items-center z-50 fixed inset-x-0 bg-gray-950">
+<header class="flex flex-row justify-center items-center z-50 sticky top-0 w-full bg-surface-deep border-b border-border">
 <div class="relative flex flex-row justify-between items-center w-full lg:max-w-7xl px-8 lg:px-4 py-4">
-    <div class="font-montserrat cursor-pointer text-white text-2xl font-bold"><a href={isEnglish ? "/en" : "/"}><span class="text-lime-300">Carlos</span> Coloma</a></div>
-    <button type="button" id="burger" aria-label={isEnglish ? "Menu" : "Menú"} class="flex lg:hidden" aria-expanded="false" aria-controls="menu">
-        <svg fill="none" width="48" height="48" aria-hidden="true" focusable="false">
+    <div class="font-display cursor-pointer text-content text-subtitle font-bold"><a href={isEnglish ? "/en" : "/"}><span class="text-brand">Carlos</span> Coloma</a></div>
+    <button type="button" id="burger" aria-label={isEnglish ? "Menu" : "Menú"} class="group flex lg:hidden text-content" aria-expanded="false" aria-controls="menu">
+        <svg fill="none" width="48" height="48" aria-hidden="true" focusable="false" class="group-aria-expanded:hidden">
             <use xlink:href="/sprite.svg#hamburger" />
         </svg>
-    </button>  
+        <svg fill="none" width="48" height="48" aria-hidden="true" focusable="false" class="hidden group-aria-expanded:block">
+            <use xlink:href="/sprite.svg#close" />
+        </svg>
+    </button>
     <nav class="hidden lg:flex flex-row justify-end items-center gap-8">
         <ul class="flex gap-8">
-            <li ><a class="p-4 text-lg cursor-pointer text-white hover:text-lime-300" href={isEnglish ? "/en" : "/"}>{isEnglish ? "Home" : "Inicio"}</a></li>
-            <li ><a class="p-4 text-lg cursor-pointer text-white hover:text-lime-300" href={isEnglish ? "/en/about" : "/sobre-mi"}>{isEnglish ? "About" : "Sobre mi"}</a></li>
+            <li ><a class="p-4 text-body cursor-pointer text-content hover:text-brand" href={isEnglish ? "/en" : "/"}>{isEnglish ? "Home" : "Inicio"}</a></li>
+            <li ><a class="p-4 text-body cursor-pointer text-content hover:text-brand" href={isEnglish ? "/en/about" : "/sobre-mi"}>{isEnglish ? "About" : "Sobre mi"}</a></li>
         </ul>
         <Button variant="primary" href={isEnglish ? "/en/contact" : "/contacto"}>{isEnglish ? "Contact Me" : "Contáctame"}</Button>
         <a class="flex justify-center items-center size-12 cursor-pointer" href={rutaActual}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="Cambiar a Español" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="Switch to English" />}</a>
     </nav>
 
 </div>
-<div id="menu" class="hidden absolute top-full lg:hidden bg-gray-900 w-full h-dvh z-50 px-8 py-8 -m-1">
-        <ul class="flex flex-col justify-center items-center gap-8">
-            <li class="text-xl cursor-pointer text-white hover:text-lime-300"><a class="py-4 inline-block" href={isEnglish ? "/en" : "/"}>{isEnglish ? "Home" : "Inicio"}</a></li>
-            <li class="text-xl cursor-pointer text-white hover:text-lime-300"><a class="py-4 inline-block" href={isEnglish ? "/en/about" : "/sobre-mi"}>{isEnglish ? "About Me" : "Sobre mi"}</a></li>
+<div id="menu" data-open="false" class="absolute top-full lg:hidden bg-surface w-full z-50 px-8 py-8 border-b border-border invisible opacity-0 -translate-y-2 data-[open=true]:visible data-[open=true]:opacity-100 data-[open=true]:translate-y-0 transition-[opacity,transform,visibility] duration-200 ease-out">
+        <ul class="flex flex-col items-center gap-8">
+            <li class="text-subtitle cursor-pointer text-content hover:text-brand"><a class="py-4 inline-block" href={isEnglish ? "/en" : "/"}>{isEnglish ? "Home" : "Inicio"}</a></li>
+            <li class="text-subtitle cursor-pointer text-content hover:text-brand"><a class="py-4 inline-block" href={isEnglish ? "/en/about" : "/sobre-mi"}>{isEnglish ? "About Me" : "Sobre mi"}</a></li>
             <li><Button variant="primary" href={isEnglish ? "/en/contact" : "/contacto"}>{isEnglish ? "Contact Me" : "Contáctame"}</Button></li>
             <li><a class="flex justify-center items-center size-12 cursor-pointer" href={rutaActual}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="Cambiar a Español" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="Switch to English" />}</a></li>
         </ul>
@@ -48,9 +51,24 @@ if (rutaActual in tabla) {
 <script>
     const burger = document.getElementById("burger");
     const menu = document.getElementById("menu");
+
+    // Un solo estado gobierna tres cosas: el atributo ARIA, el icono
+    // (vía group-aria-expanded en CSS) y la animación del panel.
+    // Antes se alternaba la clase `hidden`, y `display:none` no se
+    // puede transicionar: por eso el menú aparecía de golpe.
+    const abrir = (estado: boolean) => {
+        burger?.setAttribute("aria-expanded", String(estado));
+        menu?.setAttribute("data-open", String(estado));
+    };
+
     burger?.addEventListener("click", () => {
-        menu?.classList.toggle("hidden");
-        burger?.setAttribute("aria-expanded", menu?.classList.contains("hidden") ? "false" : "true");
-    })
-    
+        abrir(burger.getAttribute("aria-expanded") !== "true");
+    });
+
+    document.addEventListener("keydown", (evento) => {
+        if (evento.key === "Escape" && burger?.getAttribute("aria-expanded") === "true") {
+            abrir(false);
+            burger.focus();
+        }
+    });
 </script>
