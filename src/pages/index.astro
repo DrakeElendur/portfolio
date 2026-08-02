@@ -9,42 +9,42 @@ const allCasos = await getCollection('casos');
 const casos = allCasos.filter(caso => caso.id.startsWith("es/"));
 ---
 <Layout title="Carlos Coloma | Design System Manager & UX/UI Product Designer" description="Diseñador UX/UI y Design System Manager en Yanbal Internacional. Arquitectura de tokens, pipelines design-to-code y gobernanza de sistemas de diseño que escalan.">
-	<section class="flex flex-col-reverse justify-center items-center w-full mx-auto gap-16 py-30 px-8 lg:max-w-7xl lg:flex-row">
+	<section class="flex flex-col-reverse justify-center items-center w-full mx-auto gap-16 py-section px-8 lg:max-w-7xl lg:flex-row">
 		<div class="flex flex-col w-full gap-6 max-w-full">
-			<h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-6xl  text-white font-normal lg:text-left text-center">Diseño y Gobierno <span class="text-lime-300">Sistemas de Diseño</span><br class="hidden lg:flex"> que escalan</h1>
-			<p class="text-lg md:text-xl">Cierro la brecha entre diseño e ingeniería: arquitectura de tokens, pipelines, design-to-code y la gobernanza que mantiene todo consistente.</p>
-			<h2 class="text-xl md:text-2xl"><span class="text-lime-300">Design System Manager</span> en Yanbal Internacional</h2>
+			<h1 class="text-display text-content font-normal lg:text-left text-center">Diseño y Gobierno <span class="text-brand">Sistemas de Diseño</span><br class="hidden lg:flex"> que escalan</h1>
+			<p class="text-lead">Cierro la brecha entre diseño e ingeniería: arquitectura de tokens, pipelines, design-to-code y la gobernanza que mantiene todo consistente.</p>
+			<h2 class="text-subtitle"><span class="text-brand">Design System Manager</span> en Yanbal Internacional</h2>
 			<div class="flex flex-col sm:flex-row justify-center items-center md:justify-start gap-4">
 				<Button variant="primary" href="/resume2026.pdf" target="_blank" rel="noopener noreferrer" >Ver CV</Button>
 				<Button variant="secondary" href="/contacto">Contáctame</Button>
 			</div>
 		</div>
-		<Image class="size-75 sm:size-100 lg:size-140 rounded-full" src={HeroPhoto} alt="Foto de Carlos Coloma"/>
+		<Image loading="eager" fetchpriority="high" class="size-75 sm:size-100 lg:size-140 rounded-full" src={HeroPhoto} alt="Foto de Carlos Coloma"/>
 	</section>
-	<section class="bg-gray-800 w-full">
-		<div class="flex flex-col w-full justify-center items-center gap-8 pt-30 px-8 lg:pt-20 lg:mx-auto lg:max-w-7xl">
-			<h2 class="text-3xl md:text-4xl text-white">Proyectos destacados</h2>
-			<p class="w-full lg:w-2/4 text-center text-lg">Una selección curada de los proyectos donde mi trabajo movió métricas de negocio y de producto. Cada caso parte de un problema real, explica la decisión de diseño y cierra con su impacto.</p>
+	<section class="bg-surface-raised w-full">
+		<div class="flex flex-col w-full justify-center items-center gap-8 py-section px-8 lg:mx-auto lg:max-w-7xl">
+			<h2 class="text-headline text-content">Proyectos destacados</h2>
+			<p class="w-full lg:w-2/4 text-center text-lead">Una selección curada de los proyectos donde mi trabajo movió métricas de negocio y de producto. Cada caso parte de un problema real, explica la decisión de diseño y cierra con su impacto.</p>
 			<div class="flex flex-col justify-center items-center">
 				{casos.map((caso => {
-					return <a href={`/casos/${caso.id.replace("es/", "")}`} class="flex flex-col-reverse group lg:flex-row w-full gap-24 py-6 md:py-12 border-b">
+					return <a href={`/casos/${caso.id.replace("es/", "")}`} class="flex flex-col-reverse group md:flex-row w-full gap-6 md:gap-8 lg:gap-12 py-6 md:py-12 border-b border-border last:border-b-0">
 						<div class="flex flex-col gap-4 justify-between items-start w-full h-full">
 							<div class="flex flex-col gap-4">
-								<div class="text-2xl text-white font-semibold group-hover:text-lime-300 group-hover:underline">{caso.data.title}</div>
-								<div class="text-lg sm:text-xl">{caso.data.summary}</div>
+								<h3 class="text-title text-content font-semibold group-hover:text-brand group-hover:underline">{caso.data.title}</h3>
+								<div class="text-lead">{caso.data.summary}</div>
 							</div>
 							<div class="flex flex-row gap-8 w-full justify-between">
 								<div>
 									<p>Duración</p>
-									<span class="text-white">{caso.data.date}</span>
+									<span class="text-content">{caso.data.date}</span>
 								</div>
 								<div>
 									<p>Rol</p>
-									<span class="text-white">{caso.data.role}</span>
+									<span class="text-content">{caso.data.role}</span>
 								</div>
 								<div>
 									<p>Compañia</p>
-									<span class="text-white">{caso.data.company}</span>
+									<span class="text-content">{caso.data.company}</span>
 								</div>
 							</div>
 						</div>
@@ -56,17 +56,17 @@ const casos = allCasos.filter(caso => caso.id.startsWith("es/"));
 			</div>
 		</div>
 	</section>
-	<section class="bg-gray-800 w-full py-16 md:py-24 flex flex-col items-center justify-center px-8 md:px-auto">
-		<p class="max-w-4xl font-medium text-2xl md:text-3xl leading-9 text-left">
-			Soy Carlos Coloma, <span class="line-through opacity-70 font-light italic">Diseñador Gráfico</span> <span class="text-lime-300 font-bold">Product Design, UI/UX y Design System Expert</span> de Lima, Perú, tengo 6+ años cerrando la brecha entre diseño e ingeniería en productos digitales.<br>Hoy dirijo <span class="text-white font-bold">FrYDA, el sistema de diseño de Yanbal</span> con <span class="underline">+35 componentes</span> tokenizados y publicados en NPM, con una reducción estimada de <span class="font-bold text-white">15-30%</span> en los tiempos de Diseño, Desarrollo y QA.
+	<section class="bg-surface-raised w-full py-section flex flex-col items-center justify-center px-8">
+		<p class="max-w-4xl font-medium text-title text-left">
+			Soy Carlos Coloma, <span class="line-through font-light italic">Diseñador Gráfico</span> <span class="text-brand font-bold">Product Design, UI/UX y Design System Expert</span> de Lima, Perú, tengo 6+ años cerrando la brecha entre diseño e ingeniería en productos digitales.<br>Hoy dirijo <span class="text-content font-bold">FrYDA, el sistema de diseño de Yanbal</span> con <span class="underline">+35 componentes</span> tokenizados y publicados en NPM, con una reducción estimada de <span class="font-bold text-content">15-30%</span> en los tiempos de Diseño, Desarrollo y QA.
 		</p>
-		<div class="h-full w-full lg:max-w-7xl items-center justify-evenly flex flex-col lg:flex-row py-24 gap-12 lg:gap-8">
-			<a class="text-white text-xl sm:text-2xl underline hover:text-lime-300" rel="noreferrer" target="_blank" href="mailto:coloma.productdesign@gmail.com">coloma.productdesign@gmail.com</a>
+		<div class="h-full w-full lg:max-w-7xl items-center justify-evenly flex flex-col lg:flex-row py-section-inner gap-12 lg:gap-8">
+			<a class="text-content text-subtitle underline hover:text-brand" rel="noreferrer" target="_blank" href="mailto:coloma.productdesign@gmail.com">coloma.productdesign@gmail.com</a>
 			<Image class="size-75 rounded-3xl object-cover" src={FotoContacto} alt="Carlos Coloma en la playa nadando con tortugas"/>
 			<a href="https://www.linkedin.com/in/colomacarlos/" target="_blank" rel="noreferrer" class="flex flex-row gap-4 items-center group">
-				<svg class="fill-white group-hover:fill-blue-500" width="32" height="32">
+				<svg class="fill-content group-hover:fill-brand" width="32" height="32">
 					<use xlink:href="/sprite.svg#linkedin" />
-				</svg><span class="text-white text-2xl group-hover:text-lime-300">Conécta conmigo</span>
+				</svg><span class="text-content text-subtitle group-hover:text-brand">Conécta conmigo</span>
 			</a>
 		</div>
 	</section>

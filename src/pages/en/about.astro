@@ -9,28 +9,30 @@ const educacion = await getCollection('education');
 const ImageURL = new URL(FotoSobreMi.src, Astro.url.href);
 ---
 <Layout title="About Me | Carlos Coloma, Design System Manager" description="6+ years bridging design and engineering: from graphic designer to Design System Manager & UI Lead at Yanbal International, leading FrYDA." image={`${ImageURL}`}>
-	<section class="flex flex-col justify-center items-start max-w-7xl w-full pt-30 px-8">
-		<div class="flex flex-col lg:flex-row justify-center items-center gap-12 p-12 bg-gray-950 rounded-4xl">
-			<Image class="w-120 h-150 object-cover rounded-3xl" src={FotoSobreMi} alt="Carlos Coloma under the water with a sea turtle"/>
+	<section class="flex flex-col justify-center items-start max-w-7xl w-full py-section px-8">
+		<div class="w-full flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-12 p-6 sm:p-8 lg:p-12 bg-surface-raised rounded-4xl">
+			<Image loading="eager" fetchpriority="high" class="w-full aspect-[4/3] object-cover rounded-3xl lg:w-120 lg:h-150" src={FotoSobreMi} alt="Carlos Coloma under the water with a sea turtle"/>
 			<div class="prose prose-invert">
-				<h1 class="text-lime-300">About Me</h1>
+				<h1 class="text-brand text-headline">About Me</h1>
 				<p>Hi, I'm Carlos. Thanks for stopping by and checking out my work.</p>
 				<p>My career started in graphic and advertising design, creating brand, print, and digital pieces, until I gradually moved toward UX, product design, and design systems. Over time, I realized I was less drawn to the campaign and much more to the challenge of solving real problems and growing digital products.</p>
 				<p>Over the past 6+ years, I've had the chance to accompany products from early ideation through launch, growth, and continuous iteration, working closely with design, development, and business teams. Today I enjoy going beyond interface design: I move between token architecture, design system governance, and that exact point where design meets engineering, always focused on building consistent, intuitive, and effective products for the business.</p>
 				<p>I currently lead the design system for a multinational direct-selling company, collaborating with product teams, developers, and stakeholders across several countries to shape experiences that create value both for the people who use them and for the business behind them.</p>
-				<Button variant="primary" href="/resume2026-en.pdf" target="_blank" rel="noopener noreferrer" >Full Resumé</Button>
+				<div class="not-prose">
+					<Button variant="primary" href="/resume2026-en.pdf" target="_blank" rel="noopener noreferrer" >Full Resumé</Button>
+				</div>
 			</div>
 		</div>
 	</section>
-	<section class="flex flex-col justify-center items-start max-w-7xl w-full py-30 px-8">
-		<h2 class="text-lime-300 text-3xl font-bold pb-8">Experience</h2>
+	<section class="flex flex-col justify-center items-start max-w-7xl w-full py-section px-8">
+		<h2 class="text-brand text-headline font-bold pb-8">Experience</h2>
 		<div class="w-full">
 			{experiencia.map((exp => {
-				return <div class="w-full min-w-fit flex flex-col lg:flex-row justify-between items-start gap-4 py-8 border-t">
-					<div class="flex gap-4 w-2/5">
+				return <div class="w-full min-w-fit flex flex-col lg:flex-row justify-between items-start gap-4 py-8 border-t border-border">
+					<div class="flex gap-4 lg:w-2/5">
 						<Image class="size-20 rounded-xl" alt={`${exp.data.empresa} logo`} src={exp.data.image}/>
 						<div class="flex flex-col justify-start">
-							<h3 class="text-white text-xl mb-2">{exp.data.puesto}</h3>
+							<h3 class="text-content text-subtitle mb-2">{exp.data.puesto}</h3>
 							<div class="flex gap-2">
 								<p>{exp.data.empresa} • {exp.data.fechaInicio} - {exp.data.fechaFin}</p>
 							</div>
@@ -40,19 +42,19 @@ const ImageURL = new URL(FotoSobreMi.src, Astro.url.href);
 				</div>
 			}))}
 		</div>
-		<h2 class="text-white text-3xl font-bold pb-8 pt-24">Education</h2>
+		<h2 class="text-content text-headline font-bold pb-8 pt-section">Education</h2>
 		<div class="w-full flex flex-col lg:flex-row gap-8">
 			{educacion.map((edu => {
-				return <div class="w-full flex flex-col lg:flex-row justify-start items-start gap-8 p-8 bg-gray-800 rounded-2xl">
-					<div class="bg-blue-600 size-16 flex items-center justify-center rounded-xl">
+				return <div class="w-full flex flex-col lg:flex-row justify-start items-start gap-8 p-8 bg-surface-raised rounded-2xl">
+					<div class="bg-action size-16 flex items-center justify-center rounded-xl">
 						<svg width="48" height="48">
 							<use xlink:href={`/sprite.svg#${edu.data.type}`} />
 						</svg>
 					</div>
 					<div class="flex flex-col">
-						<h3 class="text-white text-lg font-semibold">{edu.data.titulo}</h3>
+						<h3 class="text-content text-lead font-semibold">{edu.data.titulo}</h3>
 						<p>{edu.data.instituto}</p>
-						<p class="text-xl font-thin pt-2">Graduated {edu.data.fechaGraduacion}</p>
+						<p class="text-subtitle font-light pt-2">Graduated {edu.data.fechaGraduacion}</p>
 					</div>
 				</div>
 			}))}

@@ -23,44 +23,44 @@ const ImageURL = new URL(caso.data.image.src, Astro.url.href);
 const { Content } = await render(caso);
 ---
 <Layout title={`${caso.data.title} | Carlos Coloma`} description={caso.data.summary} image={`${ImageURL}`}>
-    <section class="flex flex-col w-full min-w-0 lg:max-w-7xl prose prose-invert py-30 px-8 xl:px-0">
-        <div class="flex flex-col w-full">
-            <a class="font-bold p-4" href="/en">← Back to home</a>
-            <h1 class="w-full text-6xl text-white font-semibold text-left">{caso.data.title}</h1>
-            <p class="w-full text-balance text-left text-lg">{caso.data.summary}</p>
-            <Image src={caso.data.image} alt={caso.data.title}/>
+    <section class="flex flex-col w-full min-w-0 lg:max-w-7xl gap-8 py-section px-8 xl:px-0">
+        <div class="flex flex-col w-full gap-4">
+            <a class="font-bold w-fit text-content hover:text-brand" href="/en">← Back to home</a>
+            <h1 class="w-full text-display text-content font-semibold text-left">{caso.data.title}</h1>
+            <p class="w-full text-balance text-left text-lead">{caso.data.summary}</p>
+            <Image loading="eager" fetchpriority="high" src={caso.data.image} alt={caso.data.title}/>
         </div>
         <article class="flex flex-col gap-6 w-full">
-            <div class="flex flex-col p-6 w-full bg-gray-800 rounded-4xl">
-                <h2 class="text-lime-300">TL;DR:</h2>
-                {caso.data.tldr}</div>
-            <div class="flex flex-col sm:grid sm:grid-cols-2 sm:grid-rows-2 p-6 gap-6 w-full bg-gray-800 rounded-4xl">
+            <div class="flex flex-col p-6 w-full bg-surface-raised rounded-4xl">
+                <h2 class="text-brand text-title">TL;DR:</h2>
+                <p class="max-w-measure">{caso.data.tldr}</p></div>
+            <div class="flex flex-col sm:grid sm:grid-cols-2 sm:grid-rows-2 p-6 gap-6 w-full bg-surface-raised rounded-4xl">
                 <div>
-                <p class="text-gray-400">COMPANY</p>
+                <p class="text-content-muted">COMPANY</p>
                 {caso.data.company}
                 </div>
 
                 <div>
-                <p class="text-gray-400">ROLE</p>
+                <p class="text-content-muted">ROLE</p>
                 {caso.data.role}
                 </div>
 
                 <div>
-                <p class="text-gray-400">SERVICE</p>
+                <p class="text-content-muted">SERVICE</p>
                 <div class="flex flex-wrap gap-2">
-                    {caso.data.tags.map(tag => <span class="text-sm border-2 font-bold py-0.5 px-2 rounded-full">{tag}</span>)}
+                    {caso.data.tags.map(tag => <span class="text-caption border-2 border-border font-bold py-0.5 px-2 rounded-full">{tag}</span>)}
                 </div>
                 </div>
 
                 <div>
-                <p class="text-gray-400">DURATION</p>
+                <p class="text-content-muted">DURATION</p>
                 {caso.data.date}
                 </div>
             </div>
         </article>
-        <div class="min-w-0 text-lg overflow-x-auto">
+        <div class="prose prose-invert w-full mx-auto min-w-0 text-body overflow-x-auto">
             <Content />
         </div>
-        <a class="font-bold p-4" href="/en">← Back to home</a>
+        <a class="font-bold w-fit text-content hover:text-brand" href="/en">← Back to home</a>
     </section>
 </Layout>

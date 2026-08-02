@@ -1,10 +1,22 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* ─────────────────────────────────────────────────────────────
+   Capa 1 — Primitivas: los archivos de fuente
+   ───────────────────────────────────────────────────────────── */
+
 @font-face {
     font-family: "Figtree";
     src: url("../assets/fonts/Figtree-VariableFont_wght.woff2") format("woff2");
     font-style: normal;
+    font-weight: 300 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Figtree";
+    src: url("../assets/fonts/Figtree-Italic-VariableFont_wght.woff2") format("woff2");
+    font-style: italic;
     font-weight: 300 900;
     font-display: swap;
 }
@@ -18,7 +30,191 @@
 }
 
 @theme {
-    /* Fuentes */
+    /* ─────────────────────────────────────────────────────────
+       Capa 1 — Primitivas: familias tipográficas
+       ───────────────────────────────────────────────────────── */
     --font-figtree: "Figtree", sans-serif;
     --font-montserrat: "Montserrat", sans-serif;
+
+    /* ─────────────────────────────────────────────────────────
+       Capa 2 — Semántica: roles tipográficos
+       El rol es estable aunque cambie la familia que lo cumple.
+       ───────────────────────────────────────────────────────── */
+    --font-body: var(--font-figtree);
+    --font-display: var(--font-montserrat);
+
+    /* ─────────────────────────────────────────────────────────
+       Capa 2 — Semántica: escala tipográfica
+
+       Escala CERRADA: si un tamaño no está aquí, no se usa.
+
+       Cada nivel es fluido con clamp(), así que un solo token
+       cubre de 375px a 1280px sin cadenas de breakpoints.
+       El término medio lleva SIEMPRE un componente en rem
+       (no solo vw) para que el texto siga respondiendo al zoom
+       de fuente del usuario — un clamp de puro vw rompe eso.
+
+       El nivel semántico (h1, h2) y el nivel visual (display,
+       headline) están desacoplados a propósito: un h1 dentro de
+       una tarjeta no tiene por qué gritar como el de un hero.
+       ───────────────────────────────────────────────────────── */
+    --text-display: clamp(1.875rem, 1.1rem + 3.31vw, 3.75rem);   /* 30 → 60 */
+    --text-display--line-height: 1.05;
+    --text-display--letter-spacing: -0.02em;
+
+    --text-headline: clamp(1.875rem, 1.72rem + 0.66vw, 2.25rem); /* 30 → 36 */
+    --text-headline--line-height: 1.15;
+    --text-headline--letter-spacing: -0.01em;
+
+    --text-title: clamp(1.5rem, 1.35rem + 0.66vw, 1.875rem);     /* 24 → 30 */
+    --text-title--line-height: 1.25;
+
+    --text-subtitle: clamp(1.25rem, 1.15rem + 0.44vw, 1.5rem);   /* 20 → 24 */
+    --text-subtitle--line-height: 1.35;
+
+    --text-lead: clamp(1.125rem, 1.07rem + 0.22vw, 1.25rem);     /* 18 → 20 */
+    --text-lead--line-height: 1.6;
+
+    --text-body: clamp(1rem, 0.95rem + 0.22vw, 1.125rem);        /* 16 → 18 */
+    --text-body--line-height: 1.65;
+
+    --text-caption: 0.875rem;                                     /* 14 fijo */
+    --text-caption--line-height: 1.4;
+
+    /* ─────────────────────────────────────────────────────────
+       Capa 2 — Semántica: medida de lectura
+
+       `ch` es el ancho del carácter "0", así que 65ch ronda las
+       65-75 letras por línea: el rango cómodo para leer. Una caja
+       puede ser ancha; su TEXTO no debería.
+       ───────────────────────────────────────────────────────── */
+    --container-measure: 65ch;
+
+    /* ─────────────────────────────────────────────────────────
+       Capa 2 — Semántica: movimiento
+
+       La velocidad de la interfaz también es parte del sistema.
+
+       Se SOBRESCRIBE el `--ease-out` por defecto de Tailwind en
+       vez de crear un nombre nuevo: así cualquier `ease-out` del
+       proyecto usa la curva buena y es imposible caer en la débil
+       por descuido. Las curvas nativas de CSS son demasiado
+       suaves y hacen que el movimiento parezca accidental.
+
+       Nunca `ease-in` en UI: arranca lento justo en el instante
+       que el usuario más mira, y se percibe más lento a igual
+       duración.
+       ───────────────────────────────────────────────────────── */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+    /* ─────────────────────────────────────────────────────────
+       Capa 2 — Semántica: ritmo vertical
+
+       DOS decisiones, no doce. Todo el respiro del sitio sale de
+       aquí. También fluidas, por el mismo motivo que la tipografía.
+
+         section       → aire entre bloques mayores de la página
+         section-inner → aire dentro de un bloque
+       ───────────────────────────────────────────────────────── */
+    --spacing-section: clamp(4rem, 2.55rem + 6.19vw, 7.5rem);       /* 64 → 120 */
+    --spacing-section-inner: clamp(2rem, 1.17rem + 3.54vw, 4rem);   /* 32 → 64  */
+
+    /* ─────────────────────────────────────────────────────────
+       Capa 2 — Semántica: superficies
+       Regla del sistema: en tema oscuro, la elevación ACLARA.
+         surface        → fondo de página
+         surface-raised → algo que flota sobre la página (tarjetas, bandas)
+         surface-deep   → cromo de la app y campos hundidos
+       ───────────────────────────────────────────────────────── */
+    --color-surface: var(--color-gray-900);
+    --color-surface-raised: var(--color-gray-800);
+    --color-surface-deep: var(--color-gray-950);
+
+    /* ─────────────────────────────────────────────────────────
+       Capa 2 — Semántica: contenido
+       El cuerpo es "muted" a propósito; el blanco es énfasis.
+       ───────────────────────────────────────────────────────── */
+    --color-content: var(--color-white);
+    --color-content-muted: var(--color-gray-400);
+
+    /* ─────────────────────────────────────────────────────────
+       Capa 2 — Semántica: marca y acción
+       brand  = identidad, no invita a hacer clic
+       action = lo que sí se pulsa
+       ───────────────────────────────────────────────────────── */
+    --color-brand: var(--color-lime-300);
+    --color-action: var(--color-blue-600);
+    --color-action-hover: var(--color-blue-800);
+
+    /* ─────────────────────────────────────────────────────────
+       Capa 2 — Semántica: feedback
+       ───────────────────────────────────────────────────────── */
+    --color-success: var(--color-emerald-400);
+    --color-danger: var(--color-red-500);
+
+    /* ─────────────────────────────────────────────────────────
+       Capa 2 — Semántica: bordes
+       Perilla de calibración: antes los divisores heredaban
+       currentColor (gris 400) y resultaban duros. Si los quieres
+       más o menos marcados, este es el único valor a mover.
+       ───────────────────────────────────────────────────────── */
+    --color-border: var(--color-gray-600);
+}
+
+/* Le dice al navegador que renderice su UI nativa (scrollbars,
+   controles de formulario) en variante oscura. */
+:root {
+    color-scheme: dark;
+}
+
+/* Montserrat es la voz de los titulares; Figtree la del texto.
+   Se declara UNA vez sobre los elementos de encabezado en vez de
+   repartir `font-display` por las plantillas: así también alcanza
+   a los h2/h3 que genera el Markdown de los casos de estudio. */
+@layer base {
+    h1, h2, h3, h4 {
+        font-family: var(--font-display);
+    }
+
+    /* Un solo anillo de foco para todo el sitio, declarado una vez.
+       `:focus-visible` (no `:focus`) sale solo cuando el foco llega
+       por teclado, no al hacer clic con ratón. `outline` no ocupa
+       espacio, así que no descoloca nada al aparecer. */
+    :focus-visible {
+        outline: 2px solid var(--color-brand);
+        outline-offset: 2px;
+        border-radius: 2px;
+    }
+
+    /* Transición de estado para todo lo interactivo, en una regla.
+       Se listan las propiedades exactas: `transition: all` obliga al
+       navegador a vigilar propiedades que nunca cambian.
+
+       `outline-color` NO está en la lista a propósito: el anillo de
+       foco debe aparecer instantáneo. Animarlo retrasa la respuesta
+       justo en la acción que más necesita ser inmediata.
+
+       `scale` va aparte de `transform` porque Tailwind v4 usa la
+       propiedad `scale` nativa, no `transform: scale()`. */
+    a, button, svg, input, textarea {
+        transition-property: color, background-color, border-color, fill, opacity, transform, scale;
+        transition-duration: 150ms;
+        transition-timing-function: var(--ease-out);
+    }
+}
+
+/* Movimiento reducido: NO es "cero animación". Se conservan color y
+   opacidad, que ayudan a entender el cambio de estado, y se elimina
+   el desplazamiento, que es lo que provoca mareo. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition-property: color, background-color, border-color, fill, opacity !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+    }
+    /* No basta con quitar la transición: hay que anular el desplazamiento
+       en sí, o el usuario ve el salto igual, solo que instantáneo. */
+    a:active, button:active { scale: none !important; }
+    #menu { translate: none !important; transform: none !important; }
 }
