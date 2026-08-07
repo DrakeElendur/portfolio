@@ -1,5 +1,5 @@
 ---
-title: Coloma Design System — a DS from scratch, in the open
+title: Coloma Design System — a DS from scratch
 image: "../../../assets/images/cover-coloma-ds.png"
 summary: My personal, open-source design system. A design tokens package in the W3C DTCG standard format published on NPM, plus a viewer built with Web Components that documents and lets you copy every token. Written line by line, no templates.
 date: 2026 - Present
