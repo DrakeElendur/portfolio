@@ -1,0 +1,55 @@
+---
+import { Image } from 'astro:assets';
+import Layout from "../layouts/Layout.astro"
+import { render, type CollectionEntry } from 'astro:content';
+const isEnglish = Astro.currentLocale === 'en';
+interface Props{
+    caso: CollectionEntry<"casos">;
+}
+
+const { caso } = Astro.props;
+const ImageURL = new URL(caso.data.image.src, Astro.url.href);
+const { Content } = await render(caso);
+---
+
+<Layout title={`${caso.data.title} | Carlos Coloma`} description={caso.data.summary} image={`${ImageURL}`}>
+    <section class="flex flex-col lg:grid lg:grid-cols-[1fr_2fr] w-full min-w-0 lg:max-w-7xl gap-8 py-section px-8 xl:px-0">
+        <header class="lg:sticky lg:top-nav flex flex-col lg:self-start lg:max-h-[calc(100dvh_-_var(--spacing-nav))] lg:overflow-y-auto lg:overscroll-contain gap-4 pb-4" tabindex="0" aria-label={isEnglish ? `Case study sheet: ${caso.data.title}` : `Ficha del Caso de estudio: ${caso.data.title}`} role="group">
+            <a class="font-bold w-fit text-content hover:text-brand" href={isEnglish ? "/en" : "/"}>{isEnglish ? "← Back to home" : "← Volver al inicio"}</a>
+            <h1 class="text-headline text-content font-semibold text-left">{caso.data.title}</h1>
+            <p class="text-balance text-left text-lead">{caso.data.summary}</p>
+            <div class="flex flex-col gap-4 bg-surface-raised rounded-2xl px-6 py-4">
+                <dl class="flex flex-col gap-4">
+                    <div class="flex flex-col gap-0">
+                        <dt class="text-content-muted">{isEnglish ? "COMPANY" : "EMPRESA"}</dt>
+                        <dd>{caso.data.company}</dd>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <dt class="text-content-muted">{isEnglish ? "ROLE" : "ROL"}</dt>
+                        <dd>{caso.data.role}</dd>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <dt class="text-content-muted">{isEnglish ? "SERVICES" : "SERVICIOS"}</dt>
+                        <dd class="flex flex-wrap gap-1">
+                            {caso.data.tags.map(tag => <span class="text-caption border-2 border-border font-bold py-0.5 px-2 rounded-full">{tag}</span>)}
+                        </dd>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <dt class="text-content-muted">{isEnglish ? "DURATION" : "DURACIÓN"}</dt>
+                        <dd>{caso.data.date}</dd>
+                    </div>
+                </dl>
+            </div>
+        </header>
+        <article class="flex flex-col items-start gap-6 min-w-0 ">
+            <div class="flex flex-col gap-4 p-6 bg-surface-raised rounded-2xl">
+                <h2 class="text-brand text-title">TL;DR:</h2>
+                <p class="max-w-measure">{caso.data.tldr}</p>
+            </div>
+            <Image widths={[350, 540, 830, caso.data.image.width]} sizes="(max-width: 768px) 100vw, 830" loading="eager" fetchpriority="high" src={caso.data.image} alt={caso.data.title}/>
+            <div class="prose prose-invert overflow-x-auto max-w-measure text-body">
+                <Content />
+            </div>
+        </article>
+    </section>
+</Layout>

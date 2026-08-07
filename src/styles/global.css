@@ -117,8 +117,9 @@
          section       → aire entre bloques mayores de la página
          section-inner → aire dentro de un bloque
        ───────────────────────────────────────────────────────── */
-    --spacing-section: clamp(4rem, 2.55rem + 6.19vw, 7.5rem);       /* 64 → 120 */
+    --spacing-section: clamp(3rem, 2.55rem + 6.19vw, 4rem);       /* 64 → 120 */
     --spacing-section-inner: clamp(2rem, 1.17rem + 3.54vw, 4rem);   /* 32 → 64  */
+    --spacing-nav: calc(5rem + var(--spacing-section)); /* 80 para fijar en el inspector. Tamaño del Nav */
 
     /* ─────────────────────────────────────────────────────────
        Capa 2 — Semántica: superficies
