@@ -47,7 +47,7 @@ El visor consume los JSON anidados y necesita convertirlos en una lista plana de
 
 La solución pasa por recorrer el objeto recursivamente y distinguir un token final de un grupo intermedio. El propio estándar DTCG da la pista: **un token final es el que declara `$value`**; todo lo demás es un grupo por el que hay que seguir bajando, acumulando la ruta.
 
-> [Espacio para el snippet o el enlace al repositorio.]
+> [Repositorio en GitHub](https://github.com/DrakeElendur/Coloma-Design-System)
 
 ## Estado actual
 
@@ -59,7 +59,7 @@ Este es un proyecto vivo y lo documento en abierto conforme avanza:
 - 🔄 Galería agrupada por categoría y copiado al portapapeles.
 - ⏳ Publicación del paquete en NPM y despliegue del visor.
 
-> [Actualizar el estado al publicar el caso. Enlazar el repositorio de GitHub, el paquete de NPM y el visor desplegado en cuanto estén disponibles: son la prueba más fuerte de todo el caso.]
+> WORK IN PROGRESS
 
 ## Lo que estoy aprendiendo
 
