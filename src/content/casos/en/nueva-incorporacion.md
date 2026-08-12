@@ -10,7 +10,8 @@ tags:
     - UX / UI
 company: Yanbal
 role: Product Designer (UX/UI) — Research and strategy
-tldr: Incorporación is the process by which a Director brings a new Consultant into her personal group — the exact moment a business is born inside Yanbal and, therefore, the growth engine of the entire company. The process had been designed around operations, not around the people living it. I ran a mixed-method study desk research with corporate and country stakeholders, plus field research in Colombia and Peru interviewing 20+ Directors across all career levels and 30 Consultants — both enrollers and non-enrollers. Those findings dismantled inherited assumptions, produced new paradigms about why someone enrolls (or doesn't), and drove a full product redesign. A pilot in Colombia validated the key hypotheses, and development is now underway to roll out the new experience in Bolivia.
+tldr: |
+    Incorporación is the process by which a Director brings a new Consultant into her personal group — the exact moment a business is born inside Yanbal and, therefore, the growth engine of the entire company. The process had been designed around operations, not around the people living it. I ran a mixed-method study: desk research with corporate and country stakeholders, plus field research in Colombia and Peru interviewing 20+ Directors across all career levels and 30 Consultants — both enrollers and non-enrollers. Those findings dismantled inherited assumptions, produced new paradigms about why someone enrolls (or doesn't), and drove a full product redesign. A pilot in Colombia validated the key hypotheses, and development is now underway to roll out the new experience in Bolivia.
 ---
 ## The business challenge
 

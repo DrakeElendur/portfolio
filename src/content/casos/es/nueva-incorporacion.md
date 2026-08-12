@@ -10,7 +10,8 @@ tags:
     - UX / UI
 company: Yanbal
 role: Product Designer (UX/UI) — Investigación y estrategia
-tldr: La Incorporación es el proceso por el que una Directora integra a una nueva Consultora a su grupo personal — el momento exacto en el que nace un negocio dentro de Yanbal y, por tanto, el motor de crecimiento de toda la compañía. El proceso estaba diseñado desde la operación, no desde las personas que lo viven. Conduje una investigación mixta desk research con stakeholders corporativos y de cada país, y trabajo de campo en Colombia y Perú entrevistando a más de 20 Directoras de todos los niveles y 30 Consultoras —incorporadoras y no incorporadoras—. Con esos hallazgos derribamos hipótesis heredadas, construimos nuevos paradigmas sobre por qué alguien incorpora (o no) y rediseñamos el producto. Un piloto en Colombia validó las hipótesis clave y hoy el desarrollo está en marcha para desplegar la nueva experiencia en Bolivia.
+tldr: |
+    La Incorporación es el proceso por el que una Directora integra a una nueva Consultora a su grupo personal — el momento exacto en el que nace un negocio dentro de Yanbal y, por tanto, el motor de crecimiento de toda la compañía. El proceso estaba diseñado desde la operación, no desde las personas que lo viven. Conduje una investigación mixta: desk research con stakeholders corporativos y de cada país, y trabajo de campo en Colombia y Perú entrevistando a más de 20 Directoras de todos los niveles y 30 Consultoras —incorporadoras y no incorporadoras—. Con esos hallazgos derribamos hipótesis heredadas, construimos nuevos paradigmas sobre por qué alguien incorpora (o no) y rediseñamos el producto. Un piloto en Colombia validó las hipótesis clave y hoy el desarrollo está en marcha para desplegar la nueva experiencia en Bolivia.
 ---
 ## El reto de negocio
 
