@@ -10,11 +10,14 @@ tags:
     - Tokenization
 company: Yanbal
 role: Design System Manager & UI Lead
-tldr: After 3 years building Nueva MAYA and other digital products, the order that existed in Figma (UI Kit v0.2) didn't carry over into development — each team rebuilt its own hardcoded component library, causing visual inconsistencies, long QA cycles, and constant overwrites. I led the transformation of that UI Kit into FrYDA, a three-level tokenized design system (Primitive, Semantic, Functional) with ~1,785 tokens, centralized governance, and an automated pipeline Tokens Studio → Style Dictionary → Azure DevOps → NPM. Today FrYDA lives as package v1.5.0 with 34 components in Stencil.JS, already adopted by a new product and projected to speed up development by 30-40% while reducing QA time for every team. Along the way I moved from visual/UX designer to a product leader with technical and business judgment.
+tldr: |
+    After 3 years building New MAYA and other digital products, the order that existed in Figma (UI Kit v0.2) didn't carry over into development — each team rebuilt its own hardcoded component library, causing visual inconsistencies, long QA cycles, and constant overwrites. I led the transformation of that UI Kit into FrYDA, a three-level tokenized design system (Primitive, Semantic, Functional) with ~1,785 tokens, centralized governance, and an automated pipeline:
+    Tokens Studio → Style Dictionary → Azure DevOps → NPM.
+    Today FrYDA lives as package v1.5.0 with 34 components in Stencil.JS, already adopted by a new product and projected to speed up development by 30-40% while reducing QA time for every team. Along the way I moved from visual/UX designer to a product leader with technical and business judgment.
 ---
 ## The Problem
 
-Yanbal had spent 3 years building its new commercial system, Nueva MAYA, alongside satellite products like Pase de Pedido. MAYA already had 2 years in production, with visual improvements and new features layered on top, and Pase de Pedido — though interconnected — worked as a separate box.
+Yanbal had spent 3 years building its new commercial system, **New MAYA**, alongside satellite products like Pase de Pedido. MAYA already had 2 years in production, with visual improvements and new features layered on top, and Pase de Pedido — though interconnected — worked as a separate box.
 
 Design lived in order in Figma, but that order broke down when it crossed over into development. UI Kit v0.2 wasn't an actionable source of truth: each development team took the layouts and rebuilt, on its own, a component library for its own product. Every atom, molecule, and organism ended up hardcoded and out of sync with each other.
 

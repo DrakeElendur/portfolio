@@ -10,7 +10,10 @@ tags:
     - Tokenization
 company: Yanbal
 role: Design System Manager & UI Lead
-tldr: Después de 3 años construyendo Nueva MAYA y otros productos digitales, el orden que existía en Figma (UI Kit v0.2) no se trasladaba al desarrollo cada equipo reconstruía su propia librería de componentes hardcodeados, lo que generaba inconsistencias visuales, QA largos y overwrites constantes. Lideré la transformación de ese UI Kit en FrYDA, un design system tokenizado de tres niveles (Primitive, Semantic, Functional) con ~1.785 tokens, gobernanza centralizada y un pipeline automatizado Tokens Studio → Style Dictionary → Azure DevOps → NPM. Hoy FrYDA vive como paquete v1.5.0 con 34 componentes en Stencil.JS, ya adoptado por un nuevo producto y proyectado para acelerar el desarrollo entre 30 % y 40 % y reducir los tiempos de QA en cada equipo. En el camino pasé de diseñador visual/UX a líder de producto con criterio técnico y de negocio.
+tldr: | 
+    Después de 3 años construyendo Nueva MAYA y otros productos digitales, el orden que existía en Figma (UI Kit v0.2) no se trasladaba al desarrollo, cada equipo reconstruía su propia librería de componentes hardcodeados, lo que generaba inconsistencias visuales, QA largos y overwrites constantes. Lideré la transformación de ese UI Kit en FrYDA, un design system tokenizado de tres niveles (Primitive, Semantic, Functional) con ~1.785 tokens, gobernanza centralizada y un pipeline automatizado:
+    Tokens Studio → Style Dictionary → Azure DevOps → NPM.
+    Hoy FrYDA vive como paquete v1.5.0 con 34 componentes en Stencil.JS, ya adoptado por un nuevo producto y proyectado para acelerar el desarrollo entre 30 % y 40 % y reducir los tiempos de QA en cada equipo. En el camino pasé de diseñador visual/UX a líder de producto con criterio técnico y de negocio.
 ---
 ## El Problema
 

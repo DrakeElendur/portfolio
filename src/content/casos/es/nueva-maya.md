@@ -8,7 +8,8 @@ tags:
     - UX / UI
 company: Yanbal
 role: Diseñador UX/UI
-tldr: MAYA es el sistema con el que cientos de miles de vendedoras de Yanbal gestionan su negocio cada día en Latinoamérica. La versión anterior funcionaba como un registro de pedidos cumplía la transacción, pero no acompañaba el negocio de la usuaria, y la adopción se estancaba (80 % Directoras, 25-32 % Consultoras). Lideré el rediseño UX/UI de extremo a extremo, articulando research, estrategia y diseño con +90 stakeholders y los equipos de desarrollo de cada país. Tras +150 entrevistas, +145 conceptos y un piloto con 200 Directoras Junior en Ecuador, convertimos MAYA en una plataforma de inteligencia de negocio centrada en la acción, no en el dato. El resultado adopción de 95 % en Directoras y 39 % en Consultoras, y un rollout en marcha a los países andinos. El mayor desbloqueo fue estratégico descubrir que el miedo al canal digital era diseñado, no innato.
+tldr: |
+    MAYA es el sistema con el que cientos de miles de vendedoras de Yanbal gestionan su negocio cada día en Latinoamérica. La versión anterior funcionaba como un registro de pedidos: cumplía la transacción, pero no acompañaba el negocio de la usuaria, y la adopción se estancaba (80 % Directoras, 25-32 % Consultoras). Lideré el rediseño UX/UI de extremo a extremo, articulando research, estrategia y diseño con +90 stakeholders y los equipos de desarrollo de cada país. Tras +150 entrevistas, +145 conceptos y un piloto con 200 Directoras Junior en Ecuador, convertimos MAYA en una plataforma de inteligencia de negocio centrada en la acción, no en el dato. El resultado adopción es de 95% en Directoras y 39% en Consultoras, y un rollout en marcha que ya ha alcanzado al 50% de los paises Yanbal. El mayor desbloqueo fue estratégico: descubrir que el miedo al canal digital era diseñado, no innato.
 ---
 ## El reto de negocio
 

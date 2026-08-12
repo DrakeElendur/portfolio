@@ -10,7 +10,7 @@ tags:
     - Front-end
 company: Personal project
 role: Creator — Design and development
-tldr: After leading the tokenization of a corporate design system, I wanted to answer an uncomfortable question how much of that can I do myself, from scratch and alone? Coloma Design System is my answer. A monorepo with two deliverables a design tokens package in the W3C DTCG standard format — with a two-layer architecture, primitives and semantics, connected through aliases — published under an MIT license, and a web viewer that flattens the nested JSON and documents every token using Web Components with Shadow DOM. All the JSON is written by hand, on purpose exporting from Figma skips precisely the part where you internalize the alias mechanism, which is the core concept behind a semantic layer. It's my technical testing ground and, being open, the only design system work of mine I can show in full.
+tldr: After leading the tokenization of a corporate design system, I wanted to answer an uncomfortable "question how much of that can I do myself, from scratch and alone?". Coloma Design System is my answer. A monorepo with two deliverables a design tokens package in the W3C DTCG standard format — with a two-layer architecture, primitives and semantics, connected through aliases — published under an MIT license, and a web viewer that flattens the nested JSON and documents every token using Web Components with Shadow DOM. All the JSON is written by hand, I set myself not to use Figma to internalize the alias mechanism, which is the core concept behind a semantic layer. It's my technical testing ground and, being open source, the only design system work of mine I can show in full.
 ---
 ## Why this project exists
 
