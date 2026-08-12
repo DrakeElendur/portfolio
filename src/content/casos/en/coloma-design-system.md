@@ -47,7 +47,7 @@ The viewer consumes the nested JSON files and needs to turn them into a flat lis
 
 The solution is to walk the object recursively and distinguish a final token from an intermediate group. The DTCG standard itself gives the hint: **a final token is the one declaring `$value`**; everything else is a group you keep descending into, accumulating the path.
 
-> [Space for the snippet or the repository link.]
+> [Github Repository](https://github.com/DrakeElendur/Coloma-Design-System)
 
 ## Current status
 
@@ -59,7 +59,7 @@ This is a living project, documented in the open as it progresses:
 - 🔄 Gallery grouped by category and copy-to-clipboard.
 - ⏳ NPM package publication and viewer deployment.
 
-> [Update the status when publishing the case. Link the GitHub repository, the NPM package, and the deployed viewer as soon as they're available — they're the strongest proof in the whole case.]
+> WORK IN PROGRESS
 
 ## What I'm learning
 
