@@ -2,21 +2,35 @@
 import "../styles/global.css"
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import HeroPhoto from '../assets/images/hero-photo.webp'
 import Analytics from '@vercel/analytics/astro'
 import SpeedInsights from "@vercel/speed-insights/astro"
 // `?url` devuelve la ruta final con hash que Vite le da al archivo. Hace
 // falta para poder precargarlo: el nombre lo decide el build, así que
 // escribirlo a mano en un <link> se rompería en el siguiente despliegue.
 import montserratUrl from '../assets/fonts/Montserrat-VariableFont_wght.woff2?url'
+import { rutaAlterna } from '../lib/rutas';
 interface Props {
     title: string;
-    description:string;
+    description: string;
     image?: string;
 };
-const defaultImageURL = new URL(HeroPhoto.src, Astro.url.href);
-const { title, description, image = defaultImageURL } = Astro.props;
 const isEnglish = Astro.currentLocale === 'en';
+
+// La tarjeta social por defecto. 1200x630 es el formato que esperan
+// LinkedIn, WhatsApp y X; la foto del hero, que era lo que había antes,
+// mide 400x400 y salía recortada. Las fichas de caso pasan su propia
+// portada por `image`, así que esta solo cubre home, sobre-mí y contacto.
+const tarjetaPorDefecto = new URL('/og-default.png', Astro.site).href;
+const { title, description, image = tarjetaPorDefecto } = Astro.props;
+// Las dimensiones solo se anuncian cuando se conocen. Las fichas de caso
+// pasan su propia portada, que tiene otra proporción: declararle 1200x630
+// haría que el cliente reserve un hueco del tamaño equivocado.
+const esTarjetaPorDefecto = image === tarjetaPorDefecto;
+
+// Absolutas y con barra final, igual que las que publica el sitemap.
+const canonica = new URL(Astro.url.pathname, Astro.site).href;
+const alterna = new URL(rutaAlterna(Astro.url.pathname, isEnglish), Astro.site).href;
+const [urlEs, urlEn] = isEnglish ? [alterna, canonica] : [canonica, alterna];
 ---
 <!DOCTYPE html>
 <html lang={isEnglish ? "en" : "es"}>
@@ -51,12 +65,34 @@ const isEnglish = Astro.currentLocale === 'en';
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="generator" content={Astro.generator} />
         <meta name="description" content={description} />
+        <link rel="canonical" href={canonica} />
+        <!-- El sitio existe entero en dos idiomas. Sin esto, Google trata
+             `/sobre-mi/` y `/en/about/` como contenido duplicado y elige una
+             por su cuenta, en vez de servir la que corresponde a cada usuario.
+
+             Las tres etiquetas son necesarias: cada idioma se declara a sí
+             mismo además de a su pareja (así el grupo es recíproco y Google lo
+             valida), y `x-default` marca a dónde mandar a quien no habla
+             ninguno de los dos. -->
+        <link rel="alternate" hreflang="es" href={urlEs} />
+        <link rel="alternate" hreflang="en" href={urlEn} />
+        <link rel="alternate" hreflang="x-default" href={urlEs} />
         <!-- Tags de Open Graph-->
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="website">
-        <meta property="og:url" content={Astro.url.href} />
+        <meta property="og:url" content={canonica} />
         <meta property="og:image" content={image} />
+{esTarjetaPorDefecto && (<><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /></>)}
+        <meta property="og:locale" content={isEnglish ? "en_US" : "es_ES"} />
+        <meta property="og:locale:alternate" content={isEnglish ? "es_ES" : "en_US"} />
+        <meta property="og:site_name" content="Carlos Coloma" />
+        <!-- X/Twitter no lee Open Graph para el formato de la tarjeta: sin
+             `twitter:card` muestra la miniatura pequeña en vez de la grande. -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
         <!-- Analíticas de Vercel -->
         <Analytics />
         <SpeedInsights/>

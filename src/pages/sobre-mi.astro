@@ -6,9 +6,8 @@ import { getCollection } from 'astro:content';
 import Button from '../components/Button.astro'
 const experiencia = await getCollection('experiencia');
 const educacion = await getCollection('educacion');
-const ImageURL = new URL(FotoSobreMi.src, Astro.url.href);
 ---
-<Layout title="Sobre mí | Carlos Coloma, Design System Manager" description="6+ años uniendo diseño e ingeniería: de diseñador gráfico a Design System Manager & UI Lead en Yanbal Internacional, liderando FrYDA" image={`${ImageURL}`}>
+<Layout title="Sobre mí | Carlos Coloma, Design System Manager" description="6+ años uniendo diseño e ingeniería: de diseñador gráfico a Design System Manager & UI Lead en Yanbal Internacional, liderando FrYDA">
 	<section class="flex flex-col justify-center items-start max-w-page w-full py-section px-margin-mobile lg:px-margin-desktop">
 		<div class="w-full flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-12 p-6 sm:p-8 lg:p-12 bg-surface-raised border border-border rounded-lg">
 			<Image loading="eager" fetchpriority="high" class="w-full aspect-4/3 object-cover rounded-lg border border-border lg:w-120 lg:h-150" src={FotoSobreMi} alt="Carlos Coloma debjo del agua con una tortuga marina"/>

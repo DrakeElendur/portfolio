@@ -1,5 +1,6 @@
 ---
 import Button from '../components/Button.astro';
+import { rutaAlterna, sinBarra } from '../lib/rutas';
 const isEnglish = Astro.currentLocale === 'en';
 
 // Dos rutas distintas que antes compartían una sola variable: la que
@@ -7,23 +8,12 @@ const isEnglish = Astro.currentLocale === 'en';
 // reasignaba a mitad de archivo, así que su nombre dejaba de ser cierto
 // justo cuando más falta hacía. Ahora `aria-current` puede compararse
 // contra la ruta real.
-const rutaLimpia = Astro.url.pathname.endsWith("/") && Astro.url.pathname.length > 1 ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
-let rutaAlterna = rutaLimpia;
-const tabla : Record<string, string> = {
-    "/sobre-mi": "/en/about",
-    "/en/about": "/sobre-mi",
-    "/contacto": "/en/contact",
-    "/en/contact": "/contacto",
-    "/": "/en",
-    "/en": "/",
-}
-if (rutaAlterna in tabla) {
-    rutaAlterna = tabla[rutaAlterna];
-} else if (rutaAlterna.includes("/casos")) {
-    rutaAlterna = isEnglish ? rutaAlterna.replace("/en/casos", "/casos") : rutaAlterna.replace("/casos", "/en/casos");
-} else {
-    rutaAlterna = isEnglish ? "/" : "/en";
-}
+//
+// La tabla de equivalencias se mudó a lib/rutas.ts: el <head> necesita
+// exactamente lo mismo para sus `hreflang`, y con dos copias, añadir una
+// página nueva obligaría a acordarse de los dos sitios.
+const rutaLimpia = sinBarra(Astro.url.pathname);
+const alterna = rutaAlterna(Astro.url.pathname, isEnglish);
 
 const inicio = isEnglish ? "/en" : "/";
 const sobreMi = isEnglish ? "/en/about" : "/sobre-mi";
@@ -62,7 +52,7 @@ const enlaceMovil = (href: string) => [
             <li><a class:list={enlace(sobreMi)} aria-current={activa(sobreMi)} href={sobreMi}>{isEnglish ? "About" : "Sobre mi"}</a></li>
         </ul>
         <Button variant="primary" href={contacto}>{isEnglish ? "Contact Me" : "Contáctame"}</Button>
-        <a class="flex justify-center items-center size-12 cursor-pointer" href={rutaAlterna}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="Cambiar a Español" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="Switch to English" />}</a>
+        <a class="flex justify-center items-center size-12 cursor-pointer" href={alterna}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="Cambiar a Español" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="Switch to English" />}</a>
     </nav>
 
 </div>
@@ -71,7 +61,7 @@ const enlaceMovil = (href: string) => [
             <li><a class:list={enlaceMovil(inicio)} aria-current={activa(inicio)} href={inicio}>{isEnglish ? "Home" : "Inicio"}</a></li>
             <li><a class:list={enlaceMovil(sobreMi)} aria-current={activa(sobreMi)} href={sobreMi}>{isEnglish ? "About Me" : "Sobre mi"}</a></li>
             <li><Button variant="primary" href={contacto}>{isEnglish ? "Contact Me" : "Contáctame"}</Button></li>
-            <li><a class="flex justify-center items-center size-12 cursor-pointer" href={rutaAlterna}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="Cambiar a Español" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="Switch to English" />}</a></li>
+            <li><a class="flex justify-center items-center size-12 cursor-pointer" href={alterna}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="Cambiar a Español" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="Switch to English" />}</a></li>
         </ul>
 </div>
 </header>
