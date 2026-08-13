@@ -5,8 +5,9 @@ import Button from '../../components/Button.astro';
 import { Image } from 'astro:assets';
 import HeroPhoto from '../../assets/images/hero-photo.webp';
 import FotoContacto from '../../assets/images/foto-2.webp';
+import { ordenarCasos } from '../../lib/casos';
 const allCasos = await getCollection('casos');
-const casos = allCasos.filter(caso => caso.id.startsWith("en/"));
+const casos = ordenarCasos(allCasos.filter(caso => caso.id.startsWith("en/")));
 
 // El pie de cada tarjeta: rotulo mono arriba, dato debajo. Se define una
 // vez porque son tres columnas con el mismo tratamiento.
@@ -15,11 +16,11 @@ const rotulo = "font-mono text-micro uppercase tracking-widest text-content-subt
 <Layout title="Carlos Coloma | Design System Manager & UX/UI Product Designer" description="UX/UI Designer and Design System Manager at Yanbal International. Token architecture, design-to-code pipelines, and design system governance that scales.">
 	<section class="flex flex-col-reverse justify-center items-center w-full mx-auto gap-16 py-section px-margin-mobile lg:px-margin-desktop max-w-page lg:flex-row">
 		<div class="flex flex-col w-full gap-6 max-w-full">
-			<h1 class="text-display text-content lg:text-left text-center">Design and Governance for <span class="text-gradient">Design Systems</span><br class="hidden lg:flex"> that scale</h1>
+			<h1 class="text-display text-content lg:text-left text-center">Design and governance for <span class="text-gradient">design systems</span><br class="hidden lg:flex"> that scale</h1>
 			<p class="text-lead border-l-2 border-border-strong pl-4">I close the gap between design and engineering: token architecture, pipelines, design-to-code, and the governance that keeps everything consistent.</p>
 			<h2 class="text-subtitle"><span class="text-gradient">Design System Manager</span> at Yanbal International</h2>
 			<div class="flex flex-col sm:flex-row justify-center items-center md:justify-start gap-4">
-				<Button variant="primary" href="/resume2026-en.pdf" target="_blank" rel="noopener noreferrer" >Full Resumé</Button>
+				<Button variant="primary" href="/resume2026-en.pdf" target="_blank" rel="noopener noreferrer" >View resume</Button>
 				<Button variant="secondary" href="/en/contact">Contact me</Button>
 			</div>
 		</div>
@@ -39,7 +40,7 @@ const rotulo = "font-mono text-micro uppercase tracking-widest text-content-subt
 							</div>
 							<div class="flex flex-row gap-8 w-full justify-between">
 								<div>
-									<p class={rotulo}>Duration</p>
+									<p class={rotulo}>Timeline</p>
 									<span class="text-content">{caso.data.date}</span>
 								</div>
 								<div>
@@ -62,11 +63,11 @@ const rotulo = "font-mono text-micro uppercase tracking-widest text-content-subt
 	</section>
 	<section class="bg-surface-raised border-y border-border w-full py-section flex flex-col items-center justify-center px-margin-mobile lg:px-margin-desktop">
 		<p class="max-w-4xl font-medium text-title text-left">
-			I'm Carlos Coloma, <span class="line-through font-light italic">Graphic Designer</span> <span class="text-brand font-bold">Product Design, UI/UX, and Design System Expert</span> based in Lima, Peru, with 6+ years closing the gap between design and engineering in digital products.<br>Today, I lead <span class="text-content font-bold">FrYDA, Yanbal's design system,</span> with <span class="underline">35+ tokenized components</span> published on NPM, delivering an estimated <span class="font-bold text-content">15-30%</span> reduction in Design, Development, and QA time.
+			I'm Carlos Coloma, <span class="line-through font-light italic">Graphic Designer</span> <span class="text-brand font-bold">Design System Manager & UX/UI Product Designer</span> based in Lima, Peru, with 6+ years closing the gap between design and engineering in digital products.<br>Today, I lead <span class="text-content font-bold">FrYDA, Yanbal's design system,</span> with <span class="underline">37 tokenized components</span> published on NPM, delivering an estimated <span class="font-bold text-content">30-40%</span> reduction in design, development, and QA time.
 		</p>
 		<div class="h-full w-full max-w-page items-center justify-evenly flex flex-col lg:flex-row py-section-inner gap-12 lg:gap-8">
 			<a class="text-content font-mono text-mono underline hover:text-accent" rel="noreferrer" target="_blank" href="mailto:coloma.productdesign@gmail.com">coloma.productdesign@gmail.com</a>
-			<Image class="size-75 rounded-sm border border-border object-cover" src={FotoContacto} alt="Carlos Coloma in the sea swimming with turtles"/>
+			<Image class="size-75 rounded-sm border border-border object-cover" src={FotoContacto} alt="Carlos Coloma diving next to a sea turtle"/>
 			<a href="https://www.linkedin.com/in/colomacarlos/" target="_blank" rel="noreferrer" class="flex flex-row gap-4 items-center group">
 				<svg class="fill-content group-hover:fill-brand" width="32" height="32">
 					<use xlink:href="/sprite.svg#linkedin" />

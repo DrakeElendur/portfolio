@@ -11,22 +11,22 @@ tags:
 company: Yanbal
 role: Design System Manager & UI Lead
 tldr: |
-    After 3 years building New MAYA and other digital products, the order that existed in Figma (UI Kit v0.2) didn't carry over into development — each team rebuilt its own hardcoded component library, causing visual inconsistencies, long QA cycles, and constant overwrites. I led the transformation of that UI Kit into FrYDA, a three-level tokenized design system (Primitive, Semantic, Functional) with ~1,785 tokens, centralized governance, and an automated pipeline:
+    After 3 years building Nueva MAYA and other digital products, the order that existed in Figma (UI Kit v0.2) didn't carry over into development — each team rebuilt its own hardcoded component library, causing visual inconsistencies, long QA cycles, and constant overwrites. I led the transformation of that UI Kit into FrYDA, a three-level tokenized design system (Primitive, Semantic, Functional) with ~1,785 tokens, centralized governance, and an automated pipeline:
     Tokens Studio → Style Dictionary → Azure DevOps → NPM.
-    Today FrYDA lives as package v1.5.0 with 34 components in Stencil.JS, already adopted by a new product and projected to speed up development by 30-40% while reducing QA time for every team. Along the way I moved from visual/UX designer to a product leader with technical and business judgment.
+    Today FrYDA lives as package v1.5.0 with 37 components in Stencil.JS, already adopted by a new product and projected to speed up development by 30-40% while reducing QA time for every team. Along the way I moved from visual/UX designer to a product leader with technical and business judgment.
 ---
 ## The Problem
 
-Yanbal had spent 3 years building its new commercial system, **New MAYA**, alongside satellite products like Pase de Pedido. MAYA already had 2 years in production, with visual improvements and new features layered on top, and Pase de Pedido — though interconnected — worked as a separate box.
+Yanbal had spent 3 years building its new commercial system, **Nueva MAYA**, alongside satellite products like Pase de Pedido. MAYA already had 2 years in production, with visual improvements and new features layered on top, and Pase de Pedido — though interconnected — operated as a separate silo.
 
-Design lived in order in Figma, but that order broke down when it crossed over into development. UI Kit v0.2 wasn't an actionable source of truth: each development team took the layouts and rebuilt, on its own, a component library for its own product. Every atom, molecule, and organism ended up *hardcoded* and out of sync with each other.
+Design was well organized in Figma, but that order broke down the moment it crossed into development. UI Kit v0.2 wasn't an actionable source of truth: each development team took the layouts and rebuilt, on its own, a component library for its own product. Every atom, molecule, and organism ended up *hardcoded* and out of sync with each other.
 
 The cost was concrete and recurring:
 - Visual inconsistencies between products that shared a brand.
 - Long visual QA cycles to catch and fix those differences.
 - Constant overwrites that multiplied maintenance work.
 
-I started by leading the UI front of the Design team: governing the UI Kit and meeting with UI designers and Product Designers to standardize components and features across products and teams. As the project took shape and scale, my role evolved into Design System Manager + UI Lead, coordinating a mixed Yanbal–Propelland team of 9 people across design, tokens, and development disciplines.
+I started by leading the UI workstream within the Design team: governing the UI Kit and meeting with UI designers and Product Designers to standardize components and features across products and teams. As the project took shape and scale, my role evolved into Design System Manager + UI Lead, coordinating a mixed Yanbal–Propelland team of 9 people across design, tokens, and development disciplines.
 
 ![Comparison of two Yanbal digital products showing how, despite sharing the same visual source, they were built with marked differences](../../../assets/images/header-comparison.png)
 
@@ -49,7 +49,7 @@ We structured the project into 4 phases over ~25 weeks:
 ## The Hardest Challenges
 
 1. **Reworking inherited semantics.** The UI Kit carried semantic and syntax errors: confusing variant and property names that invited mistakes. We adopted the principle that every variant should name its intended use, and designed components so a designer couldn't apply them incorrectly. This forced us to rework color semantics multiple times and iteratively create new tokens. Inventorying and analyzing component usage across products was also demanding work.
-2. **Angular in a React world.** The market standard is React, but Yanbal requires Angular across all its products. We looked for the best technical solution and chose Stencil.JS to generate framework-agnostic web components. Angular remains a challenge: certain framework protocols have required us to adjust configurations and ways of building components along the way.
+2. **Angular in a React world.** The market standard is React, but Yanbal requires Angular across all its products. We looked for the best technical solution and chose Stencil.JS to generate framework-agnostic web components. Angular remains a challenge: some of the framework's conventions have forced us to adjust configurations and component-building patterns along the way.
 
 ![Primary button for download](../../../assets/images/Button.png)
 
@@ -59,15 +59,15 @@ We structured the project into 4 phases over ~25 weeks:
 
 ## Results and Impact
 
-Today FrYDA is an **npm package v1.5.0 with 34 functional components** and living documentation in Zeroheight covering foundations, components, accessibility (WCAG), UX writing, and governance.
+Today FrYDA is an **npm package v1.5.0 with 37 functional components** and living documentation in Zeroheight covering foundations, components, accessibility (WCAG), UX writing, and governance.
 
-The first product built entirely from scratch is already built fully on top of FrYDA. Once it enters production, MAYA will adopt every component that product uses, with a projected impact of:
+The first greenfield product is already being built entirely on FrYDA. Once it enters production, MAYA will adopt every component that product uses, with a projected impact of:
 
 - 30-40% less development time through reuse.
 - Faster, more efficient visual QA for every product team.
 - A single base that eliminates rebuilding libraries per product.
 
-The remaining metrics will keep being gathered as adoption progresses. The evolution roadmap includes 10 additional components, improvements to existing ones, and rolling out a contribution model from each product back into the system.
+We'll keep gathering metrics as adoption grows. The evolution roadmap includes 10 additional components, improvements to existing ones, and a contribution model that lets each product feed back into the system.
 
 ## What I Learned
 

@@ -2,7 +2,7 @@
 title: Nueva Incorporación — Rediseñar cómo nace una vendedora
 image: "../../../assets/images/cover-incorporacion.png"
 summary: Rediseño del proceso de Incorporación (enrolamiento) de Yanbal, la puerta de entrada por la que las Directoras integran nuevas Consultoras a su grupo personal. Un caso de investigación de campo en dos países, validación por piloto y rediseño de producto que hoy entra en desarrollo regional.
-date: 2025 - Present
+date: 2024 - 2025
 tags:
     - Product Design
     - UX Research

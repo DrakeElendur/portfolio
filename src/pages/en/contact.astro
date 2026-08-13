@@ -15,7 +15,7 @@ const aviso = "hidden data-[show=true]:flex items-center gap-2 text-body";
 	<section class="flex flex-col justify-center items-center max-w-3xl w-full py-section px-margin-mobile lg:px-margin-desktop">
 		<div class="flex flex-col justify-center items-center gap-2 pb-8">
 			<h1 class="text-gradient text-headline">Contact me</h1>
-			<p class="text-lead text-center text-balance">I specialize in helping startups and teams move faster, smarter, and with more confidence. Reach out to see how we can work together.</p>
+			<p class="text-lead text-center text-balance">I help product teams build and govern design systems that scale: token architecture, design-to-code pipelines, and the governance model that keeps everything consistent. Tell me what you're working on and let's talk.</p>
 		</div>
 		<div class="w-full flex flex-col justify-center items-center gap-12 p-8 bg-surface-raised border border-border rounded-lg">
 			<form novalidate class="relative flex flex-col w-full gap-4">
@@ -110,12 +110,12 @@ const aviso = "hidden data-[show=true]:flex items-center gap-2 text-body";
 				return;
 			}
 
-			const okNombre = marcar(name, nameError, name.checkValidity() ? "" : "Please complete this field");
+			const okNombre = marcar(name, nameError, name.checkValidity() ? "" : "This field is required");
 			const okEmail = marcar(email, emailError,
-				email.validity.valueMissing ? "Please complete this field"
-					: email.validity.typeMismatch ? "Enter a valid email address"
+				email.validity.valueMissing ? "This field is required"
+					: email.validity.typeMismatch ? "Please enter a valid email address"
 						: "");
-			const okMensaje = marcar(message, messageError, message.checkValidity() ? "" : "Write your message so it can be sent");
+			const okMensaje = marcar(message, messageError, message.checkValidity() ? "" : "Please enter a message");
 
 			if (!(okNombre && okEmail && okMensaje)) {
 				// Llevar el foco al primer campo con problema evita que el

@@ -1,5 +1,5 @@
 ---
-title: Coloma Design System — a DS from scratch
+title: Coloma Design System — built from scratch
 image: "../../../assets/images/cover-coloma-ds.png"
 summary: My personal, open-source design system. A design tokens package in the W3C DTCG standard format published on NPM, plus a viewer built with Web Components that documents and lets you copy every token. Written line by line, no templates.
 date: 2026 - Present
@@ -10,7 +10,8 @@ tags:
     - Front-end
 company: Personal project
 role: Creator — Design and development
-tldr: After leading the tokenization of a corporate design system, I wanted to answer an uncomfortable "question how much of that can I do myself, from scratch and alone?". Coloma Design System is my answer. A monorepo with two deliverables a design tokens package in the W3C DTCG standard format — with a two-layer architecture, primitives and semantics, connected through aliases — published under an MIT license, and a web viewer that flattens the nested JSON and documents every token using Web Components with Shadow DOM. All the JSON is written by hand, I set myself not to use Figma to internalize the alias mechanism, which is the core concept behind a semantic layer. It's my technical testing ground and, being open source, the only design system work of mine I can show in full.
+tldr: |
+    After leading the tokenization of a corporate design system, I wanted to answer an uncomfortable question: "how much of that can I do myself, from scratch and alone?". Coloma Design System is my answer. A monorepo with two deliverables: a design tokens package in the W3C DTCG standard format — with a two-layer architecture, primitives and semantics, connected through aliases — published under an MIT license, and a web viewer that flattens the nested JSON and documents every token using Web Components with Shadow DOM. All of the JSON is written by hand — I deliberately avoided Figma so I would internalize the alias mechanism, the core concept behind a semantic layer. It's my technical proving ground and, being open source, the only design system work of mine I can show in full.
 ---
 ## Why this project exists
 
@@ -18,7 +19,7 @@ All of my design system work lives inside a company, under confidentiality agree
 
 Coloma Design System exists to close that gap. It's **100% mine, open, and demonstrable**: every architectural decision, every token, and every line of code is public and auditable.
 
-> **The question I asked myself:** take away the team, the budget, and a corporation's infrastructure — can I still build a correct design system from scratch?
+> **The question I asked myself:** take away the team, the budget, and a corporation's infrastructure — can I still build a proper design system from scratch?
 
 ## The architectural decisions
 
@@ -47,7 +48,7 @@ The viewer consumes the nested JSON files and needs to turn them into a flat lis
 
 The solution is to walk the object recursively and distinguish a final token from an intermediate group. The DTCG standard itself gives the hint: **a final token is the one declaring `$value`**; everything else is a group you keep descending into, accumulating the path.
 
-> [Github Repository](https://github.com/DrakeElendur/Coloma-Design-System)
+> [GitHub repository](https://github.com/DrakeElendur/Coloma-Design-System)
 
 ## Current status
 
@@ -65,4 +66,4 @@ This is a living project, documented in the open as it progresses:
 
 Building a small system alone forces you to justify decisions that in a corporation get made by inertia or inheritance: why nine color steps and not five, why a modular scale instead of a linear one, what criteria define the neutrals. **Constraint is the best systems teacher.**
 
-And there's an unexpected benefit: every concept I land here — recursion, style isolation, versioning, publishing — makes me a better counterpart to the development teams at work. The gap between design and engineering closes by building, not by explaining.
+And there's an unexpected benefit: every concept I land here — recursion, style isolation, versioning, publishing — makes me a better partner to the development teams at work. The gap between design and engineering closes by building, not by explaining.
