@@ -2,7 +2,7 @@
 title: Coloma Design System — un DS desde cero
 image: "../../../assets/images/cover-coloma-ds.png"
 summary: Mi sistema de diseño personal y open source. Un paquete de design tokens en formato estándar DTCG (W3C) publicado en NPM, más un visor construido en Web Components que documenta y permite copiar cada token. Escrito línea por línea, sin plantillas.
-date: 2026 - Present
+date: 2026 - Actualidad
 tags:
     - Design Systems
     - Design Tokens
@@ -10,7 +10,8 @@ tags:
     - Front-end
 company: Proyecto personal
 role: Creador — Diseño y desarrollo
-tldr: Después de liderar la tokenización de un design system corporativo, quise responder una pregunta incómoda "¿cuánto de eso sé hacer yo, desde cero y solo?". Coloma Design System es mi respuesta. Un monorepo con dos entregables un paquete de design tokens en formato estándar DTCG del W3C —con arquitectura de dos capas, primitivas y semánticas, conectadas por aliases— publicado bajo licencia MIT, y un visor web que aplana el JSON anidado y documenta cada token en Web Components con Shadow DOM. Todo el JSON está escrito a mano, me propuse no usar Figma para interiorizar el mecanismo de aliases, y el concepto central de las capas semántica. Es mi banco de pruebas técnico y, al ser abierto, lo único de mi trabajo en Sistemas de Diseño que puedo enseñar completo.
+tldr: |
+    Después de liderar la tokenización de un design system corporativo, quise responder una pregunta incómoda: "¿cuánto de eso sé hacer yo, desde cero y solo?". Coloma Design System es mi respuesta. Un monorepo con dos entregables: un paquete de design tokens en formato estándar DTCG del W3C —con arquitectura de dos capas, primitivas y semánticas, conectadas por aliases— publicado bajo licencia MIT, y un visor web que aplana el JSON anidado y documenta cada token en Web Components con Shadow DOM. Todo el JSON está escrito a mano, me propuse no usar Figma para interiorizar el mecanismo de aliases, y el concepto central de las capas semántica. Es mi banco de pruebas técnico y, al ser abierto, lo único de mi trabajo en Sistemas de Diseño que puedo enseñar completo.
 ---
 ## Por qué existe este proyecto
 

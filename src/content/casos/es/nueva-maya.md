@@ -9,7 +9,7 @@ tags:
 company: Yanbal
 role: Diseñador UX/UI
 tldr: |
-    MAYA es el sistema con el que cientos de miles de vendedoras de Yanbal gestionan su negocio cada día en Latinoamérica. La versión anterior funcionaba como un registro de pedidos: cumplía la transacción, pero no acompañaba el negocio de la usuaria, y la adopción se estancaba (80 % Directoras, 25-32 % Consultoras). Lideré el rediseño UX/UI de extremo a extremo, articulando research, estrategia y diseño con +90 stakeholders y los equipos de desarrollo de cada país. Tras +150 entrevistas, +145 conceptos y un piloto con 200 Directoras Junior en Ecuador, convertimos MAYA en una plataforma de inteligencia de negocio centrada en la acción, no en el dato. El resultado adopción es de 95% en Directoras y 39% en Consultoras, y un rollout en marcha que ya ha alcanzado al 50% de los paises Yanbal. El mayor desbloqueo fue estratégico: descubrir que el miedo al canal digital era diseñado, no innato.
+    MAYA es el sistema con el que cientos de miles de vendedoras de Yanbal gestionan su negocio cada día en Latinoamérica. La versión anterior funcionaba como un registro de pedidos: cumplía la transacción, pero no acompañaba el negocio de la usuaria, y la adopción se estancaba (80 % Directoras, 25-32 % Consultoras). Lideré el rediseño UX/UI de extremo a extremo, articulando research, estrategia y diseño con +90 stakeholders y los equipos de desarrollo de cada país. Tras +150 entrevistas, +145 conceptos y un piloto con 200 Directoras Junior en Ecuador, convertimos MAYA en una plataforma de inteligencia de negocio centrada en la acción, no en el dato. El resultado: la adopción subió a 95 % en Directoras y 39 % en Consultoras, con un rollout en marcha que ya ha alcanzado al 50 % de los países Yanbal. El mayor desbloqueo fue estratégico: descubrir que el miedo al canal digital era diseñado, no innato.
 ---
 ## El reto de negocio
 
@@ -53,7 +53,7 @@ La funcionalidad que lo materializa es un motor de alertas: en vez de mostrar n�
 
 - Adopción en Directoras: 95 % (vs. 80 % de la versión anterior).
 - Adopción en Consultoras: 39 % (vs. 25-32 % anterior).
-- Validado con un piloto de 200 Directoras Junior en Ecuador; tras su éxito, iniciamos el rollout a todos los países andinos.
+- Validado con un piloto de 200 Directoras Junior en Ecuador; tras su éxito, iniciamos el rollout a los países andinos, que hoy alcanza al 50 % de los mercados Yanbal.
 - 4 frentes ya en vivo (Desempeño, Ganancia, Grupo Personal, Inteligencia de Negocio) y 4 más en desarrollo (Planificación, Carrera de Liderazgo, Pase de Pedido, Grupo Familiar).
 
 ## Aprendizaje

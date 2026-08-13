@@ -2,7 +2,7 @@
 title: FrYDA Design System
 image: "../../../assets/images/fryda-01.png"
 summary: FrYDA (Framework de Yanbal para Diseño Atómico) es el sistema de diseño corporativo que unifica el diseño y el desarrollo de los productos digitales de Yanbal. Lo llevé de una librería visual a un pipeline tokenizado y gobernado 37 componentes en su segundo paquete NPM, con una reducción estimada de 30-40% en los tiempos de entrega y desarrollo.
-date: 2025 - Present
+date: 2025 - Actualidad
 tags:
     - Design Systems
     - UX / UI
@@ -13,7 +13,7 @@ role: Design System Manager & UI Lead
 tldr: | 
     Después de 3 años construyendo Nueva MAYA y otros productos digitales, el orden que existía en Figma (UI Kit v0.2) no se trasladaba al desarrollo, cada equipo reconstruía su propia librería de componentes hardcodeados, lo que generaba inconsistencias visuales, QA largos y overwrites constantes. Lideré la transformación de ese UI Kit en FrYDA, un design system tokenizado de tres niveles (Primitive, Semantic, Functional) con ~1.785 tokens, gobernanza centralizada y un pipeline automatizado:
     Tokens Studio → Style Dictionary → Azure DevOps → NPM.
-    Hoy FrYDA vive como paquete v1.5.0 con 34 componentes en Stencil.JS, ya adoptado por un nuevo producto y proyectado para acelerar el desarrollo entre 30 % y 40 % y reducir los tiempos de QA en cada equipo. En el camino pasé de diseñador visual/UX a líder de producto con criterio técnico y de negocio.
+    Hoy FrYDA vive como paquete v1.5.0 con 37 componentes en Stencil.JS, ya adoptado por un nuevo producto y proyectado para acelerar el desarrollo entre 30 % y 40 % y reducir los tiempos de QA en cada equipo. En el camino pasé de diseñador visual/UX a líder de producto con criterio técnico y de negocio.
 ---
 ## El Problema
 
@@ -40,9 +40,9 @@ Estructuramos el proyecto en 4 fases a lo largo de ~25 semanas:
 
 ## Decisiones clave de arquitectura
 
-**Tres niveles de tokens (7 librerías): Primitive → Semantic → Functional**. Separar los tokens por nivel semántico y función permitió que el sistema escalara sin colisiones y que un cambio de marca se propagara por cascada. Se diseñó una nomenclatura propia `--fry-p-*`, `--fry-s-*`, `--fry-f—*` con alias en cascada entre niveles.
+**Tres niveles de tokens (7 librerías): Primitive → Semantic → Functional**. Separar los tokens por nivel semántico y función permitió que el sistema escalara sin colisiones y que un cambio de marca se propagara por cascada. Se diseñó una nomenclatura propia `--fry-p-*`, `--fry-s-*`, `--fry-f-*` con alias en cascada entre niveles.
 
-**Tokens Studio + Style Dictionary + Azure DevOps**. Elegimos Tokens Studio porque permite hacer gatekeeping de los cambios antes de que entren al repo de Azure DevOps; Style Dictionary traduce esos tokens en tres archivos Foundation.css , Semantic.css y Component.css listos para consumo en código.
+**Tokens Studio + Style Dictionary + Azure DevOps**. Elegimos Tokens Studio porque permite hacer gatekeeping de los cambios antes de que entren al repo de Azure DevOps; Style Dictionary traduce esos tokens en tres archivos —Foundation.css, Semantic.css y Component.css— listos para consumo en código.
 
 **Modelo de gobernanza centralizado**. Yanbal es una marca única, sin marcas paraguas, y FrYDA se concibió para ser el estándar del 100 % de los productos digitales. Un modelo centralizado era la forma más eficiente de gobernar esa ambición.
 
@@ -60,7 +60,7 @@ Estructuramos el proyecto en 4 fases a lo largo de ~25 semanas:
 
 ## Resultados e impacto
 
-Hoy FrYDA es un **paquete npm v1.5.0 con 34 componentes funcionales** y documentación viva en Zeroheight que cubre foundations, componentes, accesibilidad (WCAG), UX Writing y gobernanza.
+Hoy FrYDA es un **paquete npm v1.5.0 con 37 componentes funcionales** y documentación viva en Zeroheight que cubre foundations, componentes, accesibilidad (WCAG), UX Writing y gobernanza.
 
 El primer producto que nace desde cero ya se construye íntegramente sobre FrYDA. Cuando entre a producción, MAYA adoptará todos los componentes que ese producto utilice, con un impacto proyectado de:
 - 30–40 % menos tiempo de desarrollo por reutilización.

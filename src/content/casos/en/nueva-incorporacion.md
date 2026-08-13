@@ -1,8 +1,8 @@
 ---
-title: New Onboarding — Redesigning how a seller is born
+title: New Enrollment — Redesigning how a business is born
 image: "../../../assets/images/cover-incorporacion.png"
-summary: Redesign of Yanbal's Incorporación (enrollment) process, the front door through which Directors bring new Consultants into their personal group. A case of field research across two countries, pilot validation, and a product redesign now entering regional development.
-date: 2025 - Present
+summary: A redesign of Yanbal's Incorporación (enrollment) process, the front door through which Directors bring new Consultants into their personal group. Field research across two countries, validation through a pilot, and a product redesign now entering regional development.
+date: 2024 - 2025
 tags:
     - Product Design
     - UX Research
@@ -11,7 +11,7 @@ tags:
 company: Yanbal
 role: Product Designer (UX/UI) — Research and strategy
 tldr: |
-    Incorporación is the process by which a Director brings a new Consultant into her personal group — the exact moment a business is born inside Yanbal and, therefore, the growth engine of the entire company. The process had been designed around operations, not around the people living it. I ran a mixed-method study: desk research with corporate and country stakeholders, plus field research in Colombia and Peru interviewing 20+ Directors across all career levels and 30 Consultants — both enrollers and non-enrollers. Those findings dismantled inherited assumptions, produced new paradigms about why someone enrolls (or doesn't), and drove a full product redesign. A pilot in Colombia validated the key hypotheses, and development is now underway to roll out the new experience in Bolivia.
+    Incorporación is the process by which a Director brings a new Consultant into her personal group — the exact moment a business is born inside Yanbal and, therefore, the growth engine of the entire company. The process had been designed around operations, not around the people who live it. I ran a mixed-method study: desk research with corporate and country stakeholders, plus field research in Colombia and Peru interviewing 20+ Directors across all career levels and 30 Consultants — both enrollers and non-enrollers. Those findings dismantled inherited assumptions, produced new paradigms about why someone enrolls (or doesn't), and drove a full product redesign. A pilot in Colombia validated the key hypotheses, and development is now underway to roll out the new experience in Bolivia.
 ---
 ## The business challenge
 
@@ -19,7 +19,7 @@ In a direct sales model, growth doesn't come from selling more: it comes from **
 
 The problem: the process had been designed around the company's operational logic (requirements, credit validation, documentation) rather than around the experience of the two people who actually live it — the Director who invites and the Consultant who decides to join.
 
-> **The starting question:** why does a Director with every motivation to grow end up enrolling far less than she could, and why does a genuinely interested candidate drop off halfway through?
+> **The starting question:** Why does a Director with every motivation to grow end up enrolling far fewer people than she could, and why does a genuinely interested candidate drop off halfway through?
 
 ## My role
 
@@ -35,7 +35,7 @@ I designed the research in two layers, to avoid settling for either the official
 - **20+ Directors** across all career levels.
 - **30 Consultants**, deliberately split between **enrollers and non-enrollers**.
 
-That last decision was the most important of the study: interviewing only those who enroll tells you how they do it, but never why the others don't. The contrast between both groups is where the real signal appeared.
+That last decision was the most important one in the study: interviewing only those who enroll tells you how they do it, but never why the others don't. The contrast between the two groups was where the real signal appeared.
 
 > [To complete: 3-5 key insights, each with a verbatim user quote. This is the highest-value block of the case — the "Nueva MAYA" pattern with its 7 insights works well and is worth replicating here.]
 
