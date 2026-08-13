@@ -13,6 +13,8 @@ interface Props {
     title: string;
     description: string;
     image?: string;
+    /** Para páginas que no son contenido real, como la 404. */
+    noindex?: boolean;
 };
 const isEnglish = Astro.currentLocale === 'en';
 
@@ -21,7 +23,7 @@ const isEnglish = Astro.currentLocale === 'en';
 // mide 400x400 y salía recortada. Las fichas de caso pasan su propia
 // portada por `image`, así que esta solo cubre home, sobre-mí y contacto.
 const tarjetaPorDefecto = new URL('/og-default.png', Astro.site).href;
-const { title, description, image = tarjetaPorDefecto } = Astro.props;
+const { title, description, image = tarjetaPorDefecto, noindex = false } = Astro.props;
 // Las dimensiones solo se anuncian cuando se conocen. Las fichas de caso
 // pasan su propia portada, que tiene otra proporción: declararle 1200x630
 // haría que el cliente reserve un hueco del tamaño equivocado.
@@ -65,18 +67,28 @@ const [urlEs, urlEn] = isEnglish ? [alterna, canonica] : [canonica, alterna];
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="generator" content={Astro.generator} />
         <meta name="description" content={description} />
-        <link rel="canonical" href={canonica} />
-        <!-- El sitio existe entero en dos idiomas. Sin esto, Google trata
-             `/sobre-mi/` y `/en/about/` como contenido duplicado y elige una
-             por su cuenta, en vez de servir la que corresponde a cada usuario.
+        <!-- La 404 no es contenido: no se indexa, y tampoco declara canonical
+             ni alternates. Una página de error dentro de un grupo hreflang le
+             diría a Google que es la versión válida de algo. -->
+        {noindex
+            ? <meta name="robots" content="noindex, follow" />
+            : (
+                <>
+                    <link rel="canonical" href={canonica} />
+                    {/* El sitio existe entero en dos idiomas. Sin esto, Google trata
+                        `/sobre-mi/` y `/en/about/` como contenido duplicado y elige
+                        una por su cuenta, en vez de servir la que corresponde a cada
+                        usuario.
 
-             Las tres etiquetas son necesarias: cada idioma se declara a sí
-             mismo además de a su pareja (así el grupo es recíproco y Google lo
-             valida), y `x-default` marca a dónde mandar a quien no habla
-             ninguno de los dos. -->
-        <link rel="alternate" hreflang="es" href={urlEs} />
-        <link rel="alternate" hreflang="en" href={urlEn} />
-        <link rel="alternate" hreflang="x-default" href={urlEs} />
+                        Las tres etiquetas son necesarias: cada idioma se declara a sí
+                        mismo además de a su pareja (así el grupo es recíproco y Google
+                        lo valida), y `x-default` marca a dónde mandar a quien no habla
+                        ninguno de los dos. */}
+                    <link rel="alternate" hreflang="es" href={urlEs} />
+                    <link rel="alternate" hreflang="en" href={urlEn} />
+                    <link rel="alternate" hreflang="x-default" href={urlEs} />
+                </>
+            )}
         <!-- Tags de Open Graph-->
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
