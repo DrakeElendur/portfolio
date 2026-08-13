@@ -1,33 +1,38 @@
 ---
 const isEnglish = Astro.currentLocale === 'en';
+
+// Las cabecillas de columna comparten tratamiento: mono en mayúsculas,
+// que es la voz que el sistema reserva para etiquetas y metadatos.
+const rotulo = "font-mono text-mono uppercase tracking-widest text-content-subtle mb-3";
+const enlace = "text-content-muted hover:text-accent";
 ---
-<footer class="flex flex-col items-center justify-center w-full bg-surface-raised">
-    <section class="flex flex-col md:flex-row justify-between w-full pt-section pb-8 px-8 lg:px-24 gap-4">
-        <div class="w-full flex flex-col justify-between">
+<footer class="flex flex-col items-center justify-center w-full bg-surface-deep border-t border-border">
+    <section class="flex flex-col md:flex-row justify-between w-full max-w-page mx-auto pt-section pb-8 px-margin-mobile lg:px-margin-desktop gap-8">
+        <div class="w-full flex flex-col justify-between gap-2">
             <p class="text-subtitle text-content font-bold font-display">Carlos Coloma</p>
             <p class="max-w-sm">{isEnglish ? "Senior Product Designer, UX/UI and Design System Manager based in Lima, Peru" : "Diseñador de Producto Senior, UX/UI y Design System Manager en Lima, Perú"}</p>
         </div>
-        <div class="flex flex-col md:flex-row w-full justify-evenly gap-4 md:gap-8">
+        <div class="flex flex-col md:flex-row w-full justify-evenly gap-8">
             <div>
-                <h2 class="text-content font-semibold mb-2">{isEnglish ? "Navigation" : "Navegación"}</h2>
-                <ul>
-                    <li><a class="text-content hover:text-brand" href={isEnglish ? "/en" : "/"}>{isEnglish ? "Home" : "Inicio"}</a></li>
-                    <li><a class="text-content hover:text-brand" href={isEnglish ? "/en/about" : "/sobre-mi"}>{isEnglish ? "About Me" : "Sobre mi"}</a></li>
-                    <li><a class="text-content hover:text-brand" href={isEnglish ? "/en/contact" : "/contacto"}>{isEnglish ? "Contact Me" : "Contacto"}</a></li>
+                <h2 class={rotulo}>{isEnglish ? "Navigation" : "Navegación"}</h2>
+                <ul class="flex flex-col gap-1">
+                    <li><a class={enlace} href={isEnglish ? "/en" : "/"}>{isEnglish ? "Home" : "Inicio"}</a></li>
+                    <li><a class={enlace} href={isEnglish ? "/en/about" : "/sobre-mi"}>{isEnglish ? "About Me" : "Sobre mi"}</a></li>
+                    <li><a class={enlace} href={isEnglish ? "/en/contact" : "/contacto"}>{isEnglish ? "Contact Me" : "Contacto"}</a></li>
                 </ul>
             </div>
             <div>
-                <h2 class="text-content font-semibold mb-2">{isEnglish ? "Social Media" : "Redes sociales"}</h2>
-                <ul>
-                    <li><a class="text-content hover:text-brand" href="mailto:coloma.productdesign@gmail.com">Email</a></li>
-                    <li><a class="text-content hover:text-brand" href="https://www.linkedin.com/in/colomacarlos/" target="_blank" rel="noreferrer">Linkedin</a></li>
-                    <li><a class="text-content hover:text-brand" href="https://www.instagram.com/carlos.ux/" target="_blank" rel="noreferrer">Instagram</a></li>
+                <h2 class={rotulo}>{isEnglish ? "Social Media" : "Redes sociales"}</h2>
+                <ul class="flex flex-col gap-1">
+                    <li><a class={enlace} href="mailto:coloma.productdesign@gmail.com">Email</a></li>
+                    <li><a class={enlace} href="https://www.linkedin.com/in/colomacarlos/" target="_blank" rel="noreferrer">Linkedin</a></li>
+                    <li><a class={enlace} href="https://www.instagram.com/carlos.ux/" target="_blank" rel="noreferrer">Instagram</a></li>
                 </ul>
             </div>
         </div>
     </section>
-    <section class="flex flex-col md:flex-row w-full justify-between py-6 px-8 lg:px-24 border-t border-border gap-2">
+    <section class="flex flex-col md:flex-row w-full max-w-page mx-auto justify-between py-6 px-margin-mobile lg:px-margin-desktop border-t border-border gap-2 font-mono text-mono uppercase tracking-widest text-content-subtle">
         <p class="text-left">© 2026 Carlos Coloma Martínez</p>
-        <p class="text-left md:text-right">{isEnglish ? "All right reserved. Built with " : "Todos los derechos reservados. Construido con "}<a href="https://astro.build/" target="_blank" rel="noreferrer" class="hover:underline text-brand">Astro</a></p>
+        <p class="text-left md:text-right">{isEnglish ? "All right reserved. Built with " : "Todos los derechos reservados. Construido con "}<a href="https://astro.build/" target="_blank" rel="noreferrer" class="hover:underline text-accent">Astro</a></p>
     </section>
 </footer>

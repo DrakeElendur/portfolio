@@ -3,23 +3,12 @@
 
 /* ─────────────────────────────────────────────────────────────
    Capa 1 — Primitivas: los archivos de fuente
+
+   Montserrat sigue viviendo aquí, self-hosteada: ya estaba, ya
+   funciona, y una fuente local siempre gana a una remota.
+   Hanken Grotesk y JetBrains Mono llegan por CDN desde el <head>
+   de Layout.astro.
    ───────────────────────────────────────────────────────────── */
-
-@font-face {
-    font-family: "Figtree";
-    src: url("../assets/fonts/Figtree-VariableFont_wght.woff2") format("woff2");
-    font-style: normal;
-    font-weight: 300 900;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Figtree";
-    src: url("../assets/fonts/Figtree-Italic-VariableFont_wght.woff2") format("woff2");
-    font-style: italic;
-    font-weight: 300 900;
-    font-display: swap;
-}
 
 @font-face {
     font-family: "Montserrat";
@@ -33,15 +22,21 @@
     /* ─────────────────────────────────────────────────────────
        Capa 1 — Primitivas: familias tipográficas
        ───────────────────────────────────────────────────────── */
-    --font-figtree: "Figtree", sans-serif;
+    --font-hanken: "Hanken Grotesk", sans-serif;
     --font-montserrat: "Montserrat", sans-serif;
+    --font-jetbrains: "JetBrains Mono", ui-monospace, monospace;
 
     /* ─────────────────────────────────────────────────────────
        Capa 2 — Semántica: roles tipográficos
        El rol es estable aunque cambie la familia que lo cumple.
+
+       Prueba de que la capa funciona: el cuerpo pasó de Figtree a
+       Hanken Grotesk cambiando ESTA línea. Los `font-body` que hay
+       repartidos por las plantillas no se tocaron.
        ───────────────────────────────────────────────────────── */
-    --font-body: var(--font-figtree);
+    --font-body: var(--font-hanken);
     --font-display: var(--font-montserrat);
+    --font-mono: var(--font-jetbrains);
 
     /* ─────────────────────────────────────────────────────────
        Capa 2 — Semántica: escala tipográfica
@@ -49,7 +44,7 @@
        Escala CERRADA: si un tamaño no está aquí, no se usa.
 
        Cada nivel es fluido con clamp(), así que un solo token
-       cubre de 375px a 1280px sin cadenas de breakpoints.
+       cubre de 375px a 1440px sin cadenas de breakpoints.
        El término medio lleva SIEMPRE un componente en rem
        (no solo vw) para que el texto siga respondiendo al zoom
        de fuente del usuario — un clamp de puro vw rompe eso.
@@ -57,29 +52,45 @@
        El nivel semántico (h1, h2) y el nivel visual (display,
        headline) están desacoplados a propósito: un h1 dentro de
        una tarjeta no tiene por qué gritar como el de un hero.
+
+       DESIGN.md pedía 64px fijos con una variante móvil de 40px.
+       Aquí la variante móvil no necesita breakpoint: es el
+       extremo inferior del clamp.
        ───────────────────────────────────────────────────────── */
-    --text-display: clamp(1.875rem, 1.1rem + 3.31vw, 3.75rem);   /* 30 → 60 */
-    --text-display--line-height: 1.05;
+    --text-display: clamp(2.5rem, 1.97rem + 2.25vw, 4rem);       /* 40 → 64 */
+    --text-display--line-height: 1.125;
     --text-display--letter-spacing: -0.02em;
 
-    --text-headline: clamp(1.875rem, 1.72rem + 0.66vw, 2.25rem); /* 30 → 36 */
-    --text-headline--line-height: 1.15;
-    --text-headline--letter-spacing: -0.01em;
+    --text-headline: clamp(1.5rem, 1.32rem + 0.75vw, 2rem);      /* 24 → 32 */
+    --text-headline--line-height: 1.25;
 
-    --text-title: clamp(1.5rem, 1.35rem + 0.66vw, 1.875rem);     /* 24 → 30 */
-    --text-title--line-height: 1.25;
+    --text-title: clamp(1.25rem, 1.16rem + 0.38vw, 1.5rem);      /* 20 → 24 */
+    --text-title--line-height: 1.3;
 
-    --text-subtitle: clamp(1.25rem, 1.15rem + 0.44vw, 1.5rem);   /* 20 → 24 */
-    --text-subtitle--line-height: 1.35;
+    --text-subtitle: clamp(1.125rem, 1.08rem + 0.19vw, 1.25rem); /* 18 → 20 */
+    --text-subtitle--line-height: 1.4;
 
-    --text-lead: clamp(1.125rem, 1.07rem + 0.22vw, 1.25rem);     /* 18 → 20 */
-    --text-lead--line-height: 1.6;
+    --text-lead: 1.125rem;                                        /* 18 fijo */
+    --text-lead--line-height: 1.556;
 
-    --text-body: clamp(1rem, 0.95rem + 0.22vw, 1.125rem);        /* 16 → 18 */
-    --text-body--line-height: 1.65;
+    --text-body: 1rem;                                            /* 16 fijo */
+    --text-body--line-height: 1.5;
 
     --text-caption: 0.875rem;                                     /* 14 fijo */
     --text-caption--line-height: 1.4;
+
+    /* Etiquetas, metadatos y "apartes técnicos". El tracking
+       abierto es lo que hace legible una monoespaciada pequeña
+       en mayúsculas. */
+    --text-mono: 0.875rem;                                        /* 14 fijo */
+    --text-mono--line-height: 1.43;
+    --text-mono--letter-spacing: 0.05em;
+
+    /* El caption de 12px que pedía DESIGN.md vive aquí y NO en
+       --text-caption: ese token pinta los errores del formulario,
+       y 12px para un mensaje de error es demasiado pequeño. */
+    --text-micro: 0.75rem;                                        /* 12 fijo */
+    --text-micro--line-height: 1.333;
 
     /* ─────────────────────────────────────────────────────────
        Capa 2 — Semántica: medida de lectura
@@ -89,6 +100,9 @@
        puede ser ancha; su TEXTO no debería.
        ───────────────────────────────────────────────────────── */
     --container-measure: 65ch;
+
+    /* Ancho máximo de página. DESIGN.md pide 1440px. */
+    --container-page: 90rem;
 
     /* ─────────────────────────────────────────────────────────
        Capa 2 — Semántica: movimiento
@@ -117,9 +131,15 @@
          section       → aire entre bloques mayores de la página
          section-inner → aire dentro de un bloque
        ───────────────────────────────────────────────────────── */
-    --spacing-section: clamp(3rem, 2.55rem + 6.19vw, 4rem);       /* 64 → 120 */
-    --spacing-section-inner: clamp(2rem, 1.17rem + 3.54vw, 4rem);   /* 32 → 64  */
+    --spacing-section: clamp(3rem, 1.94rem + 4.51vw, 6rem);       /* 48 → 96 */
+    --spacing-section-inner: clamp(2rem, 1.3rem + 3vw, 4rem);     /* 32 → 64 */
     --spacing-nav: calc(5rem + var(--spacing-section)); /* 80 para fijar en el inspector. Tamaño del Nav */
+
+    /* Rejilla: el margen lateral es el "gutter del editor de
+       código" que enmarca el contenido en desktop. */
+    --spacing-gutter: 1.5rem;          /* 24 */
+    --spacing-margin-desktop: 5rem;    /* 80 */
+    --spacing-margin-mobile: 1.25rem;  /* 20 */
 
     /* ─────────────────────────────────────────────────────────
        Capa 2 — Semántica: superficies
@@ -128,39 +148,94 @@
          surface-raised → algo que flota sobre la página (tarjetas, bandas)
          surface-deep   → cromo de la app y campos hundidos
        ───────────────────────────────────────────────────────── */
-    --color-surface: var(--color-gray-900);
-    --color-surface-raised: var(--color-gray-800);
-    --color-surface-deep: var(--color-gray-950);
+    --color-surface: #0c141f;
+    --color-surface-raised: #18202b;
+    --color-surface-deep: #080e16;
 
     /* ─────────────────────────────────────────────────────────
        Capa 2 — Semántica: contenido
-       El cuerpo es "muted" a propósito; el blanco es énfasis.
+       El cuerpo es "muted" a propósito; el claro es énfasis.
+       `subtle` es el escalón de las etiquetas monoespaciadas.
        ───────────────────────────────────────────────────────── */
-    --color-content: var(--color-white);
-    --color-content-muted: var(--color-gray-400);
+    --color-content: #dbe3f3;
+    --color-content-muted: #c2c6d6;
+    --color-content-subtle: #9ca3af;
 
     /* ─────────────────────────────────────────────────────────
        Capa 2 — Semántica: marca y acción
        brand  = identidad, no invita a hacer clic
        action = lo que sí se pulsa
+
+       Esa distinción deja de ser teórica aquí. #3c6aaa es un
+       relleno excelente (5.48:1 con blanco) pero mal color de
+       TEXTO sobre el fondo oscuro: 3.38:1, por debajo del 4.5:1
+       que pide WCAG AA. Por eso el azul del botón y el azul de
+       los acentos de texto son dos tokens distintos, y no uno.
+
+       `on-action` es blanco puro y no `content` (#dbe3f3): sobre
+       #3c6aaa ese gris azulado se queda en 4.25:1 y no llega.
        ───────────────────────────────────────────────────────── */
-    --color-brand: var(--color-lime-300);
-    --color-action: var(--color-blue-600);
-    --color-action-hover: var(--color-blue-800);
+    /* `brand` es el azul de identidad. `brand-bright` es su escalón
+       claro: hace de extremo luminoso del degradado de titulares Y de
+       color de acento cuando el texto es pequeño.
+
+       Los dos hacen falta, y no por gusto. #3c6aaa da 3.38:1 sobre el
+       fondo: suficiente para texto GRANDE en negrita (WCAG pide 3:1
+       desde 18.66px bold, y todos los titulares lo superan), pero
+       insuficiente para los 14-16px de un enlace de nav o un hover
+       (ahí el umbral es 4.5:1). #adc6ff cubre ese caso con 10.8:1. */
+    --color-brand: #3c6aaa;         /* titulares y degradado */
+    --color-brand-bright: #adc6ff;  /* texto pequeño y extremo claro */
+    --color-accent: #ffb786;        /* ámbar, acentos secundarios */
+
+    --color-action: #3c6aaa;        /* 5.48:1 con on-action */
+    --color-action-hover: #4676b8;  /* 4.62:1, más claro sin romper AA */
+    --color-on-action: #ffffff;
 
     /* ─────────────────────────────────────────────────────────
        Capa 2 — Semántica: feedback
        ───────────────────────────────────────────────────────── */
     --color-success: var(--color-emerald-400);
-    --color-danger: var(--color-red-500);
+    --color-danger: #ffb4ab;
 
     /* ─────────────────────────────────────────────────────────
        Capa 2 — Semántica: bordes
-       Perilla de calibración: antes los divisores heredaban
-       currentColor (gris 400) y resultaban duros. Si los quieres
-       más o menos marcados, este es el único valor a mover.
+
+       Dos tokens, no uno, y por el mismo motivo que brand/action:
+       #1e293b es el divisor de baja intensidad que pide DESIGN.md
+       (1.26:1 — decorativo, correcto), pero como único límite de
+       un control interactivo incumple WCAG 1.4.11, que exige 3:1.
+       `border-strong` es el que llevan los bordes que delimitan
+       algo pulsable: botón secundario y chips.
+
+       Es el rol `outline` de Material 3, no `outline-variant`:
+       esa es justo la distinción que hace M3 entre el borde de un
+       control y un divisor decorativo. `outline-variant` (#424754)
+       se queda en 1.99:1 y no llega; `outline` da 5.82:1 sobre el
+       fondo y 5.16:1 sobre una tarjeta.
        ───────────────────────────────────────────────────────── */
-    --color-border: var(--color-gray-600);
+    --color-border: #1e293b;
+    --color-border-strong: #8c909f;
+
+    /* ─────────────────────────────────────────────────────────
+       Capa 2 — Semántica: formas
+
+       Lenguaje de formas RÍGIDO y escala CERRADA a tres pasos:
+
+         rounded-xs → 2px  chips
+         rounded-sm → 4px  botones, campos, tarjetas, imágenes
+         rounded-lg → 8px  contenedores grandes
+
+       Sin píldoras: una forma redondeada contradice la narrativa
+       de rejilla del sistema.
+
+       Aquí no hay ningún token porque no hace falta: 2, 4 y 8px
+       son ya los valores nativos de Tailwind para xs, sm y lg. Se
+       llegó a sobrescribir la escala entera para poder validar el
+       look sin tocar las plantillas, y al renombrar los 24
+       `rounded-*` a estos tres nombres las sobrescrituras se
+       quedaron sin trabajo. Menos configuración que mantener.
+       ───────────────────────────────────────────────────────── */
 }
 
 /* Le dice al navegador que renderice su UI nativa (scrollbars,
@@ -169,13 +244,139 @@
     color-scheme: dark;
 }
 
-/* Montserrat es la voz de los titulares; Figtree la del texto.
+/* Degradado de marca para titulares.
+
+   Una utilidad y no cinco clases sueltas (`bg-linear-to-r from-… to-…
+   bg-clip-text text-transparent`) repartidas por nueve sitios: el
+   degradado es una decisión del sistema, así que se cambia en un punto.
+
+   Cómo funciona: se pinta un degradado de fondo y se recorta a la
+   silueta de las letras con `background-clip: text`. El texto tiene que
+   ser transparente para que el fondo asome por debajo.
+
+   Ese `color: transparent` es justo lo que hay que desarmar en modo de
+   alto contraste de Windows: ahí el sistema sustituye los colores pero
+   no el recorte, y el titular desaparecería. Por eso el bloque
+   `forced-colors` de abajo devuelve el texto a un color plano. */
+@utility text-gradient {
+    background-image: linear-gradient(100deg, var(--color-brand-bright) 0%, var(--color-brand) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+@media (forced-colors: active) {
+    .text-gradient {
+        background-image: none;
+        color: CanvasText;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Prosa: el Markdown de los casos de estudio
+
+   Son TRES contextos, no uno: el cuerpo de los casos, la bio de
+   "Sobre mi" y las descripciones de experiencia. Todo lo de aquí
+   les llega a los tres.
+
+   El plugin `typography` publica su paleta como variables, así que
+   basta re-mapearlas a los tokens del sistema en vez de escribir
+   una regla por elemento. Solo se añaden reglas propias donde el
+   plugin decide algo que no queremos.
+
+   Un censo de los 8 Markdown dice qué existe de verdad: h2 (54, y
+   es el ÚNICO nivel que se usa), p, strong, em, a, ul, ol,
+   blockquote, code inline, dos bloques ``` y tres imágenes. No hay
+   tablas, ni hr, ni h3-h6, ni listas anidadas: no se estilizan.
+   ───────────────────────────────────────────────────────────── */
+.prose {
+    --tw-prose-invert-body: var(--color-content-muted);
+    --tw-prose-invert-headings: var(--color-content);
+    --tw-prose-invert-lead: var(--color-content-muted);
+    --tw-prose-invert-links: var(--color-brand-bright);
+    --tw-prose-invert-bold: var(--color-content);
+    --tw-prose-invert-counters: var(--color-content-subtle);
+    --tw-prose-invert-bullets: var(--color-brand-bright);
+    --tw-prose-invert-quotes: var(--color-content);
+    --tw-prose-invert-quote-borders: var(--color-brand);
+    --tw-prose-invert-captions: var(--color-content-subtle);
+    --tw-prose-invert-code: var(--color-content);
+    --tw-prose-invert-pre-code: var(--color-content);
+    --tw-prose-invert-pre-bg: var(--color-surface-deep);
+    --tw-prose-invert-hr: var(--color-border);
+}
+
+/* El plugin pinta el código inline sin fondo y le cuelga comillas
+   invertidas de adorno con ::before/::after. Aquí se le da caja
+   propia y se quitan esas comillas: el fondo ya comunica "esto es
+   código", y las comillas se acaban copiando al seleccionar. */
+.prose :where(code):not(:where([class~="not-prose"] *)) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    font-weight: 500;
+    background-color: var(--color-surface-deep);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xs);
+    padding: 0.125rem 0.375rem;
+}
+
+.prose :where(code):not(:where([class~="not-prose"] *))::before,
+.prose :where(code):not(:where([class~="not-prose"] *))::after {
+    content: none;
+}
+
+/* Los 18 blockquotes del portafolio no son citas de nadie: son
+   preguntas de partida y frases de cierre. Por eso se les quita la
+   cursiva y las comillas tipográficas que el plugin da por hechas
+   — uno de ellos contiene solo un enlace y otro son dos palabras
+   (`> WORK IN PROGRESS`), y entrecomillados quedaban absurdos. */
+.prose :where(blockquote):not(:where([class~="not-prose"] *)) {
+    font-style: normal;
+    border-inline-start-width: 2px;
+    background-color: var(--color-surface-raised);
+    border-radius: var(--radius-xs);
+    padding: 1rem 1.25rem;
+}
+
+.prose :where(blockquote p:first-of-type):not(:where([class~="not-prose"] *))::before,
+.prose :where(blockquote p:last-of-type):not(:where([class~="not-prose"] *))::after {
+    content: none;
+}
+
+.prose :where(img, pre):not(:where([class~="not-prose"] *)) {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+}
+
+/* Rejilla ambiental: el "papel milimetrado" sobre el que se apoya
+   todo. Va en el CSS y no en una clase de utilidad porque son dos
+   gradientes que ninguna utilidad de Tailwind expresa bien. */
+.grid-bg {
+    background-image:
+        linear-gradient(to right, var(--color-border) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--color-border) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.2;
+}
+
+/* Montserrat es la voz de los titulares; Hanken Grotesk la del texto.
    Se declara UNA vez sobre los elementos de encabezado en vez de
    repartir `font-display` por las plantillas: así también alcanza
    a los h2/h3 que genera el Markdown de los casos de estudio. */
 @layer base {
     h1, h2, h3, h4 {
         font-family: var(--font-display);
+    }
+
+    /* Los titulares van en negrita por sistema, declarado una vez.
+       Va aquí y no como `font-bold` en cada plantilla para que alcance
+       también a los 54 h2 que genera el Markdown de los casos.
+
+       Consecuencia a tener presente: una utilidad SIEMPRE gana a la capa
+       base, así que cualquier `font-normal` o `font-semibold` que quede
+       suelto en un titular anula esta regla. Se limpiaron los que había. */
+    h1, h2, h3 {
+        font-weight: 700;
     }
 
     /* Un solo anillo de foco para todo el sitio, declarado una vez.

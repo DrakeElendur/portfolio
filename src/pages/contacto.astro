@@ -7,32 +7,43 @@ import Button from '../components/Button.astro'
 // elemento claro de toda la interfaz oscura.
 // El borde de error lo pinta el CSS reaccionando a `aria-invalid`, así
 // que el script solo gobierna un atributo y no toca clases.
-const campo = "w-full bg-surface-deep border border-border p-4 rounded-lg text-body text-content placeholder:text-content-muted aria-[invalid=true]:border-danger";
+const campo = "w-full bg-surface-deep border border-border p-4 rounded-sm text-body text-content placeholder:text-content-muted aria-[invalid=true]:border-danger";
 const errorCampo = "text-danger text-caption empty:hidden";
 const aviso = "hidden data-[show=true]:flex items-center gap-2 text-body";
 ---
 <Layout title="Contacto | Carlos Coloma" description="¿Buscas un Design System Manager o UX/UI Product Designer para tu equipo? Escríbeme y conversemos.">
-	<section class="flex flex-col justify-center items-center max-w-3xl w-full py-section px-8">
+	<section class="flex flex-col justify-center items-center max-w-3xl w-full py-section px-margin-mobile lg:px-margin-desktop">
 		<div class="flex flex-col justify-center items-center gap-2 pb-8">
-			<h1 class="text-brand text-headline font-bold">Contáctame</h1>
+			<h1 class="text-gradient text-headline">Contáctame</h1>
 			<p class="text-lead text-center text-balance">Me especializo en ayudar a startups y equipos a avanzar con mayor rapidez, inteligencia y confianza. Contáctame para ver cómo podemos colaborar.</p>
 		</div>
-		<div class="w-full flex flex-col justify-center items-center gap-12 p-8 bg-surface-raised rounded-4xl">
-			<form novalidate class="flex flex-col w-full gap-4">
+		<div class="w-full flex flex-col justify-center items-center gap-12 p-8 bg-surface-raised border border-border rounded-lg">
+			<form novalidate class="relative flex flex-col w-full gap-4">
+				<!-- Trampa para bots. No es un campo real: vive fuera de la
+				     pantalla, fuera del orden de tabulación y oculto a los
+				     lectores. Una persona no puede rellenarlo; un bot que
+				     rellena todo lo que encuentra, sí.
+
+				     `autocomplete="off"` importa: sin eso el navegador podría
+				     autocompletarlo y acusar de robot a alguien legítimo. -->
+				<div class="absolute left-[-9999px] top-0" aria-hidden="true">
+					<label for="empresa">No rellenes este campo</label>
+					<input type="text" id="empresa" name="empresa" tabindex="-1" autocomplete="off" />
+				</div>
 				<div class="flex flex-col w-full justify-center items-start gap-4 sm:flex-row sm:justify-between">
 					<div class="w-full flex flex-col gap-2">
-						<label for="name" class="text-content text-body">Tu nombre</label>
+						<label for="name" class="font-mono text-mono text-content-subtle">Tu nombre</label>
 						<input class={campo} type="text" id="name" name="name" placeholder="Escribe tu nombre" required aria-describedby="nameError">
 						<p id="nameError" class={errorCampo}></p>
 					</div>
 					<div class="w-full flex flex-col gap-2">
-						<label for="email" class="text-content text-body">Tu email</label>
+						<label for="email" class="font-mono text-mono text-content-subtle">Tu email</label>
 						<input class={campo} type="email" id="email" name="email" placeholder="Escribe tu correo" required aria-describedby="emailError">
 						<p id="emailError" class={errorCampo}></p>
 					</div>
 				</div>
 				<div class="w-full flex flex-col gap-2">
-					<label for="message" class="text-content text-body">¿Cómo puedo ayudarte?</label>
+					<label for="message" class="font-mono text-mono text-content-subtle">¿Cómo puedo ayudarte?</label>
 					<textarea class={`${campo} min-h-48`} id="message" name="message" placeholder="Escribe aqui tu mensaje" required aria-describedby="messageError"></textarea>
 					<p id="messageError" class={errorCampo}></p>
 				</div>
@@ -55,10 +66,11 @@ const aviso = "hidden data-[show=true]:flex items-center gap-2 text-body";
 	</section>
 </Layout>
 <script>
-	import { createClient } from "@supabase/supabase-js";
-	const supabaseUrl = import.meta.env.PUBLIC_URL_SUPABASE;
-	const supabaseKey = import.meta.env.PUBLIC_ANON_KEY_SUPABASE;
-	const supabase = createClient(supabaseUrl, supabaseKey);
+	// La API REST de Supabase acepta un POST normal, asi que no hace falta
+	// su cliente de JS: eran 204 kB para hacer un unico INSERT, en un sitio
+	// donde las otras 12 paginas no envian ni un byte de JavaScript.
+	const URL_TABLA = `${import.meta.env.PUBLIC_URL_SUPABASE}/rest/v1/Contactos`;
+	const CLAVE = import.meta.env.PUBLIC_ANON_KEY_SUPABASE;
 
 	const form = document.querySelector("form");
 	const name = document.querySelector<HTMLInputElement>("#name");
@@ -70,6 +82,7 @@ const aviso = "hidden data-[show=true]:flex items-center gap-2 text-body";
 	const mensajeExito = document.querySelector<HTMLElement>("#mensajeExito");
 	const mensajeError = document.querySelector<HTMLElement>("#mensajeError");
 	const enviar = document.querySelector<HTMLButtonElement>("button[type=submit]");
+	const trampa = document.querySelector<HTMLInputElement>("#empresa");
 
 	// Marca un campo como inválido y escribe su mensaje. `aria-invalid`
 	// hace dos trabajos a la vez: se lo comunica al lector de pantalla y
@@ -87,6 +100,15 @@ const aviso = "hidden data-[show=true]:flex items-center gap-2 text-body";
 	if (form && name && email && message && nameError && emailError && messageError) {
 		form.addEventListener("submit", async (event) => {
 			event.preventDefault();
+
+			// Trampa mordida: se finge éxito y no se envía nada. Devolverle un
+			// error solo le enseña al bot que ese camino no vale y que pruebe
+			// otro; un "correcto" lo deja marcharse convencido.
+			if (trampa?.value) {
+				avisar(mensajeExito, true);
+				form.reset();
+				return;
+			}
 
 			const okNombre = marcar(name, nameError, name.checkValidity() ? "" : "Completa este campo");
 			const okEmail = marcar(email, emailError,
@@ -106,11 +128,24 @@ const aviso = "hidden data-[show=true]:flex items-center gap-2 text-body";
 			avisar(mensajeError, false);
 			if (enviar) enviar.disabled = true;
 
-			const { error } = await supabase.from("Contactos").insert({
-				name: name.value,
-				email: email.value,
-				message: message.value,
-			});
+			let error = false;
+			try {
+				const respuesta = await fetch(URL_TABLA, {
+					method: "POST",
+					headers: {
+						apikey: CLAVE,
+						Authorization: `Bearer ${CLAVE}`,
+						"Content-Type": "application/json",
+						// Sin esto Supabase devuelve la fila insertada, que no usamos.
+						Prefer: "return=minimal",
+					},
+					body: JSON.stringify({ name: name.value, email: email.value, message: message.value }),
+				});
+				error = !respuesta.ok;
+			} catch {
+				// Sin red, fetch lanza en vez de devolver una respuesta.
+				error = true;
+			}
 
 			if (enviar) enviar.disabled = false;
 

@@ -6,14 +6,13 @@ import { getCollection } from 'astro:content';
 import Button from '../components/Button.astro'
 const experiencia = await getCollection('experiencia');
 const educacion = await getCollection('educacion');
-const ImageURL = new URL(FotoSobreMi.src, Astro.url.href);
 ---
-<Layout title="Sobre mí | Carlos Coloma, Design System Manager" description="6+ años uniendo diseño e ingeniería: de diseñador gráfico a Design System Manager & UI Lead en Yanbal Internacional, liderando FrYDA" image={`${ImageURL}`}>
-	<section class="flex flex-col justify-center items-start max-w-7xl w-full py-section px-8">
-		<div class="w-full flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-12 p-6 sm:p-8 lg:p-12 bg-surface-raised rounded-4xl">
-			<Image loading="eager" fetchpriority="high" class="w-full aspect-[4/3] object-cover rounded-3xl lg:w-120 lg:h-150" src={FotoSobreMi} alt="Carlos Coloma debjo del agua con una tortuga marina"/>
+<Layout title="Sobre mí | Carlos Coloma, Design System Manager" description="6+ años uniendo diseño e ingeniería: de diseñador gráfico a Design System Manager & UI Lead en Yanbal Internacional, liderando FrYDA">
+	<section class="flex flex-col justify-center items-start max-w-page w-full py-section px-margin-mobile lg:px-margin-desktop">
+		<div class="w-full flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-12 p-6 sm:p-8 lg:p-12 bg-surface-raised border border-border rounded-lg">
+			<Image loading="eager" fetchpriority="high" class="w-full aspect-4/3 object-cover rounded-lg border border-border lg:w-120 lg:h-150" src={FotoSobreMi} alt="Carlos Coloma debjo del agua con una tortuga marina"/>
 			<div class="prose prose-invert">
-				<h1 class="text-brand text-headline">Sobre mi</h1>
+				<h1 class="text-gradient text-headline">Sobre mi</h1>
 				<p>Hola, soy Carlos. Gracias por pasar por aquí y echarle un ojo a mi trabajo.</p>
 				<p>Mi carrera empezó en el diseño gráfico y publicitario, creando piezas de marca, print y digital, hasta que poco a poco me fui moviendo hacia el UX, el diseño de producto y los sistemas de diseño. Con el tiempo me di cuenta de que me atraía menos la campaña y mucho más el reto de resolver problemas reales y hacer crecer productos digitales.</p>
 				<p>En los últimos 6+ años he tenido la suerte de acompañar productos desde la idea temprana hasta su lanzamiento, crecimiento e iteración continua, trabajando de la mano con equipos de diseño, desarrollo y negocio. Hoy disfruto de trabajar más allá del diseño de interfaz: me muevo entre la arquitectura de tokens, la gobernanza de sistemas de diseño y ese punto exacto donde el diseño se encuentra con la ingeniería, siempre con el foco puesto en construir productos consistentes, intuitivos y efectivos para el negocio.</p>
@@ -24,13 +23,13 @@ const ImageURL = new URL(FotoSobreMi.src, Astro.url.href);
 			</div>
 		</div>
 	</section>
-	<section class="flex flex-col justify-center items-start max-w-7xl w-full py-section px-8">
-		<h2 class="text-brand text-headline font-bold pb-8">Experiencia</h2>
+	<section class="flex flex-col justify-center items-start max-w-page w-full py-section px-margin-mobile lg:px-margin-desktop">
+		<h2 class="text-gradient text-headline pb-8">Experiencia</h2>
 		<div class="w-full">
 			{experiencia.map((exp => {
 				return <div class="w-full min-w-fit flex flex-col lg:flex-row justify-between items-start gap-4 py-8 border-t border-border">
 					<div class="flex gap-4 lg:w-2/5">
-						<Image class="size-20 rounded-xl" alt={`Logo de ${exp.data.empresa}`} src={exp.data.image}/>
+						<Image class="size-20 rounded-sm border border-border" alt={`Logo de ${exp.data.empresa}`} src={exp.data.image}/>
 						<div class="flex flex-col justify-start">
 							<h3 class="text-content text-subtitle mb-2">{exp.data.puesto}</h3>
 							<div class="flex gap-2">
@@ -42,19 +41,19 @@ const ImageURL = new URL(FotoSobreMi.src, Astro.url.href);
 				</div>
 			}))}
 		</div>
-		<h2 class="text-content text-headline font-bold pb-8 pt-section">Educación</h2>
+		<h2 class="text-content text-headline pb-8 pt-section">Educación</h2>
 		<div class="w-full flex flex-col lg:flex-row gap-8">
 			{educacion.map((edu => {
-				return <div class="w-full flex flex-col lg:flex-row justify-start items-start gap-8 p-8 bg-surface-raised rounded-2xl">
-					<div class="bg-action size-16 flex items-center justify-center rounded-xl">
+				return <div class="w-full flex flex-col lg:flex-row justify-start items-start gap-8 p-8 bg-surface-raised border border-border rounded-sm">
+					<div class="bg-action size-16 flex items-center justify-center rounded-sm">
 						<svg width="48" height="48">
 							<use xlink:href={`/sprite.svg#${edu.data.type}`} />
 						</svg>
 					</div>
 					<div class="flex flex-col">
-						<h3 class="text-content text-lead font-semibold">{edu.data.titulo}</h3>
+						<h3 class="text-content text-lead">{edu.data.titulo}</h3>
 						<p>{edu.data.instituto}</p>
-						<p class="text-subtitle font-light pt-2">Graduado {edu.data.fechaGraduacion}</p>
+						<p class="font-mono text-mono text-content-subtle pt-2">Graduado {edu.data.fechaGraduacion}</p>
 					</div>
 				</div>
 			}))}

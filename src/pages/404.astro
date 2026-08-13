@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Button from '../components/Button.astro'
+
+// Una sola 404 para todo el sitio, y bilingüe a propósito.
+//
+// Vercel sirve el 404.html de la raíz ante CUALQUIER ruta que no exista,
+// venga de /casos/loquesea o de /en/whatever. No mira en qué carpeta
+// estaba la URL fallida, así que una segunda página en /en/ no llegaría a
+// usarse nunca sin añadir reglas de enrutado.
+//
+// La alternativa era detectar el idioma por JavaScript mirando el
+// pathname, pero el sitio no envía ni un byte de JS y no vale la pena
+// romper eso por una página de error: se dicen las dos cosas y ya está.
+---
+<Layout
+    title="404 — Página no encontrada | Carlos Coloma"
+    description="La dirección que buscas no existe o el contenido cambió de sitio."
+    noindex
+>
+    <section class="flex flex-col grow items-center justify-center text-center w-full max-w-page mx-auto gap-6 py-section px-margin-mobile lg:px-margin-desktop">
+        <p class="font-mono text-mono uppercase tracking-widest text-content-subtle">Error // 404</p>
+        <h1 class="text-display"><span class="text-gradient">Página no encontrada</span></h1>
+        <p class="text-lead max-w-measure">
+            Esta dirección no existe, o lo que había aquí cambió de sitio.
+        </p>
+        <p class="text-lead max-w-measure text-content-subtle" lang="en">
+            This page doesn’t exist, or what used to live here has moved.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 pt-2">
+            <Button variant="primary" href="/">Volver al inicio</Button>
+            <Button variant="secondary" href="/en">Go to English home</Button>
+        </div>
+    </section>
+</Layout>
