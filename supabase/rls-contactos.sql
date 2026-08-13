@@ -29,6 +29,10 @@ alter table public."Contactos" enable row level security;
 -- 2. Empezar de cero. Una politica permisiva olvidada bastaria para
 --    reabrir el agujero, porque en Postgres las politicas se suman: basta
 --    con que UNA deje pasar.
+--
+--    El `if exists` hace que todo el archivo se pueda ejecutar tantas
+--    veces como haga falta sin dar error. Sin el, un segundo intento
+--    fallaria al llegar al `create policy` por nombre duplicado.
 drop policy if exists "Enable insert for anon" on public."Contactos";
 drop policy if exists "Enable read access for all users" on public."Contactos";
 drop policy if exists "Contactos insert anonimo" on public."Contactos";
