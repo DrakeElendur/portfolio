@@ -1,7 +1,14 @@
 ---
 import Button from '../components/Button.astro';
 const isEnglish = Astro.currentLocale === 'en';
-let rutaActual = Astro.url.pathname.endsWith("/") && Astro.url.pathname.length > 1 ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
+
+// Dos rutas distintas que antes compartían una sola variable: la que
+// estás pisando y la equivalente en el otro idioma. La original se
+// reasignaba a mitad de archivo, así que su nombre dejaba de ser cierto
+// justo cuando más falta hacía. Ahora `aria-current` puede compararse
+// contra la ruta real.
+const rutaLimpia = Astro.url.pathname.endsWith("/") && Astro.url.pathname.length > 1 ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
+let rutaAlterna = rutaLimpia;
 const tabla : Record<string, string> = {
     "/sobre-mi": "/en/about",
     "/en/about": "/sobre-mi",
@@ -10,17 +17,37 @@ const tabla : Record<string, string> = {
     "/": "/en",
     "/en": "/",
 }
-if (rutaActual in tabla) {
-    rutaActual = tabla[rutaActual];
-} else if (rutaActual.includes("/casos")) {
-    rutaActual = isEnglish ? rutaActual.replace("/en/casos", "/casos") : rutaActual.replace("/casos", "/en/casos");
+if (rutaAlterna in tabla) {
+    rutaAlterna = tabla[rutaAlterna];
+} else if (rutaAlterna.includes("/casos")) {
+    rutaAlterna = isEnglish ? rutaAlterna.replace("/en/casos", "/casos") : rutaAlterna.replace("/casos", "/en/casos");
 } else {
-    rutaActual = isEnglish ? "/" : "/en";
+    rutaAlterna = isEnglish ? "/" : "/en";
 }
+
+const inicio = isEnglish ? "/en" : "/";
+const sobreMi = isEnglish ? "/en/about" : "/sobre-mi";
+const contacto = isEnglish ? "/en/contact" : "/contacto";
+
+// `aria-current="page"` le dice al lector de pantalla en qué página estás.
+// El resaltado visual se calcula aquí y NO con una variante `aria-[...]`
+// de Tailwind: la probé y la v4.3.3 la descarta en silencio, sin emitir
+// regla ni avisar. Un ternario en el frontmatter es el mismo patrón que
+// ya usa Button.astro, y no depende de que el compilador reconozca una
+// sintaxis exótica.
+const activa = (href: string) => rutaLimpia === href ? "page" : undefined;
+const enlace = (href: string) => [
+    "px-3 py-2 font-mono text-mono rounded-sm hover:bg-brand/10",
+    rutaLimpia === href ? "text-brand-bright" : "text-content-muted hover:text-brand-bright",
+];
+const enlaceMovil = (href: string) => [
+    "inline-block py-4 font-mono text-mono",
+    rutaLimpia === href ? "text-brand-bright" : "text-content-muted hover:text-brand-bright",
+];
 ---
 <header class="flex flex-row justify-center items-center z-50 sticky top-0 w-full bg-surface-deep border-b border-border">
-<div class="relative flex flex-row justify-between items-center w-full lg:max-w-7xl px-8 lg:px-4 py-4">
-    <div class="font-display cursor-pointer text-content text-subtitle font-bold"><a href={isEnglish ? "/en" : "/"}><span class="text-brand">Carlos</span> Coloma</a></div>
+<div class="relative flex flex-row justify-between items-center w-full lg:max-w-page px-margin-mobile lg:px-margin-desktop py-4">
+    <div class="font-display cursor-pointer text-content text-subtitle font-bold"><a href={inicio}><span class="text-brand-bright">Carlos</span> Coloma</a></div>
     <button type="button" id="burger" aria-label={isEnglish ? "Menu" : "Menú"} class="group flex lg:hidden text-content" aria-expanded="false" aria-controls="menu">
         <svg fill="none" width="48" height="48" aria-hidden="true" focusable="false" class="group-aria-expanded:hidden">
             <use xlink:href="/sprite.svg#hamburger" />
@@ -29,22 +56,22 @@ if (rutaActual in tabla) {
             <use xlink:href="/sprite.svg#close" />
         </svg>
     </button>
-    <nav class="hidden lg:flex flex-row justify-end items-center gap-8">
-        <ul class="flex gap-8">
-            <li ><a class="p-4 text-body cursor-pointer text-content hover:text-brand" href={isEnglish ? "/en" : "/"}>{isEnglish ? "Home" : "Inicio"}</a></li>
-            <li ><a class="p-4 text-body cursor-pointer text-content hover:text-brand" href={isEnglish ? "/en/about" : "/sobre-mi"}>{isEnglish ? "About" : "Sobre mi"}</a></li>
+    <nav class="hidden lg:flex flex-row justify-end items-center gap-6">
+        <ul class="flex gap-2">
+            <li><a class:list={enlace(inicio)} aria-current={activa(inicio)} href={inicio}>{isEnglish ? "Home" : "Inicio"}</a></li>
+            <li><a class:list={enlace(sobreMi)} aria-current={activa(sobreMi)} href={sobreMi}>{isEnglish ? "About" : "Sobre mi"}</a></li>
         </ul>
-        <Button variant="primary" href={isEnglish ? "/en/contact" : "/contacto"}>{isEnglish ? "Contact Me" : "Contáctame"}</Button>
-        <a class="flex justify-center items-center size-12 cursor-pointer" href={rutaActual}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="Cambiar a Español" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="Switch to English" />}</a>
+        <Button variant="primary" href={contacto}>{isEnglish ? "Contact Me" : "Contáctame"}</Button>
+        <a class="flex justify-center items-center size-12 cursor-pointer" href={rutaAlterna}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="Cambiar a Español" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="Switch to English" />}</a>
     </nav>
 
 </div>
-<div id="menu" data-open="false" class="absolute top-full lg:hidden bg-surface w-full z-50 px-8 py-8 border-b border-border invisible opacity-0 -translate-y-2 data-[open=true]:visible data-[open=true]:opacity-100 data-[open=true]:translate-y-0 transition-[opacity,transform,visibility] duration-200 ease-out">
-        <ul class="flex flex-col items-center gap-8">
-            <li class="text-subtitle cursor-pointer text-content hover:text-brand"><a class="py-4 inline-block" href={isEnglish ? "/en" : "/"}>{isEnglish ? "Home" : "Inicio"}</a></li>
-            <li class="text-subtitle cursor-pointer text-content hover:text-brand"><a class="py-4 inline-block" href={isEnglish ? "/en/about" : "/sobre-mi"}>{isEnglish ? "About Me" : "Sobre mi"}</a></li>
-            <li><Button variant="primary" href={isEnglish ? "/en/contact" : "/contacto"}>{isEnglish ? "Contact Me" : "Contáctame"}</Button></li>
-            <li><a class="flex justify-center items-center size-12 cursor-pointer" href={rutaActual}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="Cambiar a Español" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="Switch to English" />}</a></li>
+<div id="menu" data-open="false" class="absolute top-full lg:hidden bg-surface-deep w-full z-50 px-margin-mobile py-8 border-b border-border invisible opacity-0 -translate-y-2 data-[open=true]:visible data-[open=true]:opacity-100 data-[open=true]:translate-y-0 transition-[opacity,transform,visibility] duration-200 ease-out">
+        <ul class="flex flex-col items-center gap-6">
+            <li><a class:list={enlaceMovil(inicio)} aria-current={activa(inicio)} href={inicio}>{isEnglish ? "Home" : "Inicio"}</a></li>
+            <li><a class:list={enlaceMovil(sobreMi)} aria-current={activa(sobreMi)} href={sobreMi}>{isEnglish ? "About Me" : "Sobre mi"}</a></li>
+            <li><Button variant="primary" href={contacto}>{isEnglish ? "Contact Me" : "Contáctame"}</Button></li>
+            <li><a class="flex justify-center items-center size-12 cursor-pointer" href={rutaAlterna}>{isEnglish ? <img class="w-6 h-4" src="/flags/es.svg" alt="Cambiar a Español" /> : <img class="w-6 h-4" src="/flags/gb.svg" alt="Switch to English" />}</a></li>
         </ul>
 </div>
 </header>

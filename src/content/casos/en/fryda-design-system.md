@@ -19,17 +19,16 @@ tldr: |
 
 Yanbal had spent 3 years building its new commercial system, **New MAYA**, alongside satellite products like Pase de Pedido. MAYA already had 2 years in production, with visual improvements and new features layered on top, and Pase de Pedido — though interconnected — worked as a separate box.
 
-Design lived in order in Figma, but that order broke down when it crossed over into development. UI Kit v0.2 wasn't an actionable source of truth: each development team took the layouts and rebuilt, on its own, a component library for its own product. Every atom, molecule, and organism ended up hardcoded and out of sync with each other.
+Design lived in order in Figma, but that order broke down when it crossed over into development. UI Kit v0.2 wasn't an actionable source of truth: each development team took the layouts and rebuilt, on its own, a component library for its own product. Every atom, molecule, and organism ended up *hardcoded* and out of sync with each other.
 
 The cost was concrete and recurring:
-
-Visual inconsistencies between products that shared a brand.
-
-Long visual QA cycles to catch and fix those differences.
-
-Constant overwrites that multiplied maintenance work.
+- Visual inconsistencies between products that shared a brand.
+- Long visual QA cycles to catch and fix those differences.
+- Constant overwrites that multiplied maintenance work.
 
 I started by leading the UI front of the Design team: governing the UI Kit and meeting with UI designers and Product Designers to standardize components and features across products and teams. As the project took shape and scale, my role evolved into Design System Manager + UI Lead, coordinating a mixed Yanbal–Propelland team of 9 people across design, tokens, and development disciplines.
+
+![Comparison of two Yanbal digital products showing how, despite sharing the same visual source, they were built with marked differences](../../../assets/images/header-comparison.png)
 
 ## The Process
 

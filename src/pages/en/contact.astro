@@ -7,32 +7,32 @@ import Button from '../../components/Button.astro'
 // elemento claro de toda la interfaz oscura.
 // El borde de error lo pinta el CSS reaccionando a `aria-invalid`, así
 // que el script solo gobierna un atributo y no toca clases.
-const campo = "w-full bg-surface-deep border border-border p-4 rounded-lg text-body text-content placeholder:text-content-muted aria-[invalid=true]:border-danger";
+const campo = "w-full bg-surface-deep border border-border p-4 rounded-sm text-body text-content placeholder:text-content-muted aria-[invalid=true]:border-danger";
 const errorCampo = "text-danger text-caption empty:hidden";
 const aviso = "hidden data-[show=true]:flex items-center gap-2 text-body";
 ---
 <Layout title="Contact | Carlos Coloma" description="Looking for a Design System Manager or UX/UI Product Designer for your team? Get in touch and let's talk.">
-	<section class="flex flex-col justify-center items-center max-w-3xl w-full py-section px-8">
+	<section class="flex flex-col justify-center items-center max-w-3xl w-full py-section px-margin-mobile lg:px-margin-desktop">
 		<div class="flex flex-col justify-center items-center gap-2 pb-8">
-			<h1 class="text-brand text-headline font-bold">Contact me</h1>
+			<h1 class="text-gradient text-headline">Contact me</h1>
 			<p class="text-lead text-center text-balance">I specialize in helping startups and teams move faster, smarter, and with more confidence. Reach out to see how we can work together.</p>
 		</div>
-		<div class="w-full flex flex-col justify-center items-center gap-12 p-8 bg-surface-raised rounded-4xl">
+		<div class="w-full flex flex-col justify-center items-center gap-12 p-8 bg-surface-raised border border-border rounded-lg">
 			<form novalidate class="flex flex-col w-full gap-4">
 				<div class="flex flex-col w-full justify-center items-start gap-4 sm:flex-row sm:justify-between">
 					<div class="w-full flex flex-col gap-2">
-						<label for="name" class="text-content text-body">Your name</label>
+						<label for="name" class="font-mono text-mono text-content-subtle">Your name</label>
 						<input class={campo} type="text" id="name" name="name" placeholder="Enter your name" required aria-describedby="nameError">
 						<p id="nameError" class={errorCampo}></p>
 					</div>
 					<div class="w-full flex flex-col gap-2">
-						<label for="email" class="text-content text-body">Your email</label>
+						<label for="email" class="font-mono text-mono text-content-subtle">Your email</label>
 						<input class={campo} type="email" id="email" name="email" placeholder="Enter your email" required aria-describedby="emailError">
 						<p id="emailError" class={errorCampo}></p>
 					</div>
 				</div>
 				<div class="w-full flex flex-col gap-2">
-					<label for="message" class="text-content text-body">How can I help you?</label>
+					<label for="message" class="font-mono text-mono text-content-subtle">How can I help you?</label>
 					<textarea class={`${campo} min-h-48`} id="message" name="message" placeholder="Write your message here" required aria-describedby="messageError"></textarea>
 					<p id="messageError" class={errorCampo}></p>
 				</div>

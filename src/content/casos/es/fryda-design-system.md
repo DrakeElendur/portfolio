@@ -18,6 +18,7 @@ tldr: |
 ## El Problema
 
 Yanbal llevaba 3 años desarrollando su nuevo sistema comercial, **Nueva MAYA**, junto a productos satélite como Pase de Pedido. MAYA ya tenía 2 años en producción, con mejoras visuales y nuevos features encima, y Pase de Pedido —aunque interconectado— funcionaba como una caja distinta.
+
 El diseño vivía ordenado en Figma, pero ese orden se rompía al cruzar hacia desarrollo. El UI Kit v0.2 no era una fuente de verdad accionable: cada equipo de desarrollo tomaba los layouts y reconstruía, por su cuenta, una librería de componentes para su propio producto. Todos los átomos, moléculas y organismos terminaban *hardcodeados* y desalineados entre sí.
 
 El costo era concreto y repetido:

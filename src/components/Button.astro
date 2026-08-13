@@ -12,11 +12,20 @@ const { variant, href, target, rel, type, disabled } = Astro.props;
 // Una sola fuente de verdad para las clases. Antes estaban escritas
 // literalmente dos veces (una por rama del ternario), así que cambiar
 // el radio del botón obligaba a editar dos sitios y acordarse de los dos.
+//
+// `rounded-sm` (4px) y no `rounded-full`: el lenguaje de formas del
+// sistema prohíbe la píldora, que contradice la narrativa de rejilla.
+// Es uno de los 4 sitios que hubo que editar a mano, porque Tailwind v4
+// hardcodea `rounded-full` y no se puede cambiar desde el token.
+//
+// El primario usa `text-on-action` y no `text-content`: sobre el azul
+// #3c6aaa el gris azulado del cuerpo se queda en 4.25:1 y no llega al
+// 4.5:1 de WCAG AA. Blanco puro lo sube a 5.48:1.
 const clases = [
-    "inline-block px-8 py-3 rounded-full active:scale-[0.97]",
+    "inline-block px-6 py-3 rounded-sm font-mono text-mono active:scale-[0.97]",
     variant === "primary"
-        ? "bg-action hover:bg-action-hover text-content"
-        : "text-content border-2 hover:text-brand",
+        ? "bg-action hover:bg-action-hover text-on-action"
+        : "text-content border border-border-strong hover:text-brand-bright hover:bg-brand/10",
     "disabled:opacity-50 disabled:pointer-events-none",
 ];
 ---

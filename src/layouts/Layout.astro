@@ -5,6 +5,10 @@ import Footer from '../components/Footer.astro';
 import HeroPhoto from '../assets/images/hero-photo.webp'
 import Analytics from '@vercel/analytics/astro'
 import SpeedInsights from "@vercel/speed-insights/astro"
+// `?url` devuelve la ruta final con hash que Vite le da al archivo. Hace
+// falta para poder precargarlo: el nombre lo decide el build, así que
+// escribirlo a mano en un <link> se rompería en el siguiente despliegue.
+import montserratUrl from '../assets/fonts/Montserrat-VariableFont_wght.woff2?url'
 interface Props {
     title: string;
     description:string;
@@ -23,8 +27,28 @@ const isEnglish = Astro.currentLocale === 'en';
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        <!-- Montserrat es local y pinta el h1, que es lo primero que se ve.
+             Se precarga para que el navegador la pida YA, en paralelo con el
+             CSS. Sin esto no la descubre hasta terminar de parsear la hoja de
+             estilos, y el titular se queda esperando. `crossorigin` no es
+             opcional en un preload de fuente: sin él el navegador descarga el
+             archivo dos veces. -->
+        <link rel="preload" href={montserratUrl} as="font" type="font/woff2" crossorigin />
+        <!-- Hanken Grotesk y JetBrains Mono vienen de Google Fonts. `preconnect`
+             adelanta DNS y handshake TLS, que es la mayor parte del coste.
+
+             El truco de `media="print"`: una hoja para otro medio NO bloquea el
+             render, así que la página pinta sin esperar al tercer dominio. Al
+             terminar de bajar, el `onload` la devuelve a `all` y se aplica.
+             Ninguna de las dos familias hace falta para el primer pintado —
+             son cuerpo y etiquetas, no el titular. El <noscript> cubre el caso
+             sin JavaScript. -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:wght@400..700&display=swap" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:wght@400..700&display=swap" /></noscript>
         <!-- Tags de SEO -->
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="generator" content={Astro.generator} />
         <meta name="description" content={description} />
         <!-- Tags de Open Graph-->
@@ -40,8 +64,30 @@ const isEnglish = Astro.currentLocale === 'en';
         <title>{title}</title>
     </head>
     <body class="flex flex-col items-center w-full bg-surface min-w-0 text-content-muted font-body">
+        <!-- Carcasa ambiental: rejilla, rieles de margen y marcadores de esquina.
+             Es decoración pura, por eso va con aria-hidden y pointer-events-none.
+
+             `-z-10` en vez del `z-0` del mockup: el fondo de <body> se propaga al
+             lienzo del navegador, así que se pinta por debajo de todo. Un z-index
+             negativo deja la rejilla encima de ese lienzo pero detrás del
+             contenido, sin tener que ir marcando `relative z-10` en cada sección.
+
+             Nada de `overflow-x-hidden` en el body: crearía un contenedor de
+             scroll y rompería el `sticky` del nav y el de la ficha de caso. -->
+        <div class="fixed inset-0 -z-10 pointer-events-none grid-bg" aria-hidden="true"></div>
+        <!-- Los rieles cuelgan de un contenedor centrado del mismo ancho que la
+             página (max-w-page) en lugar de anclarse al borde de la ventana. Así
+             caen exactamente sobre el padding `margin-desktop` del contenido a
+             CUALQUIER resolución; anclados al viewport se desalineaban en cuanto
+             la pantalla superaba los 1440px. -->
+        <div class="fixed inset-y-0 left-1/2 -translate-x-1/2 w-full max-w-page -z-10 pointer-events-none hidden md:block" aria-hidden="true">
+            <div class="absolute inset-y-0 left-margin-desktop w-px bg-border"></div>
+            <div class="absolute inset-y-0 right-margin-desktop w-px bg-border"></div>
+            <span class="absolute top-nav left-margin-desktop -translate-x-1/2 select-none text-border-strong font-mono text-mono">+</span>
+            <span class="absolute top-nav right-margin-desktop translate-x-1/2 select-none text-border-strong font-mono text-mono">+</span>
+        </div>
         <Nav />
-        <main class="flex flex-col w-full items-center mx-auto min-w-0 min-h-screen">
+        <main class="flex flex-col w-full items-center mx-auto min-w-0 min-h-dvh">
             <slot />
         </main>
         <Footer />
